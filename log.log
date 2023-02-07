@@ -1,0 +1,91 @@
+CFLAGS="-std=c99 -Wall -O0"
+gcc -std=c99 -Wall -O0 d2q9-bgk.c -lm -o d2q9-bgk
+Submitted batch job 11172014
+Running on host compute242.bc4.acrc.priv
+Time is Tue Feb 7 13:58:00 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11172014
+This job runs on the following machines:
+compute242
+==done==
+Reynolds number:		9.751927375793E+00
+Elapsed Init time:			0.052716 (s)
+Elapsed Compute time:			127.752676 (s)
+Elapsed Collate time:			0.000000 (s)
+Elapsed Total time:			127.805392 (s)
+CFLAGS="-std=c99 -Wall -O1"
+gcc -std=c99 -Wall -O1 d2q9-bgk.c -lm -o d2q9-bgk
+Submitted batch job 11172024
+Running on host compute242.bc4.acrc.priv
+Time is Tue Feb 7 14:00:30 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11172024
+This job runs on the following machines:
+compute242
+==done==
+Reynolds number:		9.751927375793E+00
+Elapsed Init time:			0.000891 (s)
+Elapsed Compute time:			34.682674 (s)
+Elapsed Collate time:			0.000000 (s)
+Elapsed Total time:			34.683565 (s)
+CFLAGS="-std=c99 -Wall -O2"
+gcc -std=c99 -Wall -O2 d2q9-bgk.c -lm -o d2q9-bgk
+Submitted batch job 11172030
+Running on host compute242.bc4.acrc.priv
+Time is Tue Feb 7 14:01:53 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11172030
+This job runs on the following machines:
+compute242
+==done==
+Reynolds number:		9.751927375793E+00
+Elapsed Init time:			0.001416 (s)
+Elapsed Compute time:			33.415242 (s)
+Elapsed Collate time:			0.000000 (s)
+Elapsed Total time:			33.416658 (s)
+CFLAGS="-std=c99 -Wall -O3"
+gcc -std=c99 -Wall -O3 d2q9-bgk.c -lm -o d2q9-bgk
+Submitted batch job 11172035
+Running on host compute242.bc4.acrc.priv
+Time is Tue Feb 7 14:03:00 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11172035
+This job runs on the following machines:
+compute242
+==done==
+Reynolds number:		9.751927375793E+00
+Elapsed Init time:			0.001106 (s)
+Elapsed Compute time:			33.386939 (s)
+Elapsed Collate time:			0.000000 (s)
+Elapsed Total time:			33.388045 (s)
+CFLAGS="-std=c99 -Wall -Ofast"
+gcc -std=c99 -Wall -Ofast d2q9-bgk.c -lm -o d2q9-bgk
+Submitted batch job 11172039
+Running on host compute244.bc4.acrc.priv
+Time is Tue Feb 7 14:04:39 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11172039
+This job runs on the following machines:
+compute244
+==done==
+Reynolds number:		9.757722854614E+00
+Elapsed Init time:			0.028055 (s)
+Elapsed Compute time:			28.427346 (s)
+Elapsed Collate time:			0.000000 (s)
+Elapsed Total time:			28.455401 (s)
+CFLAGS="-std=c99 -Wall -Ofast -mtune=native"
+gcc -std=c99 -Wall -Ofast -mtune=native d2q9-bgk.c -lm -o d2q9-bgk
+Submitted batch job 11172041
+Running on host compute524.bc4.acrc.priv
+Time is Tue Feb 7 14:06:01 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11172041
+This job runs on the following machines:
+compute524
+==done==
+Reynolds number:		9.757722854614E+00
+Elapsed Init time:			0.018005 (s)
+Elapsed Compute time:			28.661560 (s)
+Elapsed Collate time:			0.000000 (s)
+Elapsed Total time:			28.679565 (s)
+======ALL DONE======

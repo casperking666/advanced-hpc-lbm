@@ -1,0 +1,75 @@
+module load GCC/5.4.0-2.26
+CFLAGS="-std=c99 -Wall -Ofast -mtune=native"
+
+gcc -std=c99 -Wall -Ofast -mtune=native d2q9-bgk.c -lm -o d2q9-bgk
+Submitted batch job 11172703
+Running on host compute242.bc4.acrc.priv
+Time is Tue Feb 7 18:28:34 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11172703
+This job runs on the following machines:
+compute242
+==done==
+Reynolds number:		9.757588386536E+00
+Elapsed Init time:			0.001323 (s)
+Elapsed Compute time:			28.175199 (s)
+Elapsed Collate time:			0.000000 (s)
+Elapsed Total time:			28.176522 (s)
+
+The following have been reloaded with a version change:
+  1) GCCcore/5.4.0 => GCCcore/7.2.0     2) binutils/2.26-GCCcore-5.4.0 => binutils/2.29-GCCcore-7.2.0
+
+module load GCC/7.2.0-2.29
+CFLAGS="-std=c99 -Wall -Ofast -mtune=native"
+
+gcc -std=c99 -Wall -Ofast -mtune=native d2q9-bgk.c -lm -o d2q9-bgk
+Submitted batch job 11172705
+Running on host compute242.bc4.acrc.priv
+Time is Tue Feb 7 18:30:03 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11172705
+This job runs on the following machines:
+compute242
+==done==
+Reynolds number:		9.757588386536E+00
+Elapsed Init time:			0.001385 (s)
+Elapsed Compute time:			28.171600 (s)
+Elapsed Collate time:			0.000000 (s)
+Elapsed Total time:			28.172985 (s)
+
+module load languages/gcc/10.4.0
+CFLAGS="-std=c99 -Wall -Ofast -mtune=native"
+
+gcc -std=c99 -Wall -Ofast -mtune=native d2q9-bgk.c -lm -o d2q9-bgk
+Submitted batch job 11172708
+Running on host compute242.bc4.acrc.priv
+Time is Tue Feb 7 18:32:04 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11172708
+This job runs on the following machines:
+compute242
+==done==
+Reynolds number:		9.757588386536E+00
+Elapsed Init time:			0.001360 (s)
+Elapsed Compute time:			28.638312 (s)
+Elapsed Collate time:			0.000000 (s)
+Elapsed Total time:			28.639672 (s)
+
+module load icc/2017.1.132-GCC-5.4.0-2.26
+CFLAGS="-std=c99 -Wall -Ofast -mtune=native"
+
+icc -std=c99 -Wall -Ofast -mtune=native d2q9-bgk.c -lm -o d2q9-bgk
+Submitted batch job 11172711
+Running on host compute242.bc4.acrc.priv
+Time is Tue Feb 7 18:34:04 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11172711
+This job runs on the following machines:
+compute242
+==done==
+Reynolds number:		9.757672309875E+00
+Elapsed Init time:			0.001119 (s)
+Elapsed Compute time:			25.001929 (s)
+Elapsed Collate time:			0.000000 (s)
+Elapsed Total time:			25.003048 (s)
+======ALL DONE======
