@@ -1,0 +1,191 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+  8.50      2.81     2.81                             rebound_collision (d2q9-bgkOld.c:343 @ 401459)
+  6.36      4.91     2.10                             rebound_collision (d2q9-bgkOld.c:372 @ 4014c0)
+  5.20      6.63     1.72                             rebound_collision (d2q9-bgkOld.c:402 @ 40152f)
+  4.76      8.20     1.57                             av_velocity (d2q9-bgkOld.c:452 @ 4018f6)
+  2.80      9.13     0.93                             av_velocity (d2q9-bgkOld.c:422 @ 40190b)
+  2.55      9.97     0.84                             rebound_collision (d2q9-bgkOld.c:331 @ 40144c)
+  2.24     10.71     0.74                             propagate (d2q9-bgkOld.c:248 @ 4010e9)
+  1.94     11.35     0.64                             rebound_collision (d2q9-bgkOld.c:401 @ 40153d)
+  1.88     11.97     0.62                             propagate (d2q9-bgkOld.c:246 @ 4010e6)
+  1.88     12.59     0.62                             propagate (d2q9-bgkOld.c:255 @ 401122)
+  1.68     13.15     0.56                             rebound_collision (d2q9-bgkOld.c:369 @ 4014db)
+  1.61     13.68     0.53                             rebound_collision (d2q9-bgkOld.c:401 @ 4016c0)
+  1.55     14.19     0.51                             av_velocity (d2q9-bgkOld.c:432 @ 401862)
+  1.41     14.65     0.47                             rebound_collision (d2q9-bgkOld.c:400 @ 401706)
+  1.30     15.08     0.43                             propagate (d2q9-bgkOld.c:253 @ 4010ff)
+  1.23     15.49     0.41                             rebound_collision (d2q9-bgkOld.c:362 @ 40149f)
+  1.20     15.88     0.40                             propagate (d2q9-bgkOld.c:257 @ 401134)
+  1.20     16.28     0.40                             rebound_collision (d2q9-bgkOld.c:401 @ 401693)
+  1.18     16.67     0.39                             rebound_collision (d2q9-bgkOld.c:369 @ 401500)
+  1.15     17.05     0.38                             rebound_collision (d2q9-bgkOld.c:400 @ 4015d3)
+  1.12     17.42     0.37                             rebound_collision (d2q9-bgkOld.c:352 @ 401466)
+  1.11     17.79     0.37                             rebound_collision (d2q9-bgkOld.c:401 @ 40156e)
+  1.06     18.14     0.35                             rebound_collision (d2q9-bgkOld.c:352 @ 401483)
+  1.05     18.48     0.35                             av_velocity (d2q9-bgkOld.c:452 @ 40190f)
+  1.05     18.83     0.35                             av_velocity (d2q9-bgkOld.c:454 @ 401913)
+  1.03     19.17     0.34                             rebound_collision (d2q9-bgkOld.c:402 @ 401565)
+  0.94     19.48     0.31                             rebound_collision (d2q9-bgkOld.c:402 @ 4016b7)
+  0.91     19.78     0.30                             rebound_collision (d2q9-bgkOld.c:331 @ 4013b3)
+  0.88     20.07     0.29                             av_velocity (d2q9-bgkOld.c:438 @ 4018a8)
+  0.88     20.36     0.29                             rebound_collision (d2q9-bgkOld.c:402 @ 4016f4)
+  0.85     20.64     0.28                             rebound_collision (d2q9-bgkOld.c:380 @ 4015fd)
+  0.83     20.92     0.28                             rebound_collision (d2q9-bgkOld.c:307 @ 40139c)
+  0.82     21.19     0.27                             rebound_collision (d2q9-bgkOld.c:348 @ 401426)
+  0.79     21.45     0.26                             rebound_collision (d2q9-bgkOld.c:402 @ 401598)
+  0.77     21.70     0.26                             rebound_collision (d2q9-bgkOld.c:402 @ 401572)
+  0.76     21.95     0.25                             propagate (d2q9-bgkOld.c:259 @ 401176)
+  0.73     22.19     0.24                             propagate (d2q9-bgkOld.c:258 @ 401167)
+  0.71     22.43     0.24                             rebound_collision (d2q9-bgkOld.c:401 @ 40160f)
+  0.70     22.66     0.23                             rebound_collision (d2q9-bgkOld.c:380 @ 4015e9)
+  0.68     22.88     0.23                             propagate (d2q9-bgkOld.c:255 @ 401140)
+  0.68     23.11     0.23                             rebound_collision (d2q9-bgkOld.c:401 @ 401701)
+  0.67     23.33     0.22                             rebound_collision (d2q9-bgkOld.c:402 @ 40164f)
+  0.67     23.55     0.22                             rebound_collision (d2q9-bgkOld.c:388 @ 401670)
+  0.67     23.77     0.22                             rebound_collision (d2q9-bgkOld.c:393 @ 4016f0)
+  0.65     23.98     0.22                             rebound_collision (d2q9-bgkOld.c:369 @ 40152b)
+  0.64     24.19     0.21                             av_velocity (d2q9-bgkOld.c:425 @ 401859)
+  0.64     24.41     0.21                             rebound_collision (d2q9-bgkOld.c:331 @ 4013cb)
+  0.64     24.62     0.21                             rebound_collision (d2q9-bgkOld.c:345 @ 401436)
+  0.64     24.83     0.21                             rebound_collision (d2q9-bgkOld.c:400 @ 401541)
+  0.64     25.04     0.21                             rebound_collision (d2q9-bgkOld.c:400 @ 401577)
+  0.64     25.25     0.21                             rebound_collision (d2q9-bgkOld.c:387 @ 401663)
+  0.62     25.45     0.21                             rebound_collision (d2q9-bgkOld.c:400 @ 40165e)
+  0.58     25.64     0.19                             propagate (d2q9-bgkOld.c:246 @ 4010df)
+  0.58     25.83     0.19                             rebound_collision (d2q9-bgkOld.c:331 @ 4013d6)
+  0.58     26.02     0.19                             rebound_collision (d2q9-bgkOld.c:368 @ 401519)
+  0.58     26.21     0.19                             rebound_collision (d2q9-bgkOld.c:400 @ 40161f)
+  0.55     26.39     0.18                             propagate (d2q9-bgkOld.c:260 @ 401191)
+  0.55     26.57     0.18                             rebound_collision (d2q9-bgkOld.c:360 @ 40147e)
+  0.53     26.75     0.18                             rebound_collision (d2q9-bgkOld.c:402 @ 401689)
+  0.50     26.91     0.17                             rebound_collision (d2q9-bgkOld.c:377 @ 4015aa)
+  0.50     27.08     0.17                             rebound_collision (d2q9-bgkOld.c:384 @ 401613)
+  0.47     27.23     0.16                             rebound_collision (d2q9-bgkOld.c:401 @ 4015cf)
+  0.45     27.38     0.15                             rebound_collision (d2q9-bgkOld.c:400 @ 4016cc)
+  0.44     27.53     0.15                             rebound_collision (d2q9-bgkOld.c:384 @ 401631)
+  0.44     27.67     0.15                             rebound_collision (d2q9-bgkOld.c:385 @ 401636)
+  0.41     27.81     0.14                             av_velocity (d2q9-bgkOld.c:444 @ 4018f2)
+  0.41     27.94     0.14                             rebound_collision (d2q9-bgkOld.c:371 @ 4014d3)
+  0.38     28.07     0.13                             propagate (d2q9-bgkOld.c:256 @ 401145)
+  0.36     28.19     0.12                             rebound_collision (d2q9-bgkOld.c:344 @ 4013fe)
+  0.36     28.31     0.12                             propagate (d2q9-bgkOld.c:259 @ 401186)
+  0.36     28.43     0.12                             rebound_collision (d2q9-bgkOld.c:358 @ 401472)
+  0.35     28.55     0.12                             propagate (d2q9-bgkOld.c:256 @ 4010b5)
+  0.35     28.66     0.12                             rebound_collision (d2q9-bgkOld.c:347 @ 401412)
+  0.35     28.78     0.12                             rebound_collision (d2q9-bgkOld.c:331 @ 401419)
+  0.35     28.89     0.12                             rebound_collision (d2q9-bgkOld.c:360 @ 40149a)
+  0.33     29.00     0.11                             propagate (d2q9-bgkOld.c:260 @ 40113e)
+  0.33     29.11     0.11                             rebound_collision (d2q9-bgkOld.c:336 @ 4013ed)
+  0.33     29.22     0.11                             rebound_collision (d2q9-bgkOld.c:358 @ 40148c)
+  0.33     29.33     0.11                             rebound_collision (d2q9-bgkOld.c:375 @ 40158a)
+  0.33     29.44     0.11                             rebound_collision (d2q9-bgkOld.c:376 @ 40158f)
+  0.33     29.55     0.11                             rebound_collision (d2q9-bgkOld.c:394 @ 4016d6)
+  0.33     29.66     0.11                             rebound_collision (d2q9-bgkOld.c:393 @ 4016e2)
+  0.32     29.77     0.11                             propagate (d2q9-bgkOld.c:246 @ 4010d0)
+  0.32     29.87     0.11                             rebound_collision (d2q9-bgkOld.c:335 @ 40145e)
+  0.32     29.98     0.11                             rebound_collision (d2q9-bgkOld.c:371 @ 401545)
+  0.32     30.08     0.11                             rebound_collision (d2q9-bgkOld.c:372 @ 401557)
+  0.32     30.19     0.11                             rebound_collision (d2q9-bgkOld.c:402 @ 4015c6)
+  0.30     30.29     0.10                             av_velocity (d2q9-bgkOld.c:432 @ 4018bb)
+  0.30     30.39     0.10                             av_velocity (d2q9-bgkOld.c:448 @ 4018bf)
+  0.30     30.49     0.10                             rebound_collision (d2q9-bgkOld.c:331 @ 4013f5)
+  0.30     30.59     0.10                             rebound_collision (d2q9-bgkOld.c:336 @ 401408)
+  0.30     30.69     0.10                             rebound_collision (d2q9-bgkOld.c:375 @ 4014f3)
+  0.30     30.79     0.10                             rebound_collision (d2q9-bgkOld.c:369 @ 4014f7)
+  0.30     30.89     0.10                             rebound_collision (d2q9-bgkOld.c:386 @ 401641)
+  0.30     30.99     0.10                             rebound_collision (d2q9-bgkOld.c:384 @ 401646)
+  0.30     31.09     0.10                             propagate (d2q9-bgkOld.c:257 @ 401159)
+  0.30     31.19     0.10                             rebound_collision (d2q9-bgkOld.c:343 @ 401448)
+  0.29     31.28     0.10                             propagate (d2q9-bgkOld.c:256 @ 401154)
+  0.27     31.37     0.09                             rebound_collision (d2q9-bgkOld.c:362 @ 4014b7)
+  0.27     31.46     0.09                             rebound_collision (d2q9-bgkOld.c:387 @ 401680)
+  0.26     31.55     0.09                             rebound_collision (d2q9-bgkOld.c:401 @ 401659)
+  0.24     31.63     0.08                             av_velocity (d2q9-bgkOld.c:437 @ 40189a)
+  0.24     31.71     0.08                             av_velocity (d2q9-bgkOld.c:439 @ 4018ce)
+  0.24     31.79     0.08                             av_velocity (d2q9-bgkOld.c:432 @ 4018d2)
+  0.24     31.87     0.08                             propagate (d2q9-bgkOld.c:241 @ 4010f7)
+  0.24     31.95     0.08                             rebound_collision (d2q9-bgkOld.c:400 @ 401698)
+  0.24     32.03     0.08                             rebound_collision (d2q9-bgkOld.c:390 @ 40169d)
+  0.24     32.11     0.08                             rebound_collision (d2q9-bgkOld.c:391 @ 4016aa)
+  0.21     32.18     0.07                             av_velocity (d2q9-bgkOld.c:449 @ 4018e1)
+  0.21     32.25     0.07                             av_velocity (d2q9-bgkOld.c:447 @ 4018e6)
+  0.21     32.32     0.07                             rebound_collision (d2q9-bgkOld.c:363 @ 4014ae)
+  0.21     32.39     0.07                             rebound_collision (d2q9-bgkOld.c:402 @ 401606)
+  0.18     32.45     0.06                             rebound_collision (d2q9-bgkOld.c:377 @ 4015c2)
+  0.17     32.51     0.06                             rebound_collision (d2q9-bgkOld.c:392 @ 4016ae)
+  0.15     32.56     0.05                             propagate (d2q9-bgkOld.c:245 @ 4010a3)
+  0.15     32.61     0.05                             propagate (d2q9-bgkOld.c:253 @ 4010f4)
+  0.12     32.65     0.04                             rebound_collision (d2q9-bgkOld.c:310 @ 4013c7)
+  0.09     32.68     0.03                             propagate (d2q9-bgkOld.c:258 @ 40117a)
+  0.09     32.71     0.03                             rebound_collision (d2q9-bgkOld.c:320 @ 401388)
+  0.06     32.73     0.02                             propagate (d2q9-bgkOld.c:252 @ 4010d6)
+  0.06     32.75     0.02                             rebound_collision (d2q9-bgkOld.c:317 @ 40137e)
+  0.06     32.77     0.02                             rebound_collision (d2q9-bgkOld.c:361 @ 401491)
+  0.06     32.79     0.02                             rebound_collision (d2q9-bgkOld.c:391 @ 401674)
+  0.06     32.81     0.02                             rebound_collision (d2q9-bgkOld.c:389 @ 40167b)
+  0.05     32.82     0.02                             propagate (d2q9-bgkOld.c:260 @ 401138)
+  0.05     32.84     0.02                             propagate (d2q9-bgkOld.c:257 @ 40114c)
+  0.05     32.85     0.02                             rebound_collision (d2q9-bgkOld.c:315 @ 401365)
+  0.05     32.87     0.02                             rebound_collision (d2q9-bgkOld.c:390 @ 4016b3)
+  0.03     32.88     0.01                             accelerate_flow (d2q9-bgkOld.c:220 @ 400fa2)
+  0.03     32.89     0.01                             av_velocity (d2q9-bgkOld.c:422 @ 401820)
+  0.03     32.90     0.01                             propagate (d2q9-bgkOld.c:256 @ 401083)
+  0.03     32.91     0.01                             propagate (d2q9-bgkOld.c:252 @ 4010e2)
+  0.03     32.92     0.01                             propagate (d2q9-bgkOld.c:258 @ 401160)
+  0.03     32.93     0.01                             propagate (d2q9-bgkOld.c:257 @ 401171)
+  0.03     32.94     0.01                             rebound_collision (d2q9-bgkOld.c:314 @ 401360)
+  0.03     32.95     0.01                             rebound_collision (d2q9-bgkOld.c:318 @ 401379)
+  0.03     32.96     0.01                             rebound_collision (d2q9-bgkOld.c:337 @ 401422)
+  0.03     32.97     0.01                             rebound_collision (d2q9-bgkOld.c:344 @ 401432)
+  0.03     32.98     0.01                             rebound_collision (d2q9-bgkOld.c:331 @ 40143b)
+  0.03     32.99     0.01                             rebound_collision (d2q9-bgkOld.c:331 @ 401443)
+  0.03     33.00     0.01                             rebound_collision (d2q9-bgkOld.c:378 @ 4015b8)
+  0.03     33.01     0.01                             rebound_collision (d2q9-bgkOld.c:393 @ 4016c4)
+  0.02     33.01     0.01                             propagate (d2q9-bgkOld.c:239 @ 401030)
+  0.02     33.02     0.01                             propagate (d2q9-bgkOld.c:241 @ 401080)
+  0.02     33.02     0.01                             propagate (d2q9-bgkOld.c:239 @ 40109e)
+  0.02     33.03     0.01                             propagate (d2q9-bgkOld.c:241 @ 4010a1)
+  0.02     33.03     0.01                             propagate (d2q9-bgkOld.c:260 @ 401150)
+  0.02     33.04     0.01                             propagate (d2q9-bgkOld.c:259 @ 401164)
+  0.02     33.04     0.01                             propagate (d2q9-bgkOld.c:259 @ 40116a)
+  0.02     33.05     0.01                             propagate (d2q9-bgkOld.c:258 @ 40116d)
+  0.02     33.05     0.01                             rebound_collision (d2q9-bgkOld.c:371 @ 401349)
+  0.02     33.06     0.01                             rebound_collision (d2q9-bgkOld.c:310 @ 4013b1)
+  0.02     33.06     0.01                             rebound_collision (d2q9-bgkOld.c:400 @ 4015a5)
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2015 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.

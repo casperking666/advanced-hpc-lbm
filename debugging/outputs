@@ -1,0 +1,44 @@
+older version with index above
+
+Running on host compute245.bc4.acrc.priv
+Time is Tue Feb 14 13:42:37 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11183330
+This job runs on the following machines:
+compute245
+==done==
+Reynolds number:		9.757672309875E+00
+Elapsed Init time:			0.000816 (s)
+Elapsed Compute time:			25.747205 (s)
+Elapsed Collate time:			0.000000 (s)
+Elapsed Total time:			25.748021 (s)
+
+older with index below
+
+Running on host compute523.bc4.acrc.priv
+Time is Tue Feb 14 13:54:37 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11183379
+This job runs on the following machines:
+compute523
+==done==
+Reynolds number:		9.757672309875E+00
+Elapsed Init time:			0.019267 (s)
+Elapsed Compute time:			24.524534 (s)
+Elapsed Collate time:			0.000000 (s)
+Elapsed Total time:			24.543801 (s)
+
+newer with index below
+
+Running on host compute523.bc4.acrc.priv
+Time is Tue Feb 14 14:20:36 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11183475
+This job runs on the following machines:
+compute523
+==done==
+Reynolds number:		9.757694244385E+00
+Elapsed Init time:			0.000939 (s)
+Elapsed Compute time:			24.845245 (s)
+Elapsed Collate time:			0.000000 (s)
+Elapsed Total time:			24.846184 (s)
