@@ -1,0 +1,16 @@
+-r
+/user/home/yf20630/lab1/advanced-hpc-lbm/vtune
+--stack-stitching
+--data-limit-mb=500
+--disk-space-limit=100
+--mrte-type=java,python
+--itt-config=frame
+--stackwalk=offline
+--mrte-mode=auto
+--type=cpu:counters:nostack
+--type=cpu:stack
+--interval=10
+--
+./d2q9-bgk
+input_128x128.params
+obstacles_128x128.dat
