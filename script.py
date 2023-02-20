@@ -12,7 +12,7 @@ log.log will keep the log in the terminal
 """
 
 #cflags = ['CFLAGS="-std=c99 -Wall -O0"', 'CFLAGS="-std=c99 -Wall -O1"', 'CFLAGS="-std=c99 -Wall -O2"', 'CFLAGS="-std=c99 -Wall -O3"', 'CFLAGS="-std=c99 -Wall -Ofast"', 'CFLAGS="-std=c99 -Wall -Ofast -mtune=native"']
-cflags = ['CFLAGS="-std=c99 -Wall -Ofast -mtune=native"']
+cflags = ['CFLAGS="-std=c99 -Wall -Ofast -mtune=native -xHOST -fma"']
 # cflags = ['CFLAGS="-std=c99 -Wall -Ofast -mtune=native"']
 
 def readFile():
