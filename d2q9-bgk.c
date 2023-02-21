@@ -55,6 +55,7 @@
 #include <time.h>
 #include <sys/time.h>
 #include <sys/resource.h>
+#include <omp.h>
 
 #define NSPEEDS         9
 #define FINALSTATEFILE  "final_state.dat"
@@ -93,7 +94,7 @@ int initialise(const char* paramfile, const char* obstaclefile,
 ** accelerate_flow(), propagate(), rebound() & collision()
 */
 float timestep(const t_param params, t_speed** cells, t_speed** tmp_cells, int* obstacles);
-float rebound_collision(const t_param params, t_speed** cells, t_speed** tmp_cells, int* obstacles);
+float rebound_collision(const t_param params, t_speed* cells, t_speed* tmp_cells, int* obstacles);
 int accelerate_flow(const t_param params, t_speed* cells, int* obstacles);
 int propagate(const t_param params, t_speed* cells, t_speed* tmp_cells);
 int rebound(const t_param params, t_speed* cells, t_speed* tmp_cells, int* obstacles);
@@ -198,7 +199,10 @@ float timestep(const t_param params, t_speed** cells, t_speed** tmp_cells, int* 
   // rebound(params, cells, tmp_cells, obstacles);
   // t_speed *cellsPtr = cells;
   // t_speed *tmp_cellsPtr = tmp_cells;
-  float result = rebound_collision(params, cells, tmp_cells, obstacles);
+  float result = rebound_collision(params, *cells, *tmp_cells, obstacles);
+  t_speed *temp = *tmp_cells;
+  *tmp_cells = *cells;
+  *cells = temp;
   return result;
 }
 
@@ -292,13 +296,12 @@ int rebound(const t_param params, t_speed* cells, t_speed* tmp_cells, int* obsta
   return EXIT_SUCCESS;
 }
 
-float rebound_collision(const t_param params, t_speed** cellsPtr, t_speed** tmp_cellsPtr, int* obstacles)
+float rebound_collision(const t_param params, t_speed* cells, t_speed* tmp_cells, int* obstacles)
 {
   const float c_sq = 1.f / 3.f; /* square of speed of sound */
   const float w0 = 4.f / 9.f;  /* weighting factor */
   const float w1 = 1.f / 9.f;  /* weighting factor */
   const float w2 = 1.f / 36.f; /* weighting factor */
-  float tmp1 = (2.f * c_sq * c_sq);
 
   int    tot_cells = 0;  /* no. of cells used in calculation */
   float tot_u;          /* accumulated magnitudes of velocity for each cell */
@@ -308,23 +311,24 @@ float rebound_collision(const t_param params, t_speed** cellsPtr, t_speed** tmp_
 
   float speeds[NSPEEDS];
 
-  t_speed* cells = *cellsPtr;
-  t_speed* tmp_cells = *tmp_cellsPtr;
-  t_speed* temp;
+  // t_speed* cells = *cellsPtr;
+  // t_speed* tmp_cells = *tmp_cellsPtr;
+  // t_speed* temp; 
 
-  int index = 0; 
+  int index = 0;
   /* loop over the cells in the grid
   ** NB the collision step is called after
   ** the propagate step and so values of interest
   ** are in the scratch-space grid */
+  //#pragma omp parallel for collapse(2)
   for (int jj = 0; jj < params.ny; ++jj)
   {
-    int y_n = (jj + 1) & (params.ny - 1);
-    int y_s = (jj == 0) ? (jj + params.ny - 1) : (jj - 1);
     for (int ii = 0; ii < params.nx; ++ii)
     {
       /* determine indices of axis-direction neighbours
       ** respecting periodic boundary conditions (wrap around) */
+      int y_n = (jj + 1) & (params.ny - 1);
+      int y_s = (jj == 0) ? (jj + params.ny - 1) : (jj - 1);
       int x_e = (ii + 1) & (params.nx - 1);
       int x_w = (ii == 0) ? (ii + params.nx - 1) : (ii - 1);
       
@@ -394,7 +398,7 @@ float rebound_collision(const t_param params, t_speed** cellsPtr, t_speed** tmp_
         u[7] = - u_x - u_y;  /* south-west */
         u[8] =   u_x - u_y;  /* south-east */
 
-        float tmp2 = u_sq / (2.f * c_sq);
+        //float tmp2 = u_sq / (2.f * c_sq);
 
         /* equilibrium densities */
         float d_equ[NSPEEDS];
@@ -403,33 +407,33 @@ float rebound_collision(const t_param params, t_speed** cellsPtr, t_speed** tmp_
                    * (1.f - u_sq / (2.f * c_sq));
         /* axis speeds: weight w1 */
         d_equ[1] = w1 * local_density * (1.f + u[1] / c_sq
-                                         + (u[1] * u[1]) / tmp1
-                                         - tmp2);
+                                         + (u[1] * u[1]) / (2.f * c_sq * c_sq)
+                                         - u_sq / (2.f * c_sq));
         d_equ[2] = w1 * local_density * (1.f + u[2] / c_sq
-                                         + (u[2] * u[2]) / tmp1
-                                         - tmp2);
+                                         + (u[2] * u[2]) / (2.f * c_sq * c_sq)
+                                         - u_sq / (2.f * c_sq));
         d_equ[3] = w1 * local_density * (1.f + u[3] / c_sq
-                                         + (u[3] * u[3]) / tmp1
-                                         - tmp2);
+                                         + (u[3] * u[3]) / (2.f * c_sq * c_sq)
+                                         - u_sq / (2.f * c_sq));
         d_equ[4] = w1 * local_density * (1.f + u[4] / c_sq
-                                         + (u[4] * u[4]) / tmp1
-                                         - tmp2);
+                                         + (u[4] * u[4]) / (2.f * c_sq * c_sq)
+                                         - u_sq / (2.f * c_sq));
         /* diagonal speeds: weight w2 */
         d_equ[5] = w2 * local_density * (1.f + u[5] / c_sq
-                                         + (u[5] * u[5]) / tmp1
-                                         - tmp2);
+                                         + (u[5] * u[5]) / (2.f * c_sq * c_sq)
+                                         - u_sq / (2.f * c_sq));
         d_equ[6] = w2 * local_density * (1.f + u[6] / c_sq
-                                         + (u[6] * u[6]) / tmp1
-                                         - tmp2);
+                                         + (u[6] * u[6]) / (2.f * c_sq * c_sq)
+                                         - u_sq / (2.f * c_sq));
         d_equ[7] = w2 * local_density * (1.f + u[7] / c_sq
-                                         + (u[7] * u[7]) / tmp1
-                                         - tmp2);
+                                         + (u[7] * u[7]) / (2.f * c_sq * c_sq)
+                                         - u_sq / (2.f * c_sq));
         d_equ[8] = w2 * local_density * (1.f + u[8] / c_sq
-                                         + (u[8] * u[8]) / tmp1
-                                         - tmp2);
+                                         + (u[8] * u[8]) / (2.f * c_sq * c_sq)
+                                         - u_sq / (2.f * c_sq));
 
         /* local density total */
-        local_density = 0.f;  
+        local_density = 0.f;
        
         /* relaxation step */
         for (int kk = 0; kk < NSPEEDS; kk++)
@@ -464,9 +468,9 @@ float rebound_collision(const t_param params, t_speed** cellsPtr, t_speed** tmp_
       index++;
     }
   } 
-  temp = cells;
-  *cellsPtr = tmp_cells;
-  *tmp_cellsPtr = temp;
+  // temp = cells;
+  // *cellsPtr = tmp_cells;
+  // *tmp_cellsPtr = temp;
 
   return tot_u / (float)tot_cells;
 }
