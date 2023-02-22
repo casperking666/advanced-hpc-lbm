@@ -13,6 +13,9 @@ REF_AV_VELS_FILE=check/128x128.av_vels.dat
 
 all: $(EXE)
 
+debug:
+	$(CC) $(CFLAGS) -g -debug $(EXE).c $(LIBS) -o $@
+
 $(EXE): $(EXE).c
 	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
 
