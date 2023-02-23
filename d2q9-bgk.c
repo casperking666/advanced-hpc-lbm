@@ -307,10 +307,10 @@ float rebound_collision(const t_param params, t_speed_new* restrict cells, t_spe
   ** NB the collision step is called after
   ** the propagate step and so values of interest
   ** are in the scratch-space grid */
-  #pragma omp parallel for collapse(2)
+  //#pragma omp parallel for collapse(2)
   for (int jj = 0; jj < params.ny; ++jj)
   {
-    // #pragma omp simd
+    //#pragma omp simd
     for (int ii = 0; ii < params.nx; ++ii)
     {
       /* determine indices of axis-direction neighbours
