@@ -105,7 +105,7 @@ int initialise(const char* paramfile, const char* obstaclefile,
 ** timestep calls, in order, the functions:
 ** accelerate_flow(), propagate(), rebound() & collision()
 */
-float timestep(const t_param params, t_speed_new** cells, t_speed_new** tmp_cells, int* obstacles);
+float timestep(const t_param params, t_speed_new** cells, t_speed_new** tmp_cells, int* obstacles, int tot_cells);
 float rebound_collision(const t_param params, t_speed_new* cells, t_speed_new* tmp_cells, int* obstacles);
 int accelerate_flow(const t_param params, t_speed_new* cells, int* obstacles);
 int propagate(const t_param params, t_speed* cells, t_speed* tmp_cells);
@@ -171,9 +171,12 @@ int main(int argc, char* argv[])
   init_toc = timstr.tv_sec + (timstr.tv_usec / 1000000.0);
   comp_tic=init_toc;
 
+  //int tot_cells = params.nx * params.ny - sizeof(obstacles)/sizeof(obstacles[0]);
+  int tot_cells = (params.nx - 2) * (params.ny-2);
+
   for (int tt = 0; tt < params.maxIters; tt++)
   {
-    av_vels[tt] = timestep(params, &cells, &tmp_cells, obstacles); 
+    av_vels[tt] = timestep(params, &cells, &tmp_cells, obstacles, tot_cells); 
 #ifdef DEBUG
     printf("==timestep: %d==\n", tt);
     printf("av velocity: %.12E\n", av_vels[tt]);
@@ -206,7 +209,7 @@ int main(int argc, char* argv[])
   return EXIT_SUCCESS;
 }
 
-float timestep(const t_param params, t_speed_new** cells, t_speed_new** tmp_cells, int* obstacles)
+float timestep(const t_param params, t_speed_new** cells, t_speed_new** tmp_cells, int* obstacles, int tot_cells)
 {
   accelerate_flow(params, *cells, obstacles);
   // propagate(params, cells, tmp_cells);
@@ -217,7 +220,7 @@ float timestep(const t_param params, t_speed_new** cells, t_speed_new** tmp_cell
   t_speed_new *temp = *tmp_cells;
   *tmp_cells = *cells;
   *cells = temp;
-  return result;
+  return result / (float)tot_cells;
 }
 
 int accelerate_flow(const t_param params, t_speed_new* cells, int* obstacles)
@@ -259,22 +262,14 @@ float rebound_collision(const t_param params, t_speed_new* restrict cells, t_spe
   const float w1 = 1.f / 9.f;  /* weighting factor */
   const float w2 = 1.f / 36.f; /* weighting factor */
 
-  int   tot_cells = 0;  /* no. of cells used in calculation */
+  //int   tot_cells = 0;  /* no. of cells used in calculation */
   float tot_u;          /* accumulated magnitudes of velocity for each cell */
 
   /* initialise */
   tot_u = 0.f;
 
   // float speed[NSPEEDS];
-  float speed0 = 0.f;
-  float speed1 = 0.f;
-  float speed2 = 0.f;
-  float speed3 = 0.f;
-  float speed4 = 0.f;
-  float speed5 = 0.f;
-  float speed6 = 0.f;
-  float speed7 = 0.f;
-  float speed8 = 0.f;
+  
   //float* restrict speeds = speed;
 
   // t_speed_new* cells = *cellsPtr;
@@ -302,17 +297,28 @@ float rebound_collision(const t_param params, t_speed_new* restrict cells, t_spe
   __assume_aligned((*tmp_cells).speed6, 64);
   __assume_aligned((*tmp_cells).speed7, 64);
   __assume_aligned((*tmp_cells).speed8, 64);
-  int index = 0;
+  //int index = 0;
   /* loop over the cells in the grid
   ** NB the collision step is called after
   ** the propagate step and so values of interest
   ** are in the scratch-space grid */
   //#pragma omp parallel for collapse(2)
+  #pragma omp parallel for simd schedule(simd:static) collapse(2) reduction(+:tot_u)
   for (int jj = 0; jj < params.ny; ++jj)
   {
     //#pragma omp simd
+    //#pragma omp parallel for firstprivate(speed0, speed1, speed2,speed3,speed4,speed5,speed6,speed7,speed8) reduction(+:tot_u,tot_cells)
     for (int ii = 0; ii < params.nx; ++ii)
     {
+      float speed0 = 0.f;
+      float speed1 = 0.f;
+      float speed2 = 0.f;
+      float speed3 = 0.f;
+      float speed4 = 0.f;
+      float speed5 = 0.f;
+      float speed6 = 0.f;
+      float speed7 = 0.f;
+      float speed8 = 0.f;
       /* determine indices of axis-direction neighbours
       ** respecting periodic boundary conditions (wrap around) */
       const int y_n = (jj + 1) & (params.ny - 1);
@@ -321,21 +327,22 @@ float rebound_collision(const t_param params, t_speed_new* restrict cells, t_spe
       const int x_w = (ii == 0) ? (ii + params.nx - 1) : (ii - 1);
 
       /* if the cell contains an obstacle */
-      if (obstacles[index]) 
+      if (obstacles[ii+jj*params.nx]) 
       {
         /* called after propagate, so taking values from scratch space
         ** mirroring, and writing into main grid */
-        tmp_cells->speed1[index] = cells->speed3[x_e + jj*params.nx];
-        tmp_cells->speed2[index] = cells->speed4[ii + y_n*params.nx];
-        tmp_cells->speed3[index] = cells->speed1[x_w + jj*params.nx];
-        tmp_cells->speed4[index] = cells->speed2[ii + y_s*params.nx];
-        tmp_cells->speed5[index] = cells->speed7[x_e + y_n*params.nx];
-        tmp_cells->speed6[index] = cells->speed8[x_w + y_n*params.nx];
-        tmp_cells->speed7[index] = cells->speed5[x_w + y_s*params.nx];
-        tmp_cells->speed8[index] = cells->speed6[x_e + y_s*params.nx];
+        tmp_cells->speed1[ii+jj*params.nx] = cells->speed3[x_e + jj*params.nx];
+        tmp_cells->speed2[ii+jj*params.nx] = cells->speed4[ii + y_n*params.nx];
+        tmp_cells->speed3[ii+jj*params.nx] = cells->speed1[x_w + jj*params.nx];
+        tmp_cells->speed4[ii+jj*params.nx] = cells->speed2[ii + y_s*params.nx];
+        tmp_cells->speed5[ii+jj*params.nx] = cells->speed7[x_e + y_n*params.nx];
+        tmp_cells->speed6[ii+jj*params.nx] = cells->speed8[x_w + y_n*params.nx];
+        tmp_cells->speed7[ii+jj*params.nx] = cells->speed5[x_w + y_s*params.nx];
+        tmp_cells->speed8[ii+jj*params.nx] = cells->speed6[x_e + y_s*params.nx];
       } /* don't consider occupied cells */
       else
       {
+        int index = ii+jj*params.nx;
         /* propagate densities from neighbouring cells, following
         ** appropriate directions of travel and writing into
         ** scratch space grid */
@@ -448,7 +455,7 @@ float rebound_collision(const t_param params, t_speed_new* restrict cells, t_spe
         tmp_cells->speed6[index] = speed6 + params.omega * (d_equ[6] - speed6);
         tmp_cells->speed7[index] = speed7 + params.omega * (d_equ[7] - speed7);
         tmp_cells->speed8[index] = speed8 + params.omega * (d_equ[8] - speed8);
-
+        //#pragma omp barrier
         local_density += tmp_cells->speed0[index]; 
         local_density += tmp_cells->speed1[index]; 
         local_density += tmp_cells->speed2[index]; 
@@ -478,16 +485,17 @@ float rebound_collision(const t_param params, t_speed_new* restrict cells, t_spe
         /* accumulate the norm of x- and y- velocity components */
         tot_u += sqrtf((u_x * u_x) + (u_y * u_y)); // 2.63s
         /* increase counter of inspected cells */
-        ++tot_cells;
+        //++tot_cells;
       }
-      index++;
+      //index++;
     }
   } 
   // temp = cells;
   // *cellsPtr = tmp_cells;
   // *tmp_cellsPtr = temp;
+  //tot_cells = (params.nx - 2) * (params.ny - 2);
   
-  return tot_u / (float)tot_cells;
+  return tot_u;
 }
 
 
@@ -498,11 +506,12 @@ float av_velocity(const t_param params, t_speed_new* restrict cells, int* restri
 
   /* initialise */
   tot_u = 0.f;
-  #pragma omp simd
+  //#pragma omp simd
   /* loop over all non-blocked cells */
+  #pragma omp parallel for simd collapse(2) reduction(+:tot_u,tot_cells)
   for (int jj = 0; jj < params.ny; jj++)
   {
-    #pragma omp simd 
+    //#pragma omp simd 
     for (int ii = 0; ii < params.nx; ii++)
     {
       /* ignore occupied cells */
@@ -657,6 +666,7 @@ int initialise(const char* paramfile, const char* obstaclefile,
   float w1 = params->density      / 9.f;
   float w2 = params->density      / 36.f;
 
+  #pragma omp parallel for collapse(2)
   for (int jj = 0; jj < params->ny; jj++)
   {
     for (int ii = 0; ii < params->nx; ii++)
@@ -688,6 +698,7 @@ int initialise(const char* paramfile, const char* obstaclefile,
   }
 
   /* first set all cells in obstacle array to zero */
+  #pragma omp parallel for collapse(2)
   for (int jj = 0; jj < params->ny; jj++)
   {
     for (int ii = 0; ii < params->nx; ii++)
@@ -766,6 +777,7 @@ float total_density(const t_param params, t_speed_new* cells)
 {
   float total = 0.f;  /* accumulator */
 
+  //#pragma omp parallel for collapse(2)
   for (int jj = 0; jj < params.ny; jj++)
   {
     for (int ii = 0; ii < params.nx; ii++)
@@ -800,7 +812,7 @@ int write_values(const t_param params, t_speed_new* cells, int* obstacles, float
   {
     die("could not open file output file", __LINE__, __FILE__);
   }
-
+  //#pragma omp parallel for collapse(2)
   for (int jj = 0; jj < params.ny; jj++)
   {
     for (int ii = 0; ii < params.nx; ii++)
