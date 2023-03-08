@@ -1,4 +1,2 @@
-GCC/5.4.0-2.26
-GCC/7.2.0-2.29
 languages/gcc/10.4.0
-icc/2017.1.132-GCC-5.4.0-2.26
+languages/intel/2020-u4

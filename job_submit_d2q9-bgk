@@ -6,7 +6,7 @@
 #SBATCH --time 00:10:00
 #SBATCH --partition=teach_cpu
 #SBATCH --account=COSC028844
-#SBATCH --output d2q9-bgk2.out
+#SBATCH --output final-test.out
 #SBATCH --exclusive 
 
 echo Running on host `hostname`
@@ -20,8 +20,192 @@ echo `echo $SLURM_JOB_NODELIST | uniq`
 # ./d2q9.gprof input_128x128.params obstacles_128x128.dat
 # gprof -l d2q9.gprof gmon.out > profile-vec.txt
 # export OMP_NUM_THREADS=28
-OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
-OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x256.params obstacles_128x256.dat
-OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
-OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
-# advixe-cl --collect=roofline ./debug input_128x128.params obstacles_128x128.dat
+# OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=1 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=2 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=3 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=4 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=5 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=6 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=7 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=8 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=9 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=10 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=11 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=12 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=13 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=14 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=15 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=16 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=17 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=18 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=19 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=20 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=21 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=22 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=23 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=24 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=25 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=26 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=27 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=28 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=1 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=2 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=3 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=4 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=5 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=6 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=7 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=8 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=9 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=10 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=11 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=12 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=13 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=14 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=15 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=16 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=17 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=18 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=19 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=20 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=21 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=22 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=23 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=24 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=25 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=26 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=27 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=28 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=1 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=2 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=3 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=4 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=5 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=6 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=7 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=8 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=9 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=10 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=11 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=12 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=13 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=14 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=15 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=16 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=17 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=18 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=19 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=20 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=21 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=22 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=23 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=24 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=25 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=26 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=27 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=28 OMP_PROC_BIND=true OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+
+# advixe-cl --collect=roofline --project-dir=./advi-ser-1024-v2 ./debug input_1024x1024.params obstacles_1024x1024.dat
+
+# final runtime comparison
+# OMP_NUM_THREADS=1 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=1 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=1 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=2 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=2 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=2 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=3 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=3 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=3 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=4 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=4 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=4 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=5 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=5 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=5 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=6 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=6 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=6 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=7 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=7 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=7 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=8 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=8 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=8 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=9 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=9 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=9 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=10 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=10 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=10 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=11 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=11 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=11 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=12 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=12 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=12 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=13 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=13 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=13 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=14 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=14 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=14 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=15 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=15 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=15 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=16 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=16 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=16 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=17 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=17 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=17 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=18 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=18 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=18 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=19 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=19 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=19 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=20 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=20 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=20 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=21 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=21 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=21 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=22 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=22 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=22 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=23 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=23 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=23 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=24 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=24 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=24 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=25 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=25 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=25 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=26 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=26 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=26 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=27 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=27 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=27 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+# OMP_NUM_THREADS=28 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_128x128.params obstacles_128x128.dat
+# OMP_NUM_THREADS=28 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
+# OMP_NUM_THREADS=28 OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
+
+
+# ./HPC-Assignment1/d2q9-bgk input_128x128.params obstacles_128x128.dat
+./HPC-Assignment1/d2q9-bgk input_256x256.params obstacles_256x256.dat
+# ./HPC-Assignment1/d2q9-bgk input_1024x1024.params obstacles_1024x1024.dat
+
+# ./d2q9-bgk-vectorized input_128x128.params obstacles_128x128.dat
+# ./d2q9-bgk-vectorized input_256x256.params obstacles_256x256.dat
+# ./d2q9-bgk-vectorized input_1024x1024.params obstacles_1024x1024.dat
+
+# ./d2q9-bgk-optimized input_128x128.params obstacles_128x128.dat
+# ./d2q9-bgk-optimized input_256x256.params obstacles_256x256.dat
+# ./d2q9-bgk-optimized input_1024x1024.params obstacles_1024x1024.dat
+

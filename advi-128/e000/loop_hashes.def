@@ -1,0 +1,15 @@
+# hash file version: 1
+1	3	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3995	4428	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized.c	174	433	af46d4b42e17b33643337099d6b4bb5e	0	1	0
+2	5	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	17159	18056	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized.c	315	897	af46d4b42e17b33643337099d6b4bb5e	0	1	0
+3	7	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	12385	18092	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized.c	312	6027	af46d4b42e17b33643337099d6b4bb5e	0	1	0
+4	8	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	15254	16678	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized.c	315	1424	af46d4b42e17b33643337099d6b4bb5e	1	1	0
+5	12	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	9372	10827	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized.c	315	1455	af46d4b42e17b33643337099d6b4bb5e	1	1	0
+6	14	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	7940	8789	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized.c	315	849	af46d4b42e17b33643337099d6b4bb5e	0	1	0
+7	15	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	4118	4329	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized.c	232	211	af46d4b42e17b33643337099d6b4bb5e	0	1	0
+8	17	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	18868	19207	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized.c	806	339	af46d4b42e17b33643337099d6b4bb5e	0	1	0
+9	19	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	18837	19240	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized.c	804	403	af46d4b42e17b33643337099d6b4bb5e	0	1	0
+10	20	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	19299	19341	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized.c	865	42	af46d4b42e17b33643337099d6b4bb5e	0	1	0
+11	27	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	11043		/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized.c	315	869	af46d4b42e17b33643337099d6b4bb5e	0	1	0
+12	28	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	13969		/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized.c	315	872	af46d4b42e17b33643337099d6b4bb5e	0	1	0
+13	35	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	7940	8789,10827,11912	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized.c	315	3173	af46d4b42e17b33643337099d6b4bb5e	1	1	0
+14	36	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	13969	14841,16678,18056	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized.c	315	3193	af46d4b42e17b33643337099d6b4bb5e	1	1	0

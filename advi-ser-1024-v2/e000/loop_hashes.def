@@ -1,0 +1,28 @@
+# hash file version: 1
+1	5	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	13872	13988	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	634	116	e6bb3ef4f200fd122c2642d150fdb587	1	1	0
+2	7	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	13467	14522	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	632	1127	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+3	8	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	12662	14957	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	564	2849	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+4	11	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	13488	13603	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	634	115	e6bb3ef4f200fd122c2642d150fdb587	1	1	0
+5	13	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3992	4353	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	172	361	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+6	14	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	8792	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	338	736	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+7	16	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	6951	8819,6978,8819	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	336	1828	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+8	17	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	6951	8819	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	336	1868	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+9	18	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	0		/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	372	1	e6bb3ef4f200fd122c2642d150fdb587	0	9	0
+9	19	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	0		/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	372	1	e6bb3ef4f200fd122c2642d150fdb587	0	9	0
+9	28	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	0		/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	778	1	e6bb3ef4f200fd122c2642d150fdb587	0	9	0
+11	22	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	4113	4253	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	230	140	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+12	24	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	6104	6837	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	338	733	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+13	25	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	9030	9312	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	763	282	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+14	27	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8976	9352	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	761	376	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+16	29	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	9411	9453	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	817	42	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+17	36	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	13626		/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	634	17	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+18	37	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	13680	13796	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	634	116	e6bb3ef4f200fd122c2642d150fdb587	1	1	0
+19	38	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	13821		/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	634	17	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+20	39	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	14013		/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	634	17	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+21	40	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	14064	14180	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	634	116	e6bb3ef4f200fd122c2642d150fdb587	1	1	0
+22	41	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	14205		/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	634	17	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+23	42	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	14249		/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	634	134	e6bb3ef4f200fd122c2642d150fdb587	1	1	0
+24	43	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	14405		/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	634	18	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+25	44	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	14434		/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	634	34	e6bb3ef4f200fd122c2642d150fdb587	0	2	0
+26	78	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	13415	13439,14522,15379	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	632	1166	e6bb3ef4f200fd122c2642d150fdb587	0	1	0
+27	79	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	13488	13603,13643,13796,13838,13988,14030,14180,14222,14383,14423,14468	/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-optimized.c	634	717	e6bb3ef4f200fd122c2642d150fdb587	1	1	0

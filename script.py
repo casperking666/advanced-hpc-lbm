@@ -7,12 +7,12 @@ import subprocess
 
 """
 Use this commond line to run the file will keep the result in the terminal
-python -u run.py > log.log 2>&1 &
+python -u run.py > report-flags-comparison.log 2>&1 &
 log.log will keep the log in the terminal
 """
 
-#cflags = ['CFLAGS="-std=c99 -Wall -O0"', 'CFLAGS="-std=c99 -Wall -O1"', 'CFLAGS="-std=c99 -Wall -O2"', 'CFLAGS="-std=c99 -Wall -O3"', 'CFLAGS="-std=c99 -Wall -Ofast"', 'CFLAGS="-std=c99 -Wall -Ofast -mtune=native"']
-cflags = ['CFLAGS="-std=c99 -Wall -Ofast -mtune=native -xHOST -fma"']
+cflags = ['CFLAGS="-std=c99 -Wall -O0"', 'CFLAGS="-std=c99 -Wall -O1"', 'CFLAGS="-std=c99 -Wall -O2"', 'CFLAGS="-std=c99 -Wall -O3"', 'CFLAGS="-std=c99 -Wall -Ofast"', 'CFLAGS="-std=c99 -Wall -Ofast -mtune=native"']
+# cflags = ['CFLAGS="-std=c99 -Wall -Ofast -mtune=native -xHOST -fma"']
 # cflags = ['CFLAGS="-std=c99 -Wall -Ofast -mtune=native"']
 
 def readFile():
@@ -24,13 +24,15 @@ def job_submission(lines):
     for line in lines:
         os.system('module load ' + line)
         os.system('echo ' + 'module load ' + line)
+        os.system('icc -v')
+        os.system('gcc -v')
         for flag in cflags:
-            if os.path.exists('d2q9-bgk'):
-                os.remove('d2q9-bgk')
+            if os.path.exists('d2q9-bgk-original'):
+                os.remove('d2q9-bgk-original')
 
             print(flag + '\n')
             
-            if line.split('/')[0] == "icc":
+            if line.split('/')[1] == "intel":
                 flag = 'CC="icc" ' + flag
             os.system('make '+ flag)
             #os.system('./d2q9-bgk input_128x128.params obstacles_128x128.dat')

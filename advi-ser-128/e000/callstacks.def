@@ -1,0 +1,352 @@
+# callstacks file version: 4
+#    rowid	    parent	       rva	 loop	 system	                                function	binary	instance start rva	instance size	instance end rva	finst rowid	roi
+         1	        -1	      3408	    0	      0	                                  _start	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3408	48	0	1	0
+         2	        -1	      3448	    0	      0	                                  _start	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3408	48	0	1	0
+         3	       108	    140628	    1	      1	     [Loop@0x22499 in __libc_start_main]	/lib64/libc.so.6	140441	391		11	0
+         4	       115	      4302	    0	      0	                                timestep	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3960	287	0	2	0
+         5	       120	      8662	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+         6	       120	      8221	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+         7	       120	      8699	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+         8	       120	      8564	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+         9	       120	      8694	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        10	       120	      8448	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        11	       120	      8470	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        12	       120	      8341	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        13	       120	      8436	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        14	       120	      8275	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        15	       120	      8360	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        16	       120	      8413	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        17	       120	      8431	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        18	       120	      8334	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        19	       120	      8382	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        20	       120	      8614	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        21	       120	      8735	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        22	       120	      8506	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        23	       120	      8640	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        24	       120	      8364	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        25	       120	      8292	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        26	       120	      8097	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        27	       120	      8496	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        28	       120	      8622	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        29	       120	      8217	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        30	       120	      8589	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        31	       120	      8323	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        32	       120	      8681	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        33	       120	      8257	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        34	       206	      6212	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	6104	733	6837	13	0
+        35	       120	      8763	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        36	       120	      8063	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        37	       120	      8396	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        38	       120	      8233	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        39	       120	      8674	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        40	       120	      8330	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        41	       120	      8238	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        42	       120	      8310	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        43	       120	      8657	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        44	       120	      8718	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        45	       120	      8072	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        46	       120	      8773	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        47	       120	      8286	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        48	       119	      7294	    1	      0	 [Loop at line 336 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	6951	1828	8819,6978,8819	9	0
+        49	       120	      8090	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        50	       120	      8056	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        51	       120	      8645	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        52	       120	      8742	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        53	       120	      8711	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        54	       120	      8356	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        55	       120	      8756	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        56	       120	      8059	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        57	       120	      8078	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        58	       261	      4009	    0	      0	                         accelerate_flow	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3960	224	0	15	0
+        59	       120	      8296	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        60	       120	      8260	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        61	       120	      8777	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        62	       206	      6183	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	6104	733	6837	13	0
+        63	       120	      8319	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        64	       120	      8404	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        65	       120	      8571	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        66	       120	      8348	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        67	       120	      8596	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        68	       120	      8249	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        69	       120	      8519	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        70	       120	      8730	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        71	       120	      8549	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        72	       120	      8526	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        73	       120	      8215	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        74	       120	      8268	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        75	       120	      8544	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        76	       120	      8770	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        77	       120	      8443	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        78	       120	      8303	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        79	       120	      8686	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        80	       206	      6104	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	6104	733	6837	13	0
+        81	       120	      8148	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        82	       326	      4118	    1	      0	   [Loop at line 230 in accelerate_flow]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	4113	140	4253	17	0
+        83	       206	      6133	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	6104	733	6837	13	0
+        84	       120	      8314	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        85	       120	      8086	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        86	       120	      8389	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        87	       326	      4174	    1	      0	   [Loop at line 230 in accelerate_flow]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	4113	140	4253	17	0
+        88	       119	      8041	    1	      0	 [Loop at line 336 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	6951	1828	8819,6978,8819	9	0
+        89	       120	      8539	    1	      0	 [Loop at line 338 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8056	736	8792	7	0
+        90	         3	      5008	    0	      0	                                    main	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3632	1504	0	4	0
+        91	       346	      9291	    1	      0	      [Loop at line 763 in write_values]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	9030	282	9312	18	0
+        92	        91	    341062	    0	      1	                             _IO_fprintf	/lib64/libc.so.6	340928	143	0	14	0
+        93	        92	    316630	    0	      1	                            _IO_vfprintf	/lib64/libc.so.6	296448	22447	0	16	0
+        94	       110	    323930	    1	      1	    [Loop@0x4f120 in __GI___printf_fp_l]	/lib64/libc.so.6	323872	125		27	0
+        95	        94	    319915	    0	      1	                        hack_digit.13666	/lib64/libc.so.6	319632	340	0	29	0
+        96	        94	    319904	    0	      1	                        hack_digit.13666	/lib64/libc.so.6	319632	340	0	29	0
+        97	        96	    290555	    0	      1	                             __mpn_mul_1	/lib64/libc.so.6	290512	281	0	30	0
+        98	        93	    324866	    0	      1	                      __GI___printf_fp_l	/lib64/libc.so.6	320080	9955	0	28	0
+        99	        98	    577275	    0	      1	                             __GI_strlen	/lib64/libc.so.6	577120	221	0	31	0
+       100	       348	      9441	    1	      0	      [Loop at line 817 in write_values]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	9411	42	9453	21	0
+       101	       100	    341062	    0	      1	                             _IO_fprintf	/lib64/libc.so.6	340928	143	0	14	0
+       102	       101	    316630	    0	      1	                            _IO_vfprintf	/lib64/libc.so.6	296448	22447	0	16	0
+       103	       112	    323930	    1	      1	    [Loop@0x4f120 in __GI___printf_fp_l]	/lib64/libc.so.6	323872	125		27	0
+       104	       103	    319885	    0	      1	                        hack_digit.13666	/lib64/libc.so.6	319632	340	0	29	0
+       105	       101	    306098	    0	      1	                            _IO_vfprintf	/lib64/libc.so.6	296448	22447	0	16	0
+       106	       105	    502276	    0	      1	                         _IO_file_xsputn	/lib64/libc.so.6	502176	808	0	32	0
+       107	       106	    588697	    0	      1	                          __GI___mempcpy	/lib64/libc.so.6	588656	1106	0	33	0
+       108	         2	    140441	    0	      1	                       __libc_start_main	/lib64/libc.so.6	140384	448	0	12	0
+       109	         2	    140628	    0	      1	                       __libc_start_main	/lib64/libc.so.6	140384	448	0	12	0
+       110	        93	    323872	    0	      1	                      __GI___printf_fp_l	/lib64/libc.so.6	320080	9955	0	28	0
+       111	        93	    323930	    0	      1	                      __GI___printf_fp_l	/lib64/libc.so.6	320080	9955	0	28	0
+       112	       102	    323872	    0	      1	                      __GI___printf_fp_l	/lib64/libc.so.6	320080	9955	0	28	0
+       113	       102	    323930	    0	      1	                      __GI___printf_fp_l	/lib64/libc.so.6	320080	9955	0	28	0
+       114	         3	      3992	    0	      0	                                    main	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3632	1504	0	4	0
+       115	       114	      3960	    1	      0	              [Loop at line 172 in main]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3992	361	4353	3	0
+       116	       114	      4302	    1	      0	              [Loop at line 172 in main]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3992	361	4353	3	0
+       117	         3	      4302	    0	      0	                                    main	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3632	1504	0	4	0
+       118	         4	      6951	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       119	       118	      6951	    1	      0	 [Loop at line 336 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	6951	1868	8819	10	0
+       120	       119	      8056	    1	      0	 [Loop at line 336 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	6951	1828	8819,6978,8819	9	0
+       121	         4	      8662	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       122	         5	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       123	         5	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       124	         4	      8221	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       125	         6	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       126	         6	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       127	         4	      8699	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       128	         7	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       129	         7	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       130	         4	      8564	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       131	         8	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       132	         8	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       133	         4	      8694	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       134	         9	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       135	         9	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       136	         4	      8448	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       137	        10	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       138	        10	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       139	         4	      8470	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       140	        11	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       141	        11	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       142	         4	      8341	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       143	        12	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       144	        12	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       145	         4	      8436	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       146	        13	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       147	        13	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       148	         4	      8275	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       149	        14	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       150	        14	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       151	         4	      8360	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       152	        15	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       153	        15	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       154	         4	      8413	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       155	        16	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       156	        16	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       157	         4	      8431	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       158	        17	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       159	        17	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       160	         4	      8334	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       161	        18	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       162	        18	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       163	         4	      8382	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       164	        19	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       165	        19	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       166	         4	      8614	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       167	        20	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       168	        20	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       169	         4	      8735	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       170	        21	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       171	        21	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       172	         4	      8506	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       173	        22	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       174	        22	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       175	         4	      8640	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       176	        23	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       177	        23	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       178	         4	      8364	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       179	        24	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       180	        24	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       181	         4	      8292	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       182	        25	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       183	        25	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       184	         4	      8097	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       185	         4	      8496	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       186	        27	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       187	        27	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       188	         4	      8622	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       189	        28	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       190	        28	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       191	         4	      8217	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       192	        29	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       193	        29	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       194	         4	      8589	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       195	        30	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       196	        30	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       197	         4	      8323	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       198	        31	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       199	        31	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       200	         4	      8681	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       201	        32	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       202	        32	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       203	         4	      8257	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       204	        33	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       205	        33	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       206	         4	      6104	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       207	         4	      6212	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       208	         4	      8763	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       209	        35	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       210	        35	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       211	         4	      8063	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       212	         4	      8396	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       213	        37	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       214	        37	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       215	         4	      8233	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       216	        38	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       217	        38	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       218	         4	      8674	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       219	        39	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       220	        39	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       221	         4	      8330	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       222	        40	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       223	        40	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       224	         4	      8238	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       225	        41	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       226	        41	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       227	         4	      8310	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       228	        42	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       229	        42	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       230	         4	      8657	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       231	        43	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       232	        43	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       233	         4	      8718	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       234	        44	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       235	        44	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       236	         4	      8072	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       237	         4	      8773	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       238	         4	      8286	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       239	        47	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       240	        47	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       241	         4	      7294	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       242	         4	      8090	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       243	         4	      8056	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       244	         4	      8645	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       245	        51	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       246	        51	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       247	         4	      8742	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       248	        52	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       249	        52	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       250	         4	      8711	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       251	        53	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       252	        53	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       253	         4	      8356	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       254	        54	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       255	        54	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       256	         4	      8756	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       257	        55	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       258	        55	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       259	         4	      8059	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       260	         4	      8078	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       261	       115	      3960	    0	      0	                                timestep	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3960	287	0	2	0
+       262	       114	      4009	    1	      0	              [Loop at line 172 in main]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3992	361	4353	3	0
+       263	         3	      4009	    0	      0	                                    main	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3632	1504	0	4	0
+       264	         4	      8296	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       265	        59	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       266	        59	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       267	         4	      8260	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       268	        60	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       269	        60	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       270	         4	      8777	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       271	         4	      6183	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       272	         4	      8319	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       273	        63	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       274	        63	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       275	         4	      8404	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       276	        64	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       277	        64	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       278	         4	      8571	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       279	        65	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       280	        65	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       281	         4	      8348	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       282	        66	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       283	        66	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       284	         4	      8596	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       285	        67	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       286	        67	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       287	         4	      8249	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       288	        68	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       289	        68	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       290	         4	      8519	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       291	        69	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       292	        69	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       293	         4	      8730	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       294	        70	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       295	        70	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       296	         4	      8549	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       297	        71	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       298	        71	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       299	         4	      8526	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       300	        72	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       301	        72	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       302	         4	      8215	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       303	        73	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       304	        73	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       305	         4	      8268	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       306	        74	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       307	        74	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       308	         4	      8544	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       309	        75	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       310	        75	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       311	         4	      8770	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       312	         4	      8443	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       313	        77	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       314	        77	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       315	         4	      8303	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       316	        78	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       317	        78	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       318	         4	      8686	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       319	        79	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       320	        79	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       321	         4	      6104	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       322	         4	      8148	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       323	         3	      3992	    0	      0	                                    main	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3632	1504	0	4	0
+       324	       323	      3960	    1	      0	              [Loop at line 172 in main]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3992	361	4353	3	0
+       325	       324	      3960	    0	      0	                                timestep	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3960	287	0	2	0
+       326	       325	      4113	    0	      0	                         accelerate_flow	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3960	224	0	15	0
+       327	       325	      4118	    0	      0	                         accelerate_flow	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3960	224	0	15	0
+       328	       326	      4118	    1	      0	              [Loop at line 172 in main]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3992	361	4353	3	0
+       329	         3	      4118	    0	      0	                                    main	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3632	1504	0	4	0
+       330	         4	      6133	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       331	         4	      8314	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       332	        84	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       333	        84	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       334	         4	      8086	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       335	         4	      8389	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       336	        86	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       337	        86	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       338	       325	      4174	    0	      0	                         accelerate_flow	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3960	224	0	15	0
+       339	       326	      4174	    1	      0	              [Loop at line 172 in main]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3992	361	4353	3	0
+       340	         3	      4174	    0	      0	                                    main	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	3632	1504	0	4	0
+       341	         4	      8041	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       342	         4	      8539	    0	      0	                       rebound_collision	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	5136	3712	0	8	0
+       343	        89	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		6	0
+       344	        89	      8212	    1	      0	 [Loop at line 372 in rebound_collision]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8212	1		5	0
+       345	        90	      8976	    0	      0	                            write_values	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8848	752	0	19	0
+       346	       345	      9030	    1	      0	      [Loop at line 761 in write_values]	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8976	376	9352	20	0
+       347	        90	      9291	    0	      0	                            write_values	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8848	752	0	19	0
+       348	        90	      9411	    0	      0	                            write_values	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8848	752	0	19	0
+       349	        90	      9441	    0	      0	                            write_values	/user/home/yf20630/lab1/advanced-hpc-lbm/debug	8848	752	0	19	0
+       350	        -1	         0	    0	      0	                [Unknown stack frame(s)]	n/a	0	1	0	35	0

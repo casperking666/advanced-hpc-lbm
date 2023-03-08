@@ -1,0 +1,14 @@
+Running on host compute522.bc4.acrc.priv
+Time is Tue Mar 7 01:41:49 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11263357
+This job runs on the following machines:
+compute522
+advixe: Warning: The Roofline is a special batch mode of data collection. It runs two analyses one by one. There are Survey Analysis and Trip Counts Analysis with FLOP respectively.
+advixe: Starting command line: advixe-cl --collect survey -- ./debug input_128x128.params obstacles_128x128.dat
+Intel(R) Advisor Command Line Tool
+Copyright (C) 2009-2018 Intel Corporation. All rights reserved.
+advixe: Opening result  0 %                                                    advixe: Opening result  0 % Finalizing results                                 advixe: Opening result 75 % Finalizing results                                 advixe: Opening result 75 % done                                               
+advixe: Opening result 100 % done                                              
+advixe: Error: Data loading failed.
+advixe: Error: Incompatible database schema

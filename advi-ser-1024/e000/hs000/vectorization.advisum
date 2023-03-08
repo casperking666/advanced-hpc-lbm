@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- <!DOCTYPE IntelParallelAdvisorSummaryCollection SYSTEM  "IntelParallelAdvisorSummaryCollection.dtd"> -->
+
+<IntelParallelAdvisorSummary version="" 
+                             kind="DATAKIND_SURVEY_EX" >
+  <hotspot filename="/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-original.c"
+           line_no="668"
+           routine="write_values"
+           is_vectorized="0"
+           self_time="8.362439E+01"
+           total_time="8.362439E+01"
+           trip_counts=""
+           func_instance="15"
+           priority="0"/>
+  <hotspot filename="/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-original.c"
+           line_no="139"
+           routine="main"
+           is_vectorized="0"
+           self_time="1.281097E+02"
+           total_time="4.712712E+02"
+           trip_counts=""
+           func_instance="5"
+           priority="0"/>
+  <hotspot filename="/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-original.c"
+           line_no="405"
+           routine="av_velocity"
+           is_vectorized="0"
+           self_time="2.399960E-01"
+           total_time="2.399960E-01"
+           trip_counts=""
+           func_instance="32"
+           priority="0"/>
+  <hotspot filename="/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-original.c"
+           line_no="407"
+           routine="av_velocity"
+           is_vectorized="0"
+           self_time="2.176801E+01"
+           total_time="2.176801E+01"
+           trip_counts=""
+           func_instance="18"
+           priority="0"/>
+  <hotspot filename="/user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-original.c"
+           line_no="666"
+           routine="write_values"
+           is_vectorized="0"
+           self_time="2.824484E+01"
+           total_time="1.118692E+02"
+           trip_counts=""
+           func_instance="16"
+           priority="0"/>
+</IntelParallelAdvisorSummary >

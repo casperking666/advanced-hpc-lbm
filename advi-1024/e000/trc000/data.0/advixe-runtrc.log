@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<log version="1.0" tool="runtool">
+
+<msg id="1" tool="runtool">
+  <type>log-start</type>
+  <arg>2023/03/08 02:38:05</arg>
+</msg>
+<msg id="2" tool="runtool">
+  <type>bandwidth-measurement-starts</type>
+</msg>
+<msg id="3" tool="runtool">
+  <type>bandwidth-measurement-done</type>
+</msg>
+<msg id="4" tool="runtool">
+  <type>collector-starts</type>
+</msg>
+<msg id="5" tool="runtool">
+  <type>marker-file</type>
+  <arg>/user/home/yf20630/lab1/advanced-hpc-lbm/advi-1024/e000/trc000/trc000.advixe</arg>
+</msg>
+<msg id="6" tool="trc">
+  <type>PROCESS_START</type>
+  <arg>/user/home/yf20630/lab1/advanced-hpc-lbm/debug</arg>
+  <arg>31324</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:38:16 2023</timestamp>
+</msg>
+<msg id="7" tool="trc">
+  <type>PROCESS_ANALYSIS_MODE</type>
+  <arg>full</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:38:22 2023</timestamp>
+</msg>
+<msg id="8" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/user/home/yf20630/lab1/advanced-hpc-lbm/debug</arg>
+  <arg>0x400000</arg>
+  <arg>0x60de5f</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:38:22 2023</timestamp>
+</msg>
+<msg id="9" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/ld-linux-x86-64.so.2</arg>
+  <arg>0x2af0b3c6f000</arg>
+  <arg>0x2af0b3e9214f</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:38:22 2023</timestamp>
+</msg>
+<msg id="10" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>[vdso]</arg>
+  <arg>0x7ffd8c6b8000</arg>
+  <arg>0x7ffd8c6b8e6c</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:38:22 2023</timestamp>
+</msg>
+<msg id="11" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libm.so.6</arg>
+  <arg>0x2af0c881a000</arg>
+  <arg>0x2af0c8b1b137</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:38:23 2023</timestamp>
+</msg>
+<msg id="12" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64/libiomp5.so</arg>
+  <arg>0x2af0c8b44000</arg>
+  <arg>0x2af0c8f1e03f</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:38:23 2023</timestamp>
+</msg>
+<msg id="13" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/mnt/storage/software/languages/gcc-10.4.0/lib64/libgcc_s.so.1</arg>
+  <arg>0x2af0c8f1f000</arg>
+  <arg>0x2af0c9136447</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:38:23 2023</timestamp>
+</msg>
+<msg id="14" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libpthread.so.0</arg>
+  <arg>0x2af0c9137000</arg>
+  <arg>0x2af0c9352487</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:38:23 2023</timestamp>
+</msg>
+<msg id="15" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libc.so.6</arg>
+  <arg>0x2af0c9353000</arg>
+  <arg>0x2af0c97201ff</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:38:23 2023</timestamp>
+</msg>
+<msg id="16" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libdl.so.2</arg>
+  <arg>0x2af0c9721000</arg>
+  <arg>0x2af0c992412f</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:38:23 2023</timestamp>
+</msg>
+<msg id="17" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/user/home/yf20630/lab1/advanced-hpc-lbm/debug</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:43:20 2023</timestamp>
+</msg>
+<msg id="18" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/lib64/ld-linux-x86-64.so.2</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:43:20 2023</timestamp>
+</msg>
+<msg id="19" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>[vdso]</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:43:20 2023</timestamp>
+</msg>
+<msg id="20" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/lib64/libm.so.6</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:43:20 2023</timestamp>
+</msg>
+<msg id="21" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64/libiomp5.so</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:43:20 2023</timestamp>
+</msg>
+<msg id="22" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/mnt/storage/software/languages/gcc-10.4.0/lib64/libgcc_s.so.1</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:43:20 2023</timestamp>
+</msg>
+<msg id="23" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/lib64/libpthread.so.0</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:43:20 2023</timestamp>
+</msg>
+<msg id="24" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/lib64/libc.so.6</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:43:20 2023</timestamp>
+</msg>
+<msg id="25" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/lib64/libdl.so.2</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:43:20 2023</timestamp>
+</msg>
+<msg id="26" tool="trc">
+  <type>PROCESS_FINISH</type>
+  <arg>/user/home/yf20630/lab1/advanced-hpc-lbm/debug</arg>
+  <arg>31324</arg>
+  <arg>0x0</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed Mar  8 02:43:20 2023</timestamp>
+</msg>
+<msg id="27" tool="runtool">
+  <type>app-exit-code</type>
+  <arg>0</arg>
+</msg>
+<msg id="28" tool="runtool">
+  <type>marker-file</type>
+  <arg>/user/home/yf20630/lab1/advanced-hpc-lbm/advi-1024/e000/trc000/trc000.advixe</arg>
+</msg>
+<msg id="29" tool="runtool">
+  <type>collector-done</type>
+</msg>
+<msg id="30" tool="runtool">
+  <type>log-end</type>
+  <arg>2023/03/08 02:43:24</arg>
+</msg>
+
+</log>
+
