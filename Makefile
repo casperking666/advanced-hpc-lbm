@@ -1,6 +1,6 @@
 # Makefile
 
-EXE=d2q9-bgk-optimized
+EXE=d2q9-bgk-vectorized
 
 CC=icc
 CFLAGS= -std=c99 -Wall -Ofast -mtune=native -fma -xHOST -fopenmp -restrict -align
@@ -8,8 +8,8 @@ LIBS = -lm
 
 FINAL_STATE_FILE=./final_state.dat
 AV_VELS_FILE=./av_vels.dat
-REF_FINAL_STATE_FILE=check/256x256.final_state.dat
-REF_AV_VELS_FILE=check/256x256.av_vels.dat
+REF_FINAL_STATE_FILE=check/1024x1024.final_state.dat
+REF_AV_VELS_FILE=check/1024x1024.av_vels.dat
 
 all: $(EXE)
 

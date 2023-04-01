@@ -1,0 +1,62 @@
+Running on host compute242.bc4.acrc.priv
+Time is Thu Mar 23 15:05:00 GMT 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11312984
+This job runs on the following machines:
+compute[242-243]
+[2] Hello, world; from host compute242.bc4.acrc.priv: process 2 of 56
+[29] Hello, world; from host compute243.bc4.acrc.priv: process 29 of 56
+[19] Hello, world; from host compute242.bc4.acrc.priv: process 19 of 56
+[30] Hello, world; from host compute243.bc4.acrc.priv: process 30 of 56
+[0] Hello, world; from host compute242.bc4.acrc.priv: process 0 of 56
+[32] Hello, world; from host compute243.bc4.acrc.priv: process 32 of 56
+[1] Hello, world; from host compute242.bc4.acrc.priv: process 1 of 56
+[34] Hello, world; from host compute243.bc4.acrc.priv: process 34 of 56
+[3] Hello, world; from host compute242.bc4.acrc.priv: process 3 of 56
+[35] Hello, world; from host compute243.bc4.acrc.priv: process 35 of 56
+[4] Hello, world; from host compute242.bc4.acrc.priv: process 4 of 56
+[37] Hello, world; from host compute243.bc4.acrc.priv: process 37 of 56
+[6] Hello, world; from host compute242.bc4.acrc.priv: process 6 of 56
+[40] Hello, world; from host compute243.bc4.acrc.priv: process 40 of 56
+[7] Hello, world; from host compute242.bc4.acrc.priv: process 7 of 56
+[42] Hello, world; from host compute243.bc4.acrc.priv: process 42 of 56
+[8] Hello, world; from host compute242.bc4.acrc.priv: process 8 of 56
+[45] Hello, world; from host compute243.bc4.acrc.priv: process 45 of 56
+[9] Hello, world; from host compute242.bc4.acrc.priv: process 9 of 56
+[48] Hello, world; from host compute243.bc4.acrc.priv: process 48 of 56
+[10] Hello, world; from host compute242.bc4.acrc.priv: process 10 of 56
+[49] Hello, world; from host compute243.bc4.acrc.priv: process 49 of 56
+[11] Hello, world; from host compute242.bc4.acrc.priv: process 11 of 56
+[51] Hello, world; from host compute243.bc4.acrc.priv: process 51 of 56
+[12] Hello, world; from host compute242.bc4.acrc.priv: process 12 of 56
+[52] Hello, world; from host compute243.bc4.acrc.priv: process 52 of 56
+[13] Hello, world; from host compute242.bc4.acrc.priv: process 13 of 56
+[53] Hello, world; from host compute243.bc4.acrc.priv: process 53 of 56
+[14] Hello, world; from host compute242.bc4.acrc.priv: process 14 of 56
+[31] Hello, world; from host compute243.bc4.acrc.priv: process 31 of 56
+[15] Hello, world; from host compute242.bc4.acrc.priv: process 15 of 56
+[33] Hello, world; from host compute243.bc4.acrc.priv: process 33 of 56
+[16] Hello, world; from host compute242.bc4.acrc.priv: process 16 of 56
+[36] Hello, world; from host compute243.bc4.acrc.priv: process 36 of 56
+[17] Hello, world; from host compute242.bc4.acrc.priv: process 17 of 56
+[38] Hello, world; from host compute243.bc4.acrc.priv: process 38 of 56
+[18] Hello, world; from host compute242.bc4.acrc.priv: process 18 of 56
+[39] Hello, world; from host compute243.bc4.acrc.priv: process 39 of 56
+[20] Hello, world; from host compute242.bc4.acrc.priv: process 20 of 56
+[41] Hello, world; from host compute243.bc4.acrc.priv: process 41 of 56
+[21] Hello, world; from host compute242.bc4.acrc.priv: process 21 of 56
+[43] Hello, world; from host compute243.bc4.acrc.priv: process 43 of 56
+[22] Hello, world; from host compute242.bc4.acrc.priv: process 22 of 56
+[44] Hello, world; from host compute243.bc4.acrc.priv: process 44 of 56
+[23] Hello, world; from host compute242.bc4.acrc.priv: process 23 of 56
+[46] Hello, world; from host compute243.bc4.acrc.priv: process 46 of 56
+[24] Hello, world; from host compute242.bc4.acrc.priv: process 24 of 56
+[47] Hello, world; from host compute243.bc4.acrc.priv: process 47 of 56
+[25] Hello, world; from host compute242.bc4.acrc.priv: process 25 of 56
+[50] Hello, world; from host compute243.bc4.acrc.priv: process 50 of 56
+[26] Hello, world; from host compute242.bc4.acrc.priv: process 26 of 56
+[54] Hello, world; from host compute243.bc4.acrc.priv: process 54 of 56
+[27] Hello, world; from host compute242.bc4.acrc.priv: process 27 of 56
+[55] Hello, world; from host compute243.bc4.acrc.priv: process 55 of 56
+[5] Hello, world; from host compute242.bc4.acrc.priv: process 5 of 56
+[28] Hello, world; from host compute243.bc4.acrc.priv: process 28 of 56

@@ -1,0 +1,16 @@
+Running on host compute242.bc4.acrc.priv
+Time is Fri Mar 31 17:22:56 BST 2023
+Directory is /user/home/yf20630/lab1/hpc-openmp-mpi-examples/mpi/example5
+Slurm job ID is 11324071
+
+This job runs on the following machines:
+compute[242-245]
+
+NROWS: 4
+NCOLS: 16
+Final temperature distribution over heated plate:
+  0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00 
+100.00  55.91  41.35  36.26  34.42  33.74  33.49  33.41  33.41  33.49  33.74  34.42  36.26  41.35  55.91 100.00 
+100.00  82.28  73.23  69.29  67.69  67.06  66.82  66.74  66.74  66.82  67.06  67.69  69.29  73.23  82.28 100.00 
+100.00 100.00 100.00 100.00 100.00 100.00 100.00 100.00 100.00 100.00 100.00 100.00 100.00 100.00 100.00 100.00 
+
