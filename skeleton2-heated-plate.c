@@ -45,7 +45,7 @@
 #include <stdlib.h>
 #include "mpi.h"
 
-#define NROWS 4
+#define NROWS 16
 #define NCOLS 16
 #define EPSILON 0.01
 #define ITERS 18
@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
 {
   int ii,jj;             /* row and column indices for the grid */
   int kk;                /* index for looping over ranks */
-  int start_col,end_col; /* rank dependent looping indices */
+  int start_row,end_row; /* rank dependent looping indices */
   int iter;              /* index for timestep iterations */ 
   int rank;              /* the rank of this process */
   int left;              /* the rank of the process to the left */
@@ -69,12 +69,12 @@ int main(int argc, char* argv[])
   int local_nrows;       /* number of rows apportioned to this rank */
   int local_ncols;       /* number of columns apportioned to this rank */
   int remote_ncols;      /* number of columns apportioned to a remote rank */
-  double boundary_mean;  /* mean of boundary values used to initialise inner cells */
-  double **u;            /* local temperature grid at time t - 1 */
-  double **w;            /* local temperature grid at time t     */
-  double *sendbuf;       /* buffer to hold values to send */
-  double *recvbuf;       /* buffer to hold received values */
-  double *printbuf;      /* buffer to hold values for printing */
+  float boundary_mean;  /* mean of boundary values used to initialise inner cells */
+  float **u;            /* local temperature grid at time t - 1 */
+  float **w;            /* local temperature grid at time t     */
+  float *sendbuf;       /* buffer to hold values to send */
+  float *recvbuf;       /* buffer to hold received values */
+  float *printbuf;      /* buffer to hold values for printing */
 
   /* MPI_Init returns once it has started up processes */
   /* get size and rank */ 
@@ -93,8 +93,8 @@ int main(int argc, char* argv[])
   ** determine local grid size
   ** each rank gets all the rows, but a subset of the number of columns
   */
-  local_nrows = NROWS;
-  local_ncols = calc_ncols_from_rank(rank, size);
+  local_nrows = 4;
+  local_ncols = 16;
 
   /*
   ** allocate space for:
@@ -102,20 +102,20 @@ int main(int argc, char* argv[])
   ** - we'll use local grids for current and previous timesteps
   ** - buffers for message passing
   */
-  u = (double**)malloc(sizeof(double*) * local_nrows);
+  u = (float**)malloc(sizeof(float*) * (local_nrows + 2));
   for(ii=0;ii<local_nrows;ii++) {
-    u[ii] = (double*)malloc(sizeof(double) * (local_ncols + 2));
+    u[ii] = (float*)malloc(sizeof(float) * local_ncols);
   }
-  w = (double**)malloc(sizeof(double*) * local_nrows);
+  w = (float**)malloc(sizeof(float*) * (local_nrows + 2));
   for(ii=0;ii<local_nrows;ii++) {
-    w[ii] = (double*)malloc(sizeof(double) * (local_ncols + 2));
+    w[ii] = (float*)malloc(sizeof(float) * local_ncols);
   }
-  sendbuf = (double*)malloc(sizeof(double) * local_nrows);
-  recvbuf = (double*)malloc(sizeof(double) * local_nrows);
+  sendbuf = (float*)malloc(sizeof(float) * local_ncols);
+  recvbuf = (float*)malloc(sizeof(float) * local_ncols);
   /* The last rank has the most columns apportioned.
      printbuf must be big enough to hold this number */ 
-  remote_ncols = calc_ncols_from_rank(size-1, size); 
-  printbuf = (double*)malloc(sizeof(double) * (remote_ncols + 2));
+  // remote_ncols = calc_ncols_from_rank(size-1, size); this is the old code
+  printbuf = (float*)malloc(sizeof(float) * (local_ncols + 2)); // honestly dont know if its okay
   
   /*
   ** initialize the local grid for the present time (w):
@@ -125,25 +125,54 @@ int main(int argc, char* argv[])
   ** to accomodate the extra halo columns
   ** no need to initialise the halo cells at this point
   */
-  boundary_mean = ((NROWS - 2) * 100.0 * 2 + (NCOLS - 2) * 100.0) / (double) ((2 * NROWS) + (2 * NCOLS) - 4);
-  for(ii=0;ii<local_nrows;ii++) {
-    for(jj=1;jj<local_ncols + 1;jj++) {
-      if(ii == 0)
-	      w[ii][jj] = 0.0;
-      else if(ii == local_nrows-1)
+  boundary_mean = ((NROWS - 2) * 100.0 * 2 + (NCOLS - 2) * 100.0) / (float) ((2 * NROWS) + (2 * NCOLS) - 4);
+
+  for(ii=0;ii<local_nrows + 2;ii++) {
+    for(jj=0;jj<local_ncols;jj++) {
+      if(rank == 0 && ii == 1)
+	      w[ii][jj] = 0.1;
+      else if(rank == size - 1 && ii == local_nrows)
 	      w[ii][jj] = 100.0;
-      else if((rank == 0) && jj == 1)                  /* rank 0 gets leftmost subrid */
+      else if(jj == 0)                  /* rank 0 gets leftmost subrid */
 	      w[ii][jj] = 100.0;
-      else if((rank == size - 1) && jj == local_ncols) /* rank (size - 1) gets rightmost subrid */
+      else if(jj == local_ncols - 1) /* rank (size - 1) gets rightmost subrid */
 	      w[ii][jj] = 100.0;
-      else
+      else if (rank == 0)
 	      w[ii][jj] = boundary_mean;
     }
   }
+  // printf("%f\n", boundary_mean);
+  if (rank == 0) {
+    for (ii=0;ii<local_nrows+2;ii++) {
+      for (jj=0; jj < local_ncols; jj++) {
+        printf("%6.2f ", w[ii][jj]);
+      }
+      printf("\n");
+    }
+    for (kk=1; kk < size; kk++) {
+      for (ii=0; ii < local_nrows+2; ii++) {  
+        MPI_Recv(printbuf,local_ncols,MPI_FLOAT,kk,tag,MPI_COMM_WORLD,&status);
+        for(jj=0;jj<local_ncols;jj++) {
+	          printf("%6.2f ",printbuf[jj]);
+	      }
+        printf("\n");
+      }
+    }
+    
+  } else {
+      for (ii=0; ii < local_nrows+2; ii++) {  
+        MPI_Send(w[ii],local_ncols,MPI_FLOAT,MASTER,tag,MPI_COMM_WORLD);
+      }
+  }
+  
+
+  if(rank == MASTER)
+    printf("\n");
 
   /*
   ** time loop
   */
+ // idea is first send up then down
   for(iter=0;iter<ITERS;iter++) {
     /*
     ** halo exchange for the local grids w:
@@ -156,54 +185,85 @@ int main(int argc, char* argv[])
     */
 
     /* send to the left, receive from right */
-    for(ii=0;ii<local_nrows;ii++)
-      sendbuf[ii] = w[ii][1];
-    MPI_Sendrecv(sendbuf, local_nrows, MPI_DOUBLE, left, tag,
-		 recvbuf, local_nrows, MPI_DOUBLE, right, tag,
+    
+    for(ii=0;ii<local_ncols;ii++)
+      sendbuf[ii] = w[1][ii];
+
+    MPI_Sendrecv(sendbuf, local_ncols, MPI_FLOAT, left, tag,
+		 recvbuf, local_ncols, MPI_FLOAT, right, tag,
 		 MPI_COMM_WORLD, &status);
-    for(ii=0;ii<local_nrows;ii++)
-      w[ii][local_ncols + 1] = recvbuf[ii];
+    // printf("we got to here 1\n");
+    for(ii=0;ii<local_ncols;ii++)
+      w[local_nrows + 1][ii] = recvbuf[ii];
 
     /* send to the right, receive from left */
-    for(ii=0;ii<local_nrows;ii++)
-      sendbuf[ii] = w[ii][local_ncols];
-    MPI_Sendrecv(sendbuf, local_nrows, MPI_DOUBLE, right, tag,
-		 recvbuf, local_nrows, MPI_DOUBLE, left, tag,
+    for(ii=0;ii<local_ncols;ii++)
+      sendbuf[ii] = w[local_nrows][ii];
+    MPI_Sendrecv(sendbuf, local_ncols, MPI_FLOAT, right, tag,
+		 recvbuf, local_ncols, MPI_FLOAT, left, tag,
 		 MPI_COMM_WORLD, &status);
-    for(ii=0;ii<local_nrows;ii++)
-      w[ii][0] = recvbuf[ii];
+    for(ii=0;ii<local_ncols;ii++)
+      w[0][ii] = recvbuf[ii];
 
     /*
     ** copy the old solution into the u grid
     */ 
-    for(ii=0;ii<local_nrows;ii++) {
-      for(jj=0;jj<local_ncols + 2;jj++) {
+    for(ii=0;ii<local_nrows+2;ii++) {
+      for(jj=0;jj<local_ncols;jj++) {
 	u[ii][jj] = w[ii][jj];
       }
     }
+
+  if (rank == 0) {
+    for (ii=0;ii<local_nrows+2;ii++) {
+      for (jj=0; jj < local_ncols; jj++) {
+        printf("%6.2f ", w[ii][jj]);
+      }
+      printf("\n");
+    }
+    printf("\n");
+
+    for (kk=1; kk < size; kk++) {
+      for (ii=0; ii < local_nrows+2; ii++) {  
+        MPI_Recv(printbuf,local_ncols,MPI_FLOAT,kk,tag,MPI_COMM_WORLD,&status);
+        for(jj=0;jj<local_ncols;jj++) {
+	          printf("%6.2f ",printbuf[jj]);
+	      }
+        printf("\n");
+      }
+      printf("\n");
+    }
+    
+  } else {
+    // for (kk=1; kk < size; kk++) {
+      for (ii=0; ii < local_nrows+2; ii++) {  
+        MPI_Send(w[ii],local_ncols,MPI_FLOAT,MASTER,tag,MPI_COMM_WORLD);
+      }
+    // } 
+  }
 
     /*
     ** compute new values of w using u
     ** looping extents depend on rank, as we don't
     ** want to overwrite any boundary conditions
     */
-    for(ii=1;ii<local_nrows-1;ii++) {
-      if(rank == 0) {
-	start_col = 2;
-	end_col = local_ncols;
-      }
-      else if(rank == size -1) {
-	start_col = 1;
-	end_col = local_ncols - 1;
-      }
-      else {
-	start_col = 1;
-	end_col = local_ncols;
-      }
-      for(jj=start_col;jj<end_col + 1;jj++) {
-	w[ii][jj] = (u[ii - 1][jj] + u[ii + 1][jj] + u[ii][jj - 1] + u[ii][jj + 1]) / 4.0;
-      }
-    }
+    // for(ii=1;ii<local_ncols-1;ii++) {
+    //   if(rank == 0) {
+	  //     start_row = 2;
+	  //     end_row = local_nrows;
+    //   }
+    //   else if(rank == size -1) {
+	  //     start_row = 1;
+	  //     end_row = local_nrows - 1;
+    //   }
+    //   else {
+	  //     start_row = 1;
+	  //     end_row = local_nrows;
+    //   }
+    //   for(jj=start_row;jj<end_row + 1;jj++) {
+	  //     w[jj][ii] = (u[jj][ii - 1] + u[jj][ii + 1] + u[jj - 1][ii] + u[jj + 1][ii]) / 4.0;
+    //   }
+    // }
   }
   
   /*
@@ -217,25 +277,32 @@ int main(int argc, char* argv[])
     printf("NROWS: %d\nNCOLS: %d\n",NROWS,NCOLS);
     printf("Final temperature distribution over heated plate:\n");
   }
-
-  for(ii=0;ii<local_nrows;ii++) {
-    if(rank == 0) {
-      for(jj=1;jj<local_ncols + 1;jj++) {
-	printf("%6.2f ",w[ii][jj]);
-      }
-      for(kk=1;kk<size;kk++) { /* loop over other ranks */
-	remote_ncols = calc_ncols_from_rank(kk, size);
-	MPI_Recv(printbuf,remote_ncols + 2,MPI_DOUBLE,kk,tag,MPI_COMM_WORLD,&status);
-	for(jj=1;jj<remote_ncols + 1;jj++) {
-	  printf("%6.2f ",printbuf[jj]);
-	}
+  
+  if (rank == 0) {
+    for (ii=1;ii<local_nrows+1;ii++) {
+      for (jj=0; jj < local_ncols; jj++) {
+        printf("%6.2f ", w[ii][jj]);
       }
       printf("\n");
     }
-    else {
-      MPI_Send(w[ii],local_ncols + 2,MPI_DOUBLE,MASTER,tag,MPI_COMM_WORLD);
+    for (kk=1; kk < size; kk++) {
+      for (ii=1; ii < local_nrows+1; ii++) {  
+        MPI_Recv(printbuf,local_ncols,MPI_FLOAT,kk,tag,MPI_COMM_WORLD,&status);
+        for(jj=0;jj<local_ncols;jj++) {
+	          printf("%6.2f ",printbuf[jj]);
+	      }
+        printf("\n");
+      }
     }
+    
+  } else {
+    for (kk=1; kk < size; kk++) {
+      for (ii=1; ii < local_nrows+1; ii++) {  
+        MPI_Send(w[ii],local_ncols,MPI_FLOAT,MASTER,tag,MPI_COMM_WORLD);
+      }
+    } 
   }
+  
 
   if(rank == MASTER)
     printf("\n");
@@ -270,3 +337,9 @@ int calc_ncols_from_rank(int rank, int size)
   
   return ncols;
 }
+
+
+// its a mess, using 2018 would leave only 2 right ans rest being wrong
+// 2020 leave about 12 right, rest being wrong for the fifth (index 4) row
+// if change it to float, it works fine but wont terminate for some reason
+// 18 float wouldn't work lol, honestly fuck that
