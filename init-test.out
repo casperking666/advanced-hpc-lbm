@@ -1,0 +1,252 @@
+Running on host compute242.bc4.acrc.priv
+Time is Sun Apr 2 23:44:22 BST 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11325738
+This job runs on the following machines:
+compute[242-245]
+[2] test length, rows:32, cols:128
+[1] test length, rows:32, cols:128
+[0] test length, rows:32, cols:128
+[3] test length, rows:32, cols:128
+[0] ==done==
+[0] Reynolds number:		NAN
+[1] ==done==
+[1] Reynolds number:		NAN
+[1] Elapsed Init time:			0.000732 (s)
+[1] Elapsed Compute time:			3.445756 (s)
+[1] Elapsed Collate time:			0.000001 (s)
+[1] Elapsed Total time:			3.446489 (s)
+[2] ==done==
+[2] Reynolds number:		NAN
+[2] Elapsed Init time:			0.000677 (s)
+[2] Elapsed Compute time:			3.445819 (s)
+[2] Elapsed Collate time:			0.000000 (s)
+[2] Elapsed Total time:			3.446496 (s)
+[3] ==done==
+[3] Reynolds number:		NAN
+[3] Elapsed Init time:			0.000823 (s)
+[3] Elapsed Compute time:			3.445659 (s)
+[3] Elapsed Collate time:			0.000000 (s)
+[3] Elapsed Total time:			3.446482 (s)
+[0] Elapsed Init time:			0.000789 (s)
+[0] Elapsed Compute time:			3.445697 (s)
+[0] Elapsed Collate time:			0.000000 (s)
+[0] Elapsed Total time:			3.446486 (s)
+[3] *** Error in `./d2q9-bgk-vectorized': corrupted size vs. prev_size: 0x0000000001112720 ***
+[3] ======= Backtrace: =========
+[0] *** Error in `./d2q9-bgk-vectorized': corrupted size vs. prev_size: 0x0000000000c19740 ***
+[1] *** Error in `./d2q9-bgk-vectorized': corrupted size vs. prev_size: 0x000000000090c290 ***
+[3] /lib64/libc.so.6(+0x7f474)[0x2b602251f474]
+[3] /lib64/libc.so.6(+0x8156b)[0x2b602252156b]
+[3] ./d2q9-bgk-vectorized[0x40875d]
+[3] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b60224c2555]
+[3] ./d2q9-bgk-vectorized[0x401149]
+[3] ======= Memory map: ========
+[3] 00400000-0041d000 r-xp 00000000 00:2b 630201952                          /user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized
+[3] 0061c000-0061d000 r--p 0001c000 00:2b 630201952                          /user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized
+[3] 0061d000-0061e000 rw-p 0001d000 00:2b 630201952                          /user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized
+[3] 01101000-0118a000 rw-p 00000000 00:00 0                                  [heap]
+[3] 2b6020327000-2b6020349000 r-xp 00000000 00:25 52983                      /usr/lib64/ld-2.17.so
+[3] 2b6020349000-2b602034b000 rw-p 00000000 00:00 0 
+[3] 2b602034b000-2b602035e000 rw-s 00000000 00:13 39230764                   /dev/shm/Intel_MPI_So1CMr (deleted)
+[3] 2b602035e000-2b6020510000 rw-p 00000000 00:00 0 
+[3] 2b6020548000-2b6020549000 r--p 00021000 00:25 52983                      /usr/lib64/ld-2.17.so
+[3] 2b6020549000-2b602054a000 rw-p 00022000 00:25 52983                      /usr/lib64/ld-2.17.so
+[3] 2b602054a000-2b602054b000 rw-p 00000000 00:00 0 
+[3] 2[0] ======= Backtrace: =========
+[0] /lib64/libc.so.6(+0x7f474)[0x2b892ac72474]
+[1] ======= Backtrace: =========
+[1] /lib64/libc.so.6(+0x7f474)[0x2b6db4cbf474]
+[1] /lib64/libc.so.6(+0x8156b)[0x2b6db4cc156b]
+[1] ./d2q9-bgk-vectorized[0x40875d]
+[3] b602054b000-2b602064c000 r-xp 00000000 00:25 53271                      /usr/lib64/libm-2.17.so
+[3] 2b602064c000-2b602084b000 ---p 00101000 00:25 53271                      /usr/lib64/libm-2.17.so
+[3] 2b602084b000-2b602084c000 r--p 00100000 00:25 53271                      /usr/lib64/libm-2.17.so
+[3] 2b602084c000-2b602084d000 rw-p 00101000 00:25 53271                      /usr/lib64/libm-2.17.so
+[3] 2b602084d000-2b60209cb000 r-xp 00000000 00:2b 377993471                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/libmpifort.so.12.0
+[3] 2b60209cb000-2b6020bcb000 ---p 0017e000 00:2b 377993471                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/libmpifort.so.12.0
+[3] 2b6020bcb000-2b6020bd2000 rw-p 0017e000 00:2b 377993471                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/libmpifort.so.12.0
+[3] 2b6020bd2000-2b6020bf6000 rw-p 00000000 00:00 0 
+[3] 2b6020bf6000-2b60212b4000 r-xp 00000000 00:2b 318860214                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/release_mt/libmpi.so.12.0
+[3] 2b60212b4000-2b60214b3000 ---p 006be000 00:2b 318860214                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/release_mt/libmpi.so.12.0
+[3] 2b60214b3000-2b60214ee000 rw-p 006bd000 00:2b 318860214                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/release_mt/libmpi.so.12.0
+[3] 2b60214ee000-2b6021885000 rw-p 00000000 00:00 0 
+[3] 2b6021885000-2b6021887000 r-xp 00000000 00:25 53267                      /usr/lib64/libdl-2.17.so
+[3] 2b6021887000-2b6021a87000 ---p 00002000 00:25 53267                      /usr/lib64/libdl-2.17.so
+[3] 2b6021a87000-2b6021a88000 r--p 00002000 00:25 53267                      /usr/lib64/libdl-2.17.so
+[3] 2b6021a88000-2b6021a89000 rw-p 00003000 00:25 53267                      /usr/lib64/libdl-2.17.so
+[3] 2b6021a89000-2b6021a90000 r-xp 00000000 00:25 53334                      /usr/lib64/librt-2.17.so
+[3] 2b6021a90000-2b6021c8f000 ---p 00007000 00:25 53334                      /usr/lib64/librt-2.17.so
+[3] 2b6021c8f000-2b6021c90000 r--p 00006000 00:25 53334                      /usr/lib64/librt-2.17.so
+[3] 2b6021c90000-2b6021c91000 rw-p 00007000 00:25 53334                      /usr/lib64/librt-2.17.so
+[3] 2b6021c91000-2b6021ca8000 r-xp 00000000 00:25 53326                      /usr/lib64/libpthread-2.17.so
+[3] 2b6021ca8000-2b6021ea7000 ---p 00017000 00:25 53326                      /usr/lib64/libpthread-2.17.so
+[3] 2b6021ea7000-2b6021ea8000 r--p 00016000 00:25 53326                      /usr/lib64/libpthread-2.17.so
+[3] 2b6021ea8000-2b6021ea9000 rw-p 00017000 00:25 53326                      /usr/lib64/libpthread-2.17.so
+[3] 2b6021ea9000-2b6021ead000 rw-p 00000000 00:00 0 
+[3] 2b6021ead000-2b602204d000 r-xp 00000000 00:2b 327649018                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64_lin/libiomp5.so
+[3] 2b602204d000-2b602224c000 ---p 001a0000 00:2b 327649018                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64_lin/libiomp5.so
+[3] 2b602224c000-2b602224f000 r--p 0019f000 00:2b 327649018                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64_lin/libiomp5.so
+[3] 2b602224f000-2b6022259000 rw-p 001a2000 00:2b 327649018                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64_lin/libiomp5.so
+[3] 2b6022259000-2b6022288000 rw-p 00000000 00:00 0 
+[3] 2b6022288000-2b602229f000 r-xp 00000000 00:2b 394438736                  /mnt/storage/software/languages/gcc-10.4.0/lib64/libgcc_s.so.1
+[3] 2b602229f000-2b602249e000 ---p 00017000 00:2b 394438736                  /mnt/storage/software/languages/gcc-10.4.0/lib64/libgcc_s.so.1
+[3] 2b602249e000-2b602249f000 r--p 00016000 00:2b 394438736                  /mnt/storage/software/languages/gcc-10.4.0/lib64/libgcc_s.so.1
+[3] 2b602249f000-2b60224a0000 rw-p 00017000 00:2b 394438736                  /mnt/storage/software/languages/gcc-10.4.0/lib64/libgcc_s.so.1
+[3] 2b60224a0000-2b6022664000 r-xp 00000000 00:25 53255                      /usr/lib64/libc-2.17.so
+[3] 2b6022664000-2b6022863000 ---p 001c4000 00:25 53255                      /usr/lib64/libc-2.17.so
+[3] 2b6022863000-2b6022867000 r--p 001c3000 00:25 53255                      /usr/lib64/libc-2.17.so
+[3] 2b6022867000-2b6022869000 rw-p 001c7000 00:25 53255                      /usr/lib64/libc-2.17.so
+[3] 2b6022869000-2b602286e000 rw-p 00000000 00:00 0 
+[3] 2b602286e000-2b6022878000 r-xp 00000000 00:25 8967                       /usr/lib64/libnuma.so.1.0.0
+[3] 2b6022878000-2b6022a78000 ---p[0] /lib64/libc.so.6(+0x8156b)[0x2b892ac7456b]
+[0] ./d2q9-bgk-vectorized[0x40875d]
+[0] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b892ac15555]
+[0] ./d2q9-bgk-vectorized[0x401149]
+[0] ======= Memory map: ========
+[0] 00400000-0041d000 r-xp 00000000 00:2b 630201952                          /user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized
+[0] 0061c000-0061d000 r--p 0001c000 00:2b 630201952                          /user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized
+[0] 0061d000-0061e000 rw-p 0001d000 00:2b 630201952                          /user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized
+[0] 00c08000-00c91000 rw-p 00000000 00:00 0                                  [heap]
+[0] 2b8928a7a000-2b8928a9c000 r-xp 00000000 00:25 52983                      /usr/lib64/ld-2.17.so
+[0] 2b8928a9c000-2b8928a9e000 rw-p 00000000 00:00 0 
+[0] 2b8928a9e000-2b8928ab1000 rw-s 00000000 00:13 39230764                   /dev/shm/Intel_MPI_So1CMr (deleted)
+[0] 2b8928ab1000-2b8928c63000 rw-p 00000000 00:00 0 
+[0] 2b8928c9b000-2b8928c9c000 r--p 00021000 00:25 52983                      /usr/lib64/ld-2.17.so
+[0] 2b8928c9c000-2b8928c9d000 rw-p 00022000 00:25 52983                      /usr/lib64/ld-2.17.so
+[0] 2b8928c9d000-2b8928c9e000 rw-p 00000000 00:00 0 
+[0] 2[1] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b6db4c62555]
+[1] ./d2q9-bgk-vectorized[0x401149]
+[1] ======= Memory map: ========
+[1] 00400000-0041d000 r-xp 00000000 00:2b 630201952                          /user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized
+[1] 0061c000-0061d000 r--p 0001c000 00:2b 630201952                          /user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized
+[1] 0061d000-0061e000 rw-p 0001d000 00:2b 630201952                          /user/home/yf20630/lab1/advanced-hpc-lbm/d2q9-bgk-vectorized
+[1] 008fa000-00980000 rw-p 00000000 00:00 0                                  [heap]
+[1] 2b6db2ac7000-2b6db2ae9000 r-xp 00000000 00:25 52983                      /usr/lib64/ld-2.17.so
+[1] 2b6db2ae9000-2b6db2aeb000 rw-p 00000000 00:00 0 
+[1] 2b6db2aeb000-2b6db2afe000 rw-s 00000000 00:13 39230764                   /dev/shm/Intel_MPI_So1CMr (deleted)
+[1] 2b6db2afe000-2b6db2cb0000 rw-p 00000000 00:00 0 
+[1] 2b6db2ce8000-2b6db2ce9000 r--p 00021000 00:25 52983                      /usr/lib64/ld-2.17.so
+[1] 2b6db2ce9000-2b6db2cea000 rw-p 00022000 00:25 52983                      /usr/lib64/ld-2.17.so
+[1] 2b6db2cea000-2b6db2ceb000 rw-p 00000000 00:00 0 
+[1] 2b6db2ceb000-2b6db2dec000 r-xp 00000000 00:25 53271                      /usr/lib64/libm-2.17.so
+[1] 2b6db2dec000-2b6db2feb000 ---p 00101000 00:25 53271                      /usr/lib64/libm-2.17.so
+[1] 2b6db2feb000-2b6db2fec000 r--p 00100000 00:25 53271                      /usr/lib64/libm-2.17.so
+[1] 2b6db2fec000-2b6db2fed000 rw-p 00101000 00:25 53271                      /usr/lib64/libm-2.17.so
+[1] 2b6db2fed000-2b6db316b000 r-xp 00000000 00:2b 377993471                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/libmpifort.so.12.0
+[1] 2b6db316b000-2b6db336b000 ---p 0017e000 00:2b 377993471                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/libmpifort.so.12.0
+[1] 2b6db336b000-2b6db3372000 rw-p 0017e000 00:2b 377993471                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/[3]  0000a000 00:25 8967                       /usr/lib64/libnuma.so.1.0.0
+[3] 2b6022a78000-2b6022a79000 r--p 0000a000 00:25 8967                       /usr/lib64/libnuma.so.1.0.0
+[3] 2b6022a79000-2b6022a7a000 rw-p 0000b000 00:25 8967                       /usr/lib64/libnuma.so.1.0.0
+[3] 2b6022a7a000-2b6024b3b000 rw-s 00000000 00:13 39230763                   /dev/shm/Intel_MPI_us7tAo (deleted)
+[3] 2b6024b3b000-2b6024f1d000 rw-p 00000000 00:00 0 
+[3] 2b6028000000-2b6028021000 rw-p 00000000 00:00 0 
+[3] 2b6028021000-2b602c000000 ---p 00000000 00:00 0 
+[3] 7fff4dc37000-7fff4dc5e000 rw-p 00000000 00:00 0                          [stack]
+[3] 7fff4ddc3000-7fff4ddc5000 r-xp 00000000 00:00 0                          [vdso]
+[3] ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+[0] b8928c9e000-2b8928d9f000 r-xp 00000000 00:25 53271                      /usr/lib64/libm-2.17.so
+[0] 2b8928d9f000-2b8928f9e000 ---p 00101000 00:25 53271                      /usr/lib64/libm-2.17.so
+[0] 2b8928f9e000-2b8928f9f000 r--p 00100000 00:25 53271                      /usr/lib64/libm-2.17.so
+[0] 2b8928f9f000-2b8928fa0000 rw-p 00101000 00:25 53271                      /usr/lib64/libm-2.17.so
+[0] 2b8928fa0000-2b892911e000 r-xp 00000000 00:2b 377993471                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/libmpifort.so.12.0
+[0] 2b892911e000-2b892931e000 ---p 0017e000 00:2b 377993471                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/libmpifort.so.12.0
+[0] 2b892931e000-2b8929325000 rw-p 0017e000 00:2b 377993471                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/libmpifort.so.12.0
+[0] 2b8929325000-2b8929349000 rw-p 00000000 00:00 0 
+[0] 2b8929349000-2b8929a07000 r-xp 00000000 00:2b 318860214                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/release_mt/libmpi.so.12.0
+[0] 2b8929a07000-2b8929c06000 ---p 006be000 00:2b 318860214                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/release_mt/libmpi.so.12.0
+[0] 2b8929c06000-2b8929c41000 rw-p 006bd000 00:2b 318860214                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/release_mt/libmpi.so.12.0
+[0] 2b8929c41000-2b8929fd8000 rw-p 00000000 00:00 0 
+[0] 2b8929fd8000-2b8929fda000 r-xp 00000000 00:25 53267                      /usr/lib64/libdl-2.17.so
+[0] 2b8929fda000-2b892a1da000 ---p 00002000 00:25 53267                      /usr/lib64/libdl-2.17.so
+[0] 2b892a1da000-2b892a1db000 r--p 00002000 00:25 53267                      /usr/lib64/libdl-2.17.so
+[0] 2b892a1db000-2b892a1dc000 rw-p 00003000 00:25 53267                      /usr/lib64/libdl-2.17.so
+[0] 2b892a1dc000-2b892a1e3000 r-xp 00000000 00:25 53334                      /usr/lib64/librt-2.17.so
+[0] 2b892a1e3000-2b892a3e2000 ---p 00007000 00:25 53334                      /usr/lib64/librt-2.17.so
+[0] 2b892a3e2000-2b892a3e3000 r--p 00006000 00:25 53334                      /usr/lib64/librt-2.17.so
+[0] 2b892a3e3000-2b892a3e4000 rw-p 00007000 00:25 53334                      /usr/lib64/librt-2.17.so
+[0] 2b892a3e4000-2b892a3fb000 r-xp 00000000 00:25 53326                      /usr/lib64/libpthread-2.17.so
+[0] 2b892a3fb000-2b892a5fa000 ---p 00017000 00:25 53326                      /usr/lib64/libpthread-2.17.so
+[0] 2b892a5fa000-2b892a5fb000 r--p 00016000 00:25 53326                      /usr/lib64/libpthread-2.17.so
+[0] 2b892a5fb000-2b892a5fc000 rw-p 00017000 00:25 53326                      /usr/lib64/libpthread-2.17.so
+[0] 2b892a5fc000-2b892a600000 rw-p 00000000 00:00 0 
+[0] 2b892a600000-2b892a7a0000 r-xp 00000000 00:2b 327649018                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64_lin/libiomp5.so
+[0] 2b892a7a0000-2b892a99f000 ---p 001a0000 00:2b 327649018                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64_lin/libiomp5.so
+[0] 2b892a99f000-2b892a9a2000 r--p 0019f000 00:2b 327649018                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64_lin/libiomp5.so
+[0] 2b892a9a2000-2b892a9ac000 rw-p 001a2000 00:2b 327649018                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64_lin/libiomp5.so
+[0] 2b892a9ac000-2b892a9db000 rw-p 00000000 00:00 0 
+[0] 2b892a9db000-2b892a9f2000 r-xp 00000000 00:2b 394438736                  /mnt/storage/so[1] lib/libmpifort.so.12.0
+[1] 2b6db3372000-2b6db3396000 rw-p 00000000 00:00 0 
+[1] 2b6db3396000-2b6db3a54000 r-xp 00000000 00:2b 318860214                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/release_mt/libmpi.so.12.0
+[1] 2b6db3a54000-2b6db3c53000 ---p 006be000 00:2b 318860214                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/release_mt/libmpi.so.12.0
+[1] 2b6db3c53000-2b6db3c8e000 rw-p 006bd000 00:2b 318860214                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/mpi/intel64/lib/release_mt/libmpi.so.12.0
+[1] 2b6db3c8e000-2b6db4025000 rw-p 00000000 00:00 0 
+[1] 2b6db4025000-2b6db4027000 r-xp 00000000 00:25 53267                      /usr/lib64/libdl-2.17.so
+[1] 2b6db4027000-2b6db4227000 ---p 00002000 00:25 53267                      /usr/lib64/libdl-2.17.so
+[1] 2b6db4227000-2b6db4228000 r--p 00002000 00:25 53267                      /usr/lib64/libdl-2.17.so
+[1] 2b6db4228000-2b6db4229000 rw-p 00003000 00:25 53267                      /usr/lib64/libdl-2.17.so
+[1] 2b6db4229000-2b6db4230000 r-xp 00000000 00:25 53334                      /usr/lib64/librt-2.17.so
+[1] 2b6db4230000-2b6db442f000 ---p 00007000 00:25 53334                      /usr/lib64/librt-2.17.so
+[1] 2b6db442f000-2b6db4430000 r--p 00006000 00:25 53334                      /usr/lib64/librt-2.17.so
+[1] 2b6db4430000-2b6db4431000 rw-p 00007000 00:25 53334                      /usr/lib64/librt-2.17.so
+[1] 2b6db4431000-2b6db4448000 r-xp 00000000 00:25 53326                      /usr/lib64/libpthread-2.17.so
+[1] 2b6db4448000-2b6db4647000 ---p 00017000 00:25 53326                      /usr/lib64/libpthread-2.17.so
+[1] 2b6db4647000-2b6db4648000 r--p 00016000 00:25 53326                      /usr/lib64/libpthread-2.17.so
+[1] 2b6db4648000-2b6db4649000 rw-p 00017000 00:25 53326                      /usr/lib64/libpthread-2.17.so
+[1] 2b6db4649000-2b6db464d000 rw-p 00000000 00:00 0 
+[1] 2b6db464d000-2b6db47ed000 r-xp 00000000 00:2b 327649018                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64_lin/libiomp5.so
+[1] 2b6db47ed000-2b6db49ec000 ---p 001a0000 00:2b 327649018                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64_lin/libiomp5.so
+[1] 2b6db49ec000-2b6db49ef000 r--p 0019f000 00:2b 327649018                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64_lin/libiomp5.so
+[1] 2b6db49ef000-2b6db49f9000 rw-p 001a2000 00:2b 327649018                  /mnt/storage/software/languages/intel/intel-parallel_studio_xe_2018_u3/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64_lin/libiomp5.so
+[1] 2b6db49f9000-2b6db4a28000 rw-p 00000000 00:00 0 
+[1] 2b6db4a28000-2b6db4a3f000 r-xp 00000000 00:2b 394438736                  /mnt/storage/software/languages/gcc-10.4.0/lib64/libgcc_s.so.1
+[1] 2b6db4a3f000-2b6db4c3e000 ---p 00017000 00:2b 394438736                  /mnt/storage/software/languages/gcc-10.4.0/lib64/libgcc_s.so.1
+[1] 2b6db4c3e000-2b6db4c3f000 r--p 00016000 00:2b 394438736                  /mnt/storage/software/languages/gcc-10.4.0/lib64/libgcc_s.so.1
+[1] 2b6db4c3f000-2b6db4c40000 rw-p 00017000 00:2b 394438736                  /mnt/storage/software/languages/gcc-10.4.0/lib64/libgcc_s.so.1
+[1] 2b6db4c40000-2b6db4e04000 r-xp 00000000 00:25 53255                      /usr/lib64/libc-2.17.so
+[1] 2b6db4e04000-2b6db5003000 ---p 001c4000 00:25 53255                      /usr/lib64/libc-2.17.so
+[1] 2b6db5003000-2b6db5007000 r--p 001c3000 00:25 53255                      /usr/lib64/libc-2.17.so
+[1] 2b6db5007000-2b6db5009000 rw-p 001c7000 00:25 53255                      /usr/lib64/libc-2.17.so
+[1] 2b6db5009000-2b6db500e000 rw-p 00000000 00:00 0 
+[1] 2b6db500e000-2b6db5018000 r-xp 00000000 00:25 8967                       /usr/lib64/libnuma.so.1.0.0
+[1] 2b6db5018000-2b6db5218000 ---p[0] ftware/languages/gcc-10.4.0/lib64/libgcc_s.so.1
+[0] 2b892a9f2000-2b892abf1000 ---p 00017000 00:2b 394438736                  /mnt/storage/software/languages/gcc-10.4.0/lib64/libgcc_s.so.1
+[0] 2b892abf1000-2b892abf2000 r--p 00016000 00:2b 394438736                  /mnt/storage/software/languages/gcc-10.4.0/lib64/libgcc_s.so.1
+[0] 2b892abf2000-2b892abf3000 rw-p 00017000 00:2b 394438736                  /mnt/storage/software/languages/gcc-10.4.0/lib64/libgcc_s.so.1
+[0] 2b892abf3000-2b892adb7000 r-xp 00000000 00:25 53255                      /usr/lib64/libc-2.17.so
+[0] 2b892adb7000-2b892afb6000 ---p 001c4000 00:25 53255                      /usr/lib64/libc-2.17.so
+[0] 2b892afb6000-2b892afba000 r--p 001c3000 00:25 53255                      /usr/lib64/libc-2.17.so
+[0] 2b892afba000-2b892afbc000 rw-p 001c7000 00:25 53255                      /usr/lib64/libc-2.17.so
+[0] 2b892afbc000-2b892afc1000 rw-p 00000000 00:00 0 
+[0] 2b892afc1000-2b892afcb000 r-xp 00000000 00:25 8967                       /usr/lib64/libnuma.so.1.0.0
+[0] 2b892afcb000-2b892b1cb000 ---p 0000a000 00:25 8967                       /usr/lib64/libnuma.so.1.0.0
+[0] 2b892b1cb000-2b892b1cc000 r--p 0000a000 00:25 8967                       /usr/lib64/libnuma.so.1.0.0
+[0] 2b892b1cc000-2b892b1cd000 rw-p 0000b000 00:25 8967                       /usr/lib64/libnuma.so.1.0.0
+[0] 2b892b1cd000-2b892d28e000 rw-s 00000000 00:13 39230763                   /dev/shm/Intel_MPI_us7tAo (deleted)
+[0] 2b892d28e000-2b892d670000 rw-p 00000000 00:00 0 
+[0] 2b8930000000-2b8930021000 rw-p 00000000 00:00 0 
+[0] 2b8930021000-2b8934000000 ---p 00000000 00:00 0 
+[0] 7ffee9082000-7ffee90a9000 rw-p 00000000 00:00 0                          [stack]
+[0] 7ffee9198000-7ffee919a000 r-xp 00000000 00:00 0                          [vdso]
+[0] ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+[1]  0000a000 00:25 8967                       /usr/lib64/libnuma.so.1.0.0
+[1] 2b6db5218000-2b6db5219000 r--p 0000a000 00:25 8967                       /usr/lib64/libnuma.so.1.0.0
+[1] 2b6db5219000-2b6db521a000 rw-p 0000b000 00:25 8967                       /usr/lib64/libnuma.so.1.0.0
+[1] 2b6db521a000-2b6db72db000 rw-s 00000000 00:13 39230763                   /dev/shm/Intel_MPI_us7tAo (deleted)
+[1] 2b6db72db000-2b6db76bd000 rw-p 00000000 00:00 0 
+[1] 2b6db8000000-2b6db8021000 rw-p 00000000 00:00 0 
+[1] 2b6db8021000-2b6dbc000000 ---p 00000000 00:00 0 
+[1] 7ffff9b65000-7ffff9b8c000 rw-p 00000000 00:00 0                          [stack]
+[1] 7ffff9bc3000-7ffff9bc5000 r-xp 00000000 00:00 0                          [vdso]
+[1] ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 9227 RUNNING AT compute242
+=   EXIT CODE: 6
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+   Intel(R) MPI Library troubleshooting guide:
+      https://software.intel.com/node/561764
+===================================================================================
