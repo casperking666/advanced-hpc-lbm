@@ -56,7 +56,7 @@
 #include <sys/time.h>
 #include <sys/resource.h>
 #include <omp.h>
-#include "mpi.h"
+#include <mpi.h>
 
 #define NSPEEDS         9
 #define FINALSTATEFILE  "final_state.dat"
@@ -100,7 +100,7 @@ typedef struct
 /* load params, allocate memory, load obstacles & initialise fluid particle densities */
 int initialise(const char* paramfile, const char* obstaclefile,
                t_param* params, t_speed_new** cells_ptr, t_speed_new** tmp_cells_ptr,
-               int** obstacles_ptr, float** av_vels_ptr, int size);
+               int** obstacles_ptr, float** av_vels_ptr, int size, int* local_nrows, int* local_ncols, int rank);
 
 /*
 ** The main calculation methods.
@@ -159,6 +159,8 @@ int main(int argc, char* argv[])
   MPI_Status status;     /* struct used by MPI_Recv */
   float *sendbuf;       /* buffer to hold values to send */
   float *recvbuf;       /* buffer to hold received values */
+  int local_nrows;       /* number of rows apportioned to this rank */
+  int local_ncols;       /* number of columns apportioned to this rank */
 
   /* MPI_Init returns once it has started up processes */
   /* get size and rank */ 
@@ -188,7 +190,7 @@ int main(int argc, char* argv[])
   gettimeofday(&timstr, NULL);
   tot_tic = timstr.tv_sec + (timstr.tv_usec / 1000000.0);
   init_tic=tot_tic;
-  int tot_cells = initialise(paramfile, obstaclefile, &params, &cells, &tmp_cells, &obstacles, &av_vels, size);
+  int tot_cells = initialise(paramfile, obstaclefile, &params, &cells, &tmp_cells, &obstacles, &av_vels, size, &local_nrows, &local_ncols, rank);
 
   sendbuf = (float*)malloc(sizeof(float) * params.nx);
   recvbuf = (float*)malloc(sizeof(float) * params.nx);
@@ -548,7 +550,7 @@ float av_velocity(const t_param params, t_speed_new* cells, int* obstacles, int 
 
 int initialise(const char* paramfile, const char* obstaclefile,
                t_param* params, t_speed_new** cells_ptr, t_speed_new** tmp_cells_ptr,
-               int** obstacles_ptr, float** av_vels_ptr, int size)
+               int** obstacles_ptr, float** av_vels_ptr, int size, int* local_nrows, int* local_ncols, int rank)
 {
   char   message[1024];  /* message buffer */
   FILE*   fp;            /* file pointer */
@@ -618,32 +620,39 @@ int initialise(const char* paramfile, const char* obstaclefile,
 
   /* main grid */
   *cells_ptr = (t_speed_new*)_mm_malloc(sizeof(t_speed_new), 64);
-  (*cells_ptr)->speed0 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*cells_ptr)->speed1 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*cells_ptr)->speed2 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*cells_ptr)->speed3 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*cells_ptr)->speed4 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*cells_ptr)->speed5 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*cells_ptr)->speed6 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*cells_ptr)->speed7 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*cells_ptr)->speed8 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
+  (*cells_ptr)->speed0 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*cells_ptr)->speed1 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*cells_ptr)->speed2 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*cells_ptr)->speed3 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*cells_ptr)->speed4 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*cells_ptr)->speed5 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*cells_ptr)->speed6 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*cells_ptr)->speed7 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*cells_ptr)->speed8 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
   if (cells_ptr == NULL) die("cannot allocate memory for cells", __LINE__, __FILE__);
 
   /* 'helper' grid, used as scratch space */
   *tmp_cells_ptr = (t_speed_new*)_mm_malloc(sizeof(t_speed_new) * (params->ny * params->nx), 64);
-  (*tmp_cells_ptr)->speed0 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*tmp_cells_ptr)->speed1 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*tmp_cells_ptr)->speed2 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*tmp_cells_ptr)->speed3 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*tmp_cells_ptr)->speed4 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*tmp_cells_ptr)->speed5 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*tmp_cells_ptr)->speed6 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*tmp_cells_ptr)->speed7 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
-  (*tmp_cells_ptr)->speed8 = _mm_malloc(sizeof(float)*((params->ny / size) * params->nx),64);
+  (*tmp_cells_ptr)->speed0 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*tmp_cells_ptr)->speed1 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*tmp_cells_ptr)->speed2 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*tmp_cells_ptr)->speed3 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*tmp_cells_ptr)->speed4 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*tmp_cells_ptr)->speed5 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*tmp_cells_ptr)->speed6 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*tmp_cells_ptr)->speed7 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+  (*tmp_cells_ptr)->speed8 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
   if (tmp_cells_ptr == NULL) die("cannot allocate memory for tmp_cells", __LINE__, __FILE__);
 
+  /* 
+  ** determine local grid size
+  ** each rank gets all the rows, but a subset of the number of columns
+  */
+  *local_nrows = params->ny / size;
+  *local_ncols = params->nx;
+
   /* the map of obstacles */
-  *obstacles_ptr = malloc(sizeof(int) * (params->ny * params->nx));
+  *obstacles_ptr = malloc(sizeof(int) * ((params->ny / size + 2) * params->nx));
 
   if (*obstacles_ptr == NULL) die("cannot allocate column memory for obstacles", __LINE__, __FILE__);
 
@@ -652,9 +661,9 @@ int initialise(const char* paramfile, const char* obstaclefile,
   float w1 = params->density      / 9.f;
   float w2 = params->density      / 36.f;
 
-  for (int jj = 0; jj < params->ny; jj++)
+  for (int jj = 0; jj < *local_nrows; jj++)
   {
-    for (int ii = 0; ii < params->nx; ii++)
+    for (int ii = 0; ii < *local_ncols; ii++)
     {
       (*cells_ptr)->speed0[ii + jj*params->nx] = w0;
       (*cells_ptr)->speed1[ii + jj*params->nx] = w1;
@@ -669,9 +678,9 @@ int initialise(const char* paramfile, const char* obstaclefile,
   }
 
   /* first set all cells in obstacle array to zero */
-  for (int jj = 0; jj < params->ny; jj++)
+  for (int jj = 0; jj < *local_nrows; jj++)
   {
-    for (int ii = 0; ii < params->nx; ii++)
+    for (int ii = 0; ii < *local_ncols; ii++)
     {
       (*obstacles_ptr)[ii + jj*params->nx] = 0;
     }
@@ -699,8 +708,10 @@ int initialise(const char* paramfile, const char* obstaclefile,
 
     if (blocked != 1) die("obstacle blocked value should be 1", __LINE__, __FILE__);
 
-    /* assign to array */
-    (*obstacles_ptr)[xx + yy*params->nx] = blocked;
+    if (yy >= rank * (*local_nrows) && yy < (rank + 1) * (*local_nrows)) {
+      /* assign to array */
+      (*obstacles_ptr)[xx + (yy - rank * (*local_nrows))*params->nx] = blocked;
+    }
     count++;
   }
 

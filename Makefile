@@ -2,7 +2,7 @@
 
 EXE=d2q9-bgk-vectorized
 
-CC=icc
+CC=mpiicc
 CFLAGS= -std=c99 -Wall -Ofast -mtune=native -fma -xHOST -fopenmp -restrict -align
 LIBS = -lm
 

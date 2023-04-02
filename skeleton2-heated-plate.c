@@ -247,23 +247,23 @@ int main(int argc, char* argv[])
     ** looping extents depend on rank, as we don't
     ** want to overwrite any boundary conditions
     */
-    // for(ii=1;ii<local_ncols-1;ii++) {
-    //   if(rank == 0) {
-	  //     start_row = 2;
-	  //     end_row = local_nrows;
-    //   }
-    //   else if(rank == size -1) {
-	  //     start_row = 1;
-	  //     end_row = local_nrows - 1;
-    //   }
-    //   else {
-	  //     start_row = 1;
-	  //     end_row = local_nrows;
-    //   }
-    //   for(jj=start_row;jj<end_row + 1;jj++) {
-	  //     w[jj][ii] = (u[jj][ii - 1] + u[jj][ii + 1] + u[jj - 1][ii] + u[jj + 1][ii]) / 4.0;
-    //   }
-    // }
+    for(ii=1;ii<local_ncols-1;ii++) {
+      if(rank == 0) {
+	      start_row = 2;
+	      end_row = local_nrows;
+      }
+      else if(rank == size -1) {
+	      start_row = 1;
+	      end_row = local_nrows - 1;
+      }
+      else {
+	      start_row = 1;
+	      end_row = local_nrows;
+      }
+      for(jj=start_row;jj<end_row + 1;jj++) {
+	      w[jj][ii] = (u[jj][ii - 1] + u[jj][ii + 1] + u[jj - 1][ii] + u[jj + 1][ii]) / 4.0;
+      }
+    }
   }
   
   /*
