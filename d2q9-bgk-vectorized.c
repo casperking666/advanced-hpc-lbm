@@ -108,13 +108,13 @@ int initialise(const char* paramfile, const char* obstaclefile,
 ** timestep calls, in order, the functions:
 ** accelerate_flow(), propagate(), rebound() & collision()
 */
-float timestep(const t_param params, t_speed_new** cells, t_speed_new** tmp_cells, int* obstacles, int tot_cells, int rank, int size, int local_ncols);
-float rebound_collision(const t_param params, t_speed_new* cells, t_speed_new* tmp_cells, int* obstacles,int local_ncols);
-int accelerate_flow(const t_param params, t_speed_new* cells, int* obstacles, int local_ncols);
+float timestep(const t_param params, t_speed_new** cells, t_speed_new** tmp_cells, int* obstacles, int tot_cells, int rank, int size, int local_nrows);
+float rebound_collision(const t_param params, t_speed_new* cells, t_speed_new* tmp_cells, int* obstacles,int local_nrows);
+int accelerate_flow(const t_param params, t_speed_new* cells, int* obstacles, int local_nrows);
 int propagate(const t_param params, t_speed* cells, t_speed* tmp_cells);
 int rebound(const t_param params, t_speed* cells, t_speed* tmp_cells, int* obstacles);
 int collision(const t_param params, t_speed* cells, t_speed* tmp_cells, int* obstacles);
-int write_values(const t_param params, t_speed_new* cells, int* obstacles, float* av_vels);
+int write_values(const t_param params, t_speed_new* cells, int* obstacles, float* av_vels, int local_nrows);
 
 /* finalise, including freeing up allocated memory */
 int finalise(const t_param* params, t_speed_new** cells_ptr, t_speed_new** tmp_cells_ptr,
@@ -122,13 +122,13 @@ int finalise(const t_param* params, t_speed_new** cells_ptr, t_speed_new** tmp_c
 
 /* Sum all the densities in the grid.
 ** The total should remain constant from one timestep to the next. */
-float total_density(const t_param params, t_speed_new* cells,int local_ncols);
+float total_density(const t_param params, t_speed_new* cells,int local_nrows);
 
 /* compute average velocity */
-float av_velocity(const t_param params, t_speed_new* cells, int* obstacles, int tot_cells,int local_ncols);
+float av_velocity(const t_param params, t_speed_new* cells, int* obstacles, int tot_cells,int local_nrows);
 
 /* calculate Reynolds number */
-float calc_reynolds(const t_param params, t_speed_new* cells, int* obstacles, int tot_cells,int local_ncols);
+float calc_reynolds(const t_param params, t_speed_new* cells, int* obstacles, float av_vel);
 
 /* utility functions */
 void die(const char* message, const int line, const char* file);
@@ -194,7 +194,8 @@ int main(int argc, char* argv[])
   init_tic=tot_tic;
   int tot_cells = initialise(paramfile, obstaclefile, &params, &cells, &tmp_cells, &obstacles, &av_vels, size, &local_nrows, &local_ncols, rank);
 
-  printf("test length, rows:%d, cols:%d\n", local_nrows, local_ncols);
+  // printf("tot_cells: %d\n", tot_cells);
+  // printf("test length, rows:%d, cols:%d\n", local_nrows, local_ncols);
 
   sendbuf = (float*)malloc(sizeof(float) * 9 * local_ncols);
   // for(jj=0;jj<local_nrows;jj++) {
@@ -214,7 +215,7 @@ int main(int argc, char* argv[])
   {
     //feel like its gonna take ages, will first need to do flow, its like init for cells, then sendrecv each
     if (rank == size - 1) {
-      accelerate_flow(params, cells, obstacles, local_ncols);
+      accelerate_flow(params, cells, obstacles, local_nrows);
     }
 
     // mpi send_recv
@@ -288,11 +289,13 @@ int main(int argc, char* argv[])
     //   cells->speed0[ii] = recvbuf[0][ii];
     
     // printf("test value %f\n", cells->speed0[0]);
-    av_vels[tt] = timestep(params, &cells, &tmp_cells, obstacles, tot_cells, rank, size, local_ncols); 
+    av_vels[tt] = timestep(params, &cells, &tmp_cells, obstacles, tot_cells, rank, size, local_nrows); 
 #ifdef DEBUG
-    printf("==timestep: %d==\n", tt);
-    printf("av velocity: %.12E\n", av_vels[tt]);
-    //printf("tot density: %.12E\n", total_density(params, cells));
+    if (rank == MASTER) {
+      printf("==timestep: %d==\n", tt);
+      printf("av velocity: %.12E\n", av_vels[tt]);
+      //printf("tot density: %.12E\n", total_density(params, cells));
+    }
 #endif
   }
   
@@ -301,25 +304,68 @@ int main(int argc, char* argv[])
   comp_toc = timstr.tv_sec + (timstr.tv_usec / 1000000.0);
   col_tic=comp_toc;
 
-  // Collate data from ranks here 
+  // Collate data from ranks here
+  t_speed_new* cells_final;
+  int* obstacles_final = malloc((params.ny) * params.nx * sizeof(int));
+  cells_final = (t_speed_new*)malloc(sizeof(t_speed_new));
+  if (rank == MASTER) {
+    (cells_final)->speed0 = malloc(sizeof(float)*((params.ny) * params.nx));
+    (cells_final)->speed1 = malloc(sizeof(float)*((params.ny) * params.nx));
+    (cells_final)->speed2 = malloc(sizeof(float)*((params.ny) * params.nx));
+    (cells_final)->speed3 = malloc(sizeof(float)*((params.ny) * params.nx));
+    (cells_final)->speed4 = malloc(sizeof(float)*((params.ny) * params.nx));
+    (cells_final)->speed5 = malloc(sizeof(float)*((params.ny) * params.nx));
+    (cells_final)->speed6 = malloc(sizeof(float)*((params.ny) * params.nx));
+    (cells_final)->speed7 = malloc(sizeof(float)*((params.ny) * params.nx));
+    (cells_final)->speed8 = malloc(sizeof(float)*((params.ny) * params.nx));
+  }
+  MPI_Gather(cells->speed0 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed0, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+  MPI_Gather(cells->speed1 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed1, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+  MPI_Gather(cells->speed2 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed2, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+  MPI_Gather(cells->speed3 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed3, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+  MPI_Gather(cells->speed4 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed4, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+  MPI_Gather(cells->speed5 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed5, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+  MPI_Gather(cells->speed6 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed6, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+  MPI_Gather(cells->speed7 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed7, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+  MPI_Gather(cells->speed8 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed8, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
 
+  MPI_Gather(obstacles, local_ncols*local_nrows, MPI_INT, obstacles_final, local_ncols*local_nrows, MPI_INT, MASTER, MPI_COMM_WORLD);
+
+  // test for obstacles
+  // if (rank==MASTER) {
+  //   for (int j = 0; j < 128; j++) {
+  //     for (int i = 0; i < 128; i++) {
+  //       if (obstacles_final[j*128 + i] != 0) {
+  //         printf("%d %d %d\n", i, j, obstacles_final[j*128+i]);
+  //       }
+  //     }
+  //   }
+  // }
+
+  
   /* Total/collate time stops here.*/
   gettimeofday(&timstr, NULL);
   col_toc = timstr.tv_sec + (timstr.tv_usec / 1000000.0);
   tot_toc = col_toc;
 
+  
+
   /* write final values and free memory */
-  printf("==done==\n");
-  printf("Reynolds number:\t\t%.12E\n", calc_reynolds(params, cells, obstacles, tot_cells, local_ncols));
-  printf("Elapsed Init time:\t\t\t%.6lf (s)\n",    init_toc - init_tic);
-  printf("Elapsed Compute time:\t\t\t%.6lf (s)\n", comp_toc - comp_tic);
-  printf("Elapsed Collate time:\t\t\t%.6lf (s)\n", col_toc  - col_tic);
-  printf("Elapsed Total time:\t\t\t%.6lf (s)\n",   tot_toc  - tot_tic);
-  write_values(params, cells, obstacles, av_vels);
-  printf("we get here 1\n");
+  if (rank == MASTER) {
+    printf("==done==\n");
+    printf("Reynolds number:\t\t%.12E\n", calc_reynolds(params, cells, obstacles, av_vels[params.maxIters-1]));
+    printf("Elapsed Init time:\t\t\t%.6lf (s)\n",    init_toc - init_tic);
+    printf("Elapsed Compute time:\t\t\t%.6lf (s)\n", comp_toc - comp_tic);
+    printf("Elapsed Collate time:\t\t\t%.6lf (s)\n", col_toc  - col_tic);
+    printf("Elapsed Total time:\t\t\t%.6lf (s)\n",   tot_toc  - tot_tic);
+  }
+  if (rank == MASTER) 
+    write_values(params, cells_final, obstacles_final, av_vels, local_nrows);
+
+  // printf("we get here 1\n");
   MPI_Finalize();
   finalise(&params, &cells, &tmp_cells, &obstacles, &av_vels);
-  printf("we get here 2\n");
+  // printf("we get here 2\n");
 
   // for(ii=0;ii<9;ii++) {
   //   free(sendbuf[ii]);
@@ -327,19 +373,21 @@ int main(int argc, char* argv[])
   // } 
   free(sendbuf);
   free(recvbuf);
-  printf("we get here 3\n");
+  free(cells_final);
+  free(obstacles_final);
+  // printf("we get here 3\n");
 
   return EXIT_SUCCESS;
 }
 
-float timestep(const t_param params, t_speed_new** cells, t_speed_new** tmp_cells, int* obstacles, int tot_cells, int rank, int size, int local_ncols)
+float timestep(const t_param params, t_speed_new** cells, t_speed_new** tmp_cells, int* obstacles, int tot_cells, int rank, int size, int local_nrows)
 {
   // propagate(params, cells, tmp_cells);
   // rebound(params, cells, tmp_cells, obstacles);
   // t_speed_new *cellsPtr = cells;
   // t_speed_new *tmp_cellsPtr = tmp_cells;
   float rank_temp = 0;
-  float result = rebound_collision(params, *cells, *tmp_cells, obstacles, local_ncols);
+  float result = rebound_collision(params, *cells, *tmp_cells, obstacles, local_nrows);
   t_speed_new *temp = *tmp_cells;
   *tmp_cells = *cells;
   *cells = temp;
@@ -349,30 +397,30 @@ float timestep(const t_param params, t_speed_new** cells, t_speed_new** tmp_cell
       MPI_Recv(&rank_temp, 1, MPI_FLOAT,i,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
       result += rank_temp;
       // printf("we get here %f\n", result);
-
     }
 
   } else {
     MPI_Send(&result, 1, MPI_FLOAT,MASTER,0,MPI_COMM_WORLD);
   }
+  // MPI_Gather(&result, 1, MPI_FLOAT, rank_temp, 1, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
   // printf("%d\n", tot_cells);
-  return result / (float)tot_cells;
+  return result / tot_cells;
 }
 
-int accelerate_flow(const t_param params, t_speed_new* cells, int* obstacles, int local_ncols)
+int accelerate_flow(const t_param params, t_speed_new* cells, int* obstacles, int local_nrows)
 {
   /* compute weighting factors */
   float w1 = params.density * params.accel / 9.f;
   float w2 = params.density * params.accel / 36.f;
 
   /* modify the 2nd row of the grid */
-  int jj = local_ncols - 3; // not sure
+  int jj = local_nrows - 1; // should be fine
   int ii = 0;
   for (ii = 0; ii < params.nx; ii++)
   {
     /* if the cell is not occupied and
     ** we don't send a negative density */
-    if (!obstacles[ii + jj*params.nx]
+    if (!obstacles[ii + (jj - 1)*params.nx] // this should be fixed now
         && (cells->speed3[ii + jj*params.nx] - w1) > 0.f
         && (cells->speed6[ii + jj*params.nx] - w2) > 0.f
         && (cells->speed7[ii + jj*params.nx] - w2) > 0.f)
@@ -391,7 +439,7 @@ int accelerate_flow(const t_param params, t_speed_new* cells, int* obstacles, in
   return EXIT_SUCCESS;
 }
 
-float rebound_collision(const t_param params, t_speed_new* restrict cells, t_speed_new* restrict tmp_cells, int* restrict obstacles, int local_ncols)
+float rebound_collision(const t_param params, t_speed_new* restrict cells, t_speed_new* restrict tmp_cells, int* restrict obstacles, int local_nrows)
 {
   const float c_sq = 1.f / 3.f; /* square of speed of sound */
   const float w0 = 4.f / 9.f;  /* weighting factor */
@@ -447,20 +495,20 @@ float rebound_collision(const t_param params, t_speed_new* restrict cells, t_spe
   ** are in the scratch-space grid */
   //#pragma omp parallel for collapse(2)
   //#pragma omp simd
-  for (int jj = 1; jj < local_ncols+1; ++jj)
+  for (int jj = 1; jj < local_nrows+1; ++jj)
   { 
     #pragma omp simd
     for (int ii = 0; ii < params.nx; ++ii)
     {
       /* determine indices of axis-direction neighbours
       ** respecting periodic boundary conditions (wrap around) */
-      const int y_n = (jj + 1 < params.ny) ? jj + 1 : 0;
-      const int y_s = (jj == 0) ? (jj + params.ny - 1) : (jj - 1);
-      const int x_e = (ii + 1 < params.nx) ? ii + 1 : 0;;
+      const int y_n = jj + 1;
+      const int y_s = (jj - 1);
+      const int x_e = (ii + 1 < params.nx) ? ii + 1 : 0;
       const int x_w = (ii == 0) ? (ii + params.nx - 1) : (ii - 1);
 
       /* if the cell contains an obstacle */
-      if (obstacles[ii+jj*params.nx])
+      if (obstacles[ii+(jj - 1)*params.nx])
       {
         /* called after propagate, so taking values from scratch space
         ** mirroring, and writing into main grid */
@@ -598,12 +646,13 @@ float rebound_collision(const t_param params, t_speed_new* restrict cells, t_spe
   // temp = cells;
   // *cellsPtr = tmp_cells;
   // *tmp_cellsPtr = temp;
+  // printf("tot_u %f\n", tot_u);
   
   return tot_u;
 }
 
 
-float av_velocity(const t_param params, t_speed_new* cells, int* obstacles, int tot_cells, int local_ncols)
+float av_velocity(const t_param params, t_speed_new* cells, int* obstacles, int tot_cells, int local_nrows)
 {
   float tot_u;          /* accumulated magnitudes of velocity for each cell */
 
@@ -611,13 +660,13 @@ float av_velocity(const t_param params, t_speed_new* cells, int* obstacles, int 
   tot_u = 0.f;
 
   /* loop over all non-blocked cells */
-  for (int jj = 1; jj < local_ncols+1; jj++)
+  for (int jj = 1; jj < local_nrows+1; jj++)
   {
     #pragma omp simd
     for (int ii = 0; ii < params.nx; ii++)
     {
       /* ignore occupied cells */
-      if (!obstacles[ii + jj*params.nx])
+      if (!obstacles[ii + jj*params.nx - 1])
       {
         /* local density total */
         float local_density = 0.f;
@@ -762,7 +811,7 @@ int initialise(const char* paramfile, const char* obstaclefile,
   *local_ncols = params->nx;
 
   /* the map of obstacles */
-  *obstacles_ptr = malloc(sizeof(int) * ((params->ny / size + 2) * params->nx));
+  *obstacles_ptr = malloc(sizeof(int) * ((params->ny / size) * params->nx));
 
   if (*obstacles_ptr == NULL) die("cannot allocate column memory for obstacles", __LINE__, __FILE__);
 
@@ -775,17 +824,7 @@ int initialise(const char* paramfile, const char* obstaclefile,
   {
     for (int ii = 0; ii < *local_ncols; ii++)
     {
-      if (jj == 0) {
-        (*cells_ptr)->speed0[ii + jj*params->nx] = 0;
-        (*cells_ptr)->speed1[ii + jj*params->nx] = 0;
-        (*cells_ptr)->speed2[ii + jj*params->nx] = 0;
-        (*cells_ptr)->speed3[ii + jj*params->nx] = 0;
-        (*cells_ptr)->speed4[ii + jj*params->nx] = 0;
-        (*cells_ptr)->speed5[ii + jj*params->nx] = 0;
-        (*cells_ptr)->speed6[ii + jj*params->nx] = 0;
-        (*cells_ptr)->speed7[ii + jj*params->nx] = 0;
-        (*cells_ptr)->speed8[ii + jj*params->nx] = 0;
-      } else if (jj == *local_nrows + 1) {
+      if (jj == 0 || jj == *local_nrows + 1) {
         (*cells_ptr)->speed0[ii + jj*params->nx] = 0;
         (*cells_ptr)->speed1[ii + jj*params->nx] = 0;
         (*cells_ptr)->speed2[ii + jj*params->nx] = 0;
@@ -843,6 +882,7 @@ int initialise(const char* paramfile, const char* obstaclefile,
     if (yy >= rank * (*local_nrows) && yy < (rank + 1) * (*local_nrows)) {
       /* assign to array */
       (*obstacles_ptr)[xx + (yy - rank * (*local_nrows))*params->nx] = blocked;
+      // printf("%d %d %d\n", xx, yy, blocked);
     }
     count++;
   }
@@ -855,8 +895,8 @@ int initialise(const char* paramfile, const char* obstaclefile,
   ** at each timestep
   */
   *av_vels_ptr = (float*)malloc(sizeof(float) * params->maxIters);
-
-  return *local_ncols * *local_nrows - count - 4; // this has sth to do with how the data is arranged in the dat file
+  // this was the last bug I had for halo exchange, basically we count all of the cells, not just the partitioned ones
+  return params->nx * params->ny - count - 4; // this has sth to do with how the data is arranged in the dat file
 }
 
 int finalise(const t_param* params, t_speed_new** cells_ptr, t_speed_new** tmp_cells_ptr,
@@ -865,7 +905,7 @@ int finalise(const t_param* params, t_speed_new** cells_ptr, t_speed_new** tmp_c
   /*
   ** free up allocated memory
   */
- printf("we got here again 1\n");
+//  printf("we got here again 1\n");
 //  _mm_free((*cells_ptr)->speed0);
 //  _mm_free((*cells_ptr)->speed1);
 //  _mm_free((*cells_ptr)->speed2);
@@ -896,25 +936,25 @@ int finalise(const t_param* params, t_speed_new** cells_ptr, t_speed_new** tmp_c
 
   free(*av_vels_ptr);
   *av_vels_ptr = NULL;
-   printf("we got here again 2\n");
+  //  printf("we got here again 2\n");
 
 
   return EXIT_SUCCESS;
 }
 
 
-float calc_reynolds(const t_param params, t_speed_new* cells, int* obstacles, int tot_cells, int local_ncols)
+float calc_reynolds(const t_param params, t_speed_new* cells, int* obstacles, float av_vel)
 {
   const float viscosity = 1.f / 6.f * (2.f / params.omega - 1.f);
 
-  return av_velocity(params, cells, obstacles, tot_cells, local_ncols) * params.reynolds_dim / viscosity;
+  return av_vel * params.reynolds_dim / viscosity;
 }
 
-float total_density(const t_param params, t_speed_new* cells, int local_ncols)
+float total_density(const t_param params, t_speed_new* cells, int local_nrows)
 {
   float total = 0.f;  /* accumulator */
 
-  for (int jj = 0; jj < local_ncols; jj++)
+  for (int jj = 0; jj < local_nrows; jj++)
   {
     for (int ii = 0; ii < params.nx; ii++)
     {
@@ -925,14 +965,14 @@ float total_density(const t_param params, t_speed_new* cells, int local_ncols)
       total += cells->speed4[ii + jj*params.nx]; 
       total += cells->speed5[ii + jj*params.nx]; 
       total += cells->speed6[ii + jj*params.nx]; 
-      total += cells->speed7[ii + jj*params.nx]; 
+      total += cells->speed7[ii + jj*params.nx];
       total += cells->speed8[ii + jj*params.nx];
     }
   }
   return total;
 }
 
-int write_values(const t_param params, t_speed_new* cells, int* obstacles, float* av_vels)
+int write_values(const t_param params, t_speed_new* cells, int* obstacles, float* av_vels, int local_nrows)
 {
   FILE* fp;                     /* file pointer */
   const float c_sq = 1.f / 3.f; /* sq. of speed of sound */
@@ -1033,3 +1073,5 @@ void usage(const char* exe)
   fprintf(stderr, "Usage: %s <paramfile> <obstaclefile>\n", exe);
   exit(EXIT_FAILURE);
 }
+
+// there are some problems with obstacles I would say, check initialize and write

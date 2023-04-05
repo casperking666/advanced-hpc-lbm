@@ -3,7 +3,7 @@
 EXE=d2q9-bgk-vectorized
 
 CC=mpiicc
-CFLAGS= -std=c99 -Wall -Ofast -mtune=native -fma -xHOST -fopenmp -restrict -align -DDEBUG
+CFLAGS= -std=c99 -Wall -Ofast -mtune=native -fma -xHOST -fopenmp -restrict -align 
 LIBS = -lm
 
 FINAL_STATE_FILE=./final_state.dat
