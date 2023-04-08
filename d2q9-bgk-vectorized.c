@@ -101,7 +101,7 @@ typedef struct
 /* load params, allocate memory, load obstacles & initialise fluid particle densities */
 int initialise(const char* paramfile, const char* obstaclefile,
                t_param* params, t_speed_new** cells_ptr, t_speed_new** tmp_cells_ptr,
-               int** obstacles_ptr, float** av_vels_ptr, int size, int* local_nrows, int* local_ncols, int rank);
+               int** obstacles_ptr, float** av_vels_ptr, int size, int* local_nrows, int* local_ncols, int rank, int* remainder);
 
 /*
 ** The main calculation methods.
@@ -163,6 +163,7 @@ int main(int argc, char* argv[])
   float *recvbuf;       /* buffer to hold received values */
   int local_nrows;       /* number of rows apportioned to this rank */
   int local_ncols;       /* number of columns apportioned to this rank */
+  int remainder;
 
   /* MPI_Init returns once it has started up processes */
   /* get size and rank */ 
@@ -192,7 +193,7 @@ int main(int argc, char* argv[])
   gettimeofday(&timstr, NULL);
   tot_tic = timstr.tv_sec + (timstr.tv_usec / 1000000.0);
   init_tic=tot_tic;
-  int tot_cells = initialise(paramfile, obstaclefile, &params, &cells, &tmp_cells, &obstacles, &av_vels, size, &local_nrows, &local_ncols, rank);
+  int tot_cells = initialise(paramfile, obstaclefile, &params, &cells, &tmp_cells, &obstacles, &av_vels, size, &local_nrows, &local_ncols, rank, &remainder);
 
   // printf("tot_cells: %d\n", tot_cells);
   // printf("test length, rows:%d, cols:%d\n", local_nrows, local_ncols);
@@ -210,14 +211,18 @@ int main(int argc, char* argv[])
   gettimeofday(&timstr, NULL);
   init_toc = timstr.tv_sec + (timstr.tv_usec / 1000000.0);
   comp_tic=init_toc;
+      // printf("we got here 0\n");
 
   for (int tt = 0; tt < params.maxIters; tt++)
   {
     //feel like its gonna take ages, will first need to do flow, its like init for cells, then sendrecv each
-    if (rank == size - 1) {
+    if (rank == size - 1 && local_nrows != 1) {
       accelerate_flow(params, cells, obstacles, local_nrows);
-    }
+    } else if (rank == size - 2 && local_nrows == 1) {
+      accelerate_flow(params, cells, obstacles, local_nrows);
 
+    }
+    // printf("we got here 1\n");
     // mpi send_recv
     //for(jj = 0; jj < 9; jj++) {
     memcpy(sendbuf, cells->speed0 + params.nx, local_ncols*sizeof(float));
@@ -289,7 +294,12 @@ int main(int argc, char* argv[])
     //   cells->speed0[ii] = recvbuf[0][ii];
     
     // printf("test value %f\n", cells->speed0[0]);
-    av_vels[tt] = timestep(params, &cells, &tmp_cells, obstacles, tot_cells, rank, size, local_nrows); 
+      // printf("we got here 2\n");
+    if (rank == MASTER)
+      av_vels[tt] = timestep(params, &cells, &tmp_cells, obstacles, tot_cells, rank, size, local_nrows);
+    else
+      timestep(params, &cells, &tmp_cells, obstacles, tot_cells, rank, size, local_nrows);
+  // printf("we got here 3\n");
 #ifdef DEBUG
     if (rank == MASTER) {
       printf("==timestep: %d==\n", tt);
@@ -318,18 +328,106 @@ int main(int argc, char* argv[])
     (cells_final)->speed6 = malloc(sizeof(float)*((params.ny) * params.nx));
     (cells_final)->speed7 = malloc(sizeof(float)*((params.ny) * params.nx));
     (cells_final)->speed8 = malloc(sizeof(float)*((params.ny) * params.nx));
-  }
-  MPI_Gather(cells->speed0 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed0, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
-  MPI_Gather(cells->speed1 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed1, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
-  MPI_Gather(cells->speed2 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed2, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
-  MPI_Gather(cells->speed3 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed3, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
-  MPI_Gather(cells->speed4 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed4, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
-  MPI_Gather(cells->speed5 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed5, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
-  MPI_Gather(cells->speed6 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed6, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
-  MPI_Gather(cells->speed7 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed7, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
-  MPI_Gather(cells->speed8 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed8, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
 
-  MPI_Gather(obstacles, local_ncols*local_nrows, MPI_INT, obstacles_final, local_ncols*local_nrows, MPI_INT, MASTER, MPI_COMM_WORLD);
+    memcpy(cells_final->speed0, cells->speed0 + params.nx, local_nrows*local_ncols*sizeof(float));
+    memcpy(cells_final->speed1, cells->speed1 + params.nx, local_nrows*local_ncols*sizeof(float));
+    memcpy(cells_final->speed2, cells->speed2 + params.nx, local_nrows*local_ncols*sizeof(float));
+    memcpy(cells_final->speed3, cells->speed3 + params.nx, local_nrows*local_ncols*sizeof(float));
+    memcpy(cells_final->speed4, cells->speed4 + params.nx, local_nrows*local_ncols*sizeof(float));
+    memcpy(cells_final->speed5, cells->speed5 + params.nx, local_nrows*local_ncols*sizeof(float));
+    memcpy(cells_final->speed6, cells->speed6 + params.nx, local_nrows*local_ncols*sizeof(float));
+    memcpy(cells_final->speed7, cells->speed7 + params.nx, local_nrows*local_ncols*sizeof(float));
+    memcpy(cells_final->speed8, cells->speed8 + params.nx, local_nrows*local_ncols*sizeof(float));
+    memcpy(obstacles_final, obstacles, local_nrows*local_ncols*sizeof(int));
+  }
+  
+  
+
+  if (rank == MASTER) {
+    for (int i = 1; i < size; i++) {
+      if (remainder > i || remainder == 0) {
+
+            MPI_Recv(cells_final->speed0 + i*local_nrows*params.nx,
+                     local_ncols * local_nrows, MPI_FLOAT, i, 0, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed1 + i*local_nrows*params.nx,
+                     local_ncols * local_nrows, MPI_FLOAT, i, 1, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed2 + i*local_nrows*params.nx,
+                     local_ncols * local_nrows, MPI_FLOAT, i, 2, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed3 + i*local_nrows*params.nx,
+                     local_ncols * local_nrows, MPI_FLOAT, i, 3, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed4 + i*local_nrows*params.nx,
+                     local_ncols * local_nrows, MPI_FLOAT, i, 4, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed5 + i*local_nrows*params.nx,
+                     local_ncols * local_nrows, MPI_FLOAT, i, 5, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed6 + i*local_nrows*params.nx,
+                     local_ncols * local_nrows, MPI_FLOAT, i, 6, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed7 + i*local_nrows*params.nx,
+                     local_ncols * local_nrows, MPI_FLOAT, i, 7, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed8 + i*local_nrows*params.nx,
+                     local_ncols * local_nrows, MPI_FLOAT, i, 8, MPI_COMM_WORLD, &status);
+            MPI_Recv(obstacles_final + i*local_nrows*params.nx,
+                     local_ncols * local_nrows, MPI_INT, i, 9, MPI_COMM_WORLD, &status);
+      } else {
+        MPI_Recv(cells_final->speed0 + remainder * (local_nrows) * params.nx + (i - remainder)*(local_nrows-1)*params.nx,
+                     local_ncols * (local_nrows-1), MPI_FLOAT, i, 0, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed1 + remainder * (local_nrows) * params.nx + (i - remainder)*(local_nrows-1)*params.nx,
+                     local_ncols * (local_nrows-1), MPI_FLOAT, i, 1, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed2 + remainder * (local_nrows) * params.nx + (i - remainder)*(local_nrows-1)*params.nx,
+                     local_ncols * (local_nrows-1), MPI_FLOAT, i, 2, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed3 + remainder * (local_nrows) * params.nx + (i - remainder)*(local_nrows-1)*params.nx,
+                     local_ncols * (local_nrows-1), MPI_FLOAT, i, 3, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed4 + remainder * (local_nrows) * params.nx + (i - remainder)*(local_nrows-1)*params.nx,
+                     local_ncols * (local_nrows-1), MPI_FLOAT, i, 4, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed5 + remainder * (local_nrows) * params.nx + (i - remainder)*(local_nrows-1)*params.nx,
+                     local_ncols * (local_nrows-1), MPI_FLOAT, i, 5, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed6 + remainder * (local_nrows) * params.nx + (i - remainder)*(local_nrows-1)*params.nx,
+                     local_ncols * (local_nrows-1), MPI_FLOAT, i, 6, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed7 + remainder * (local_nrows) * params.nx + (i - remainder)*(local_nrows-1)*params.nx,
+                     local_ncols * (local_nrows-1), MPI_FLOAT, i, 7, MPI_COMM_WORLD, &status);
+            MPI_Recv(cells_final->speed8 + remainder * (local_nrows) * params.nx + (i - remainder)*(local_nrows-1)*params.nx,
+                     local_ncols * (local_nrows-1), MPI_FLOAT, i, 8, MPI_COMM_WORLD, &status);
+            MPI_Recv(obstacles_final + remainder * (local_nrows) * params.nx + (i - remainder)*(local_nrows-1)*params.nx,
+                     local_ncols * local_nrows, MPI_INT, i, 9, MPI_COMM_WORLD, &status);
+      }
+
+    }
+  } else {
+    // for (int j = 0; j < local_nrows; j++) {
+            MPI_Send(cells->speed0 + local_ncols,
+                     local_ncols * local_nrows, MPI_FLOAT, MASTER, 0, MPI_COMM_WORLD);
+            MPI_Send(cells->speed1 + local_ncols,
+                     local_ncols * local_nrows, MPI_FLOAT, MASTER, 1, MPI_COMM_WORLD);
+            MPI_Send(cells->speed2 + local_ncols,
+                     local_ncols * local_nrows, MPI_FLOAT, MASTER, 2, MPI_COMM_WORLD);
+            MPI_Send(cells->speed3 + local_ncols,
+                     local_ncols * local_nrows, MPI_FLOAT, MASTER, 3, MPI_COMM_WORLD);
+            MPI_Send(cells->speed4 + local_ncols,
+                     local_ncols * local_nrows, MPI_FLOAT, MASTER, 4, MPI_COMM_WORLD);
+            MPI_Send(cells->speed5 + local_ncols,
+                     local_ncols * local_nrows, MPI_FLOAT, MASTER, 5, MPI_COMM_WORLD);
+            MPI_Send(cells->speed6 + local_ncols,
+                     local_ncols * local_nrows, MPI_FLOAT, MASTER, 6, MPI_COMM_WORLD);
+            MPI_Send(cells->speed7 + local_ncols,
+                     local_ncols * local_nrows, MPI_FLOAT, MASTER, 7, MPI_COMM_WORLD);
+            MPI_Send(cells->speed8 + local_ncols,
+                     local_ncols * local_nrows, MPI_FLOAT, MASTER, 8, MPI_COMM_WORLD);
+            MPI_Send(obstacles,
+                     local_ncols * local_nrows, MPI_INT, MASTER, 9, MPI_COMM_WORLD);
+  }
+
+  // printf("we got here\n");
+
+    // MPI_Gather(cells->speed0 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed0, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+    // MPI_Gather(cells->speed1 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed1, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+    // MPI_Gather(cells->speed2 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed2, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+    // MPI_Gather(cells->speed3 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed3, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+    // MPI_Gather(cells->speed4 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed4, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+    // MPI_Gather(cells->speed5 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed5, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+    // MPI_Gather(cells->speed6 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed6, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+    // MPI_Gather(cells->speed7 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed7, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+    // MPI_Gather(cells->speed8 + local_ncols, local_ncols*local_nrows, MPI_FLOAT, cells_final->speed8, local_ncols*local_nrows, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+
+  // MPI_Gather(obstacles, local_ncols*local_nrows, MPI_INT, obstacles_final, local_ncols*local_nrows, MPI_INT, MASTER, MPI_COMM_WORLD);
 
   // test for obstacles
   // if (rank==MASTER) {
@@ -414,7 +512,11 @@ int accelerate_flow(const t_param params, t_speed_new* cells, int* obstacles, in
   float w2 = params.density * params.accel / 36.f;
 
   /* modify the 2nd row of the grid */
-  int jj = local_nrows - 1; // should be fine
+  int jj;
+  if (local_nrows == 1)
+    jj = local_nrows; // should be fine
+  else
+    jj = local_nrows - 1;
   int ii = 0;
   for (ii = 0; ii < params.nx; ii++)
   {
@@ -709,7 +811,7 @@ float av_velocity(const t_param params, t_speed_new* cells, int* obstacles, int 
 
 int initialise(const char* paramfile, const char* obstaclefile,
                t_param* params, t_speed_new** cells_ptr, t_speed_new** tmp_cells_ptr,
-               int** obstacles_ptr, float** av_vels_ptr, int size, int* local_nrows, int* local_ncols, int rank)
+               int** obstacles_ptr, float** av_vels_ptr, int size, int* local_nrows, int* local_ncols, int rank, int* remainder)
 {
   char   message[1024];  /* message buffer */
   FILE*   fp;            /* file pointer */
@@ -778,40 +880,72 @@ int initialise(const char* paramfile, const char* obstaclefile,
   */
 
   /* main grid */
-  *cells_ptr = (t_speed_new*)_mm_malloc(sizeof(t_speed_new), 64);
-  (*cells_ptr)->speed0 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*cells_ptr)->speed1 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*cells_ptr)->speed2 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*cells_ptr)->speed3 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*cells_ptr)->speed4 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*cells_ptr)->speed5 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*cells_ptr)->speed6 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*cells_ptr)->speed7 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*cells_ptr)->speed8 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  if (cells_ptr == NULL) die("cannot allocate memory for cells", __LINE__, __FILE__);
+  int quotient = params->ny / size;
+  *remainder = params->ny - quotient * size;
+  if (*remainder > rank) {
+    *local_nrows = params->ny / size + 1;
+    *local_ncols = params->nx;
+    *cells_ptr = (t_speed_new*)_mm_malloc(sizeof(t_speed_new), 64);
+    (*cells_ptr)->speed0 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*cells_ptr)->speed1 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*cells_ptr)->speed2 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*cells_ptr)->speed3 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*cells_ptr)->speed4 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*cells_ptr)->speed5 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*cells_ptr)->speed6 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*cells_ptr)->speed7 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*cells_ptr)->speed8 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    if (cells_ptr == NULL) die("cannot allocate memory for cells", __LINE__, __FILE__);
 
-  /* 'helper' grid, used as scratch space */
-  *tmp_cells_ptr = (t_speed_new*)_mm_malloc(sizeof(t_speed_new) * (params->ny * params->nx), 64);
-  (*tmp_cells_ptr)->speed0 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*tmp_cells_ptr)->speed1 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*tmp_cells_ptr)->speed2 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*tmp_cells_ptr)->speed3 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*tmp_cells_ptr)->speed4 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*tmp_cells_ptr)->speed5 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*tmp_cells_ptr)->speed6 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*tmp_cells_ptr)->speed7 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  (*tmp_cells_ptr)->speed8 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
-  if (tmp_cells_ptr == NULL) die("cannot allocate memory for tmp_cells", __LINE__, __FILE__);
+    /* 'helper' grid, used as scratch space */
+    *tmp_cells_ptr = (t_speed_new*)_mm_malloc(sizeof(t_speed_new) * (params->ny * params->nx), 64);
+    (*tmp_cells_ptr)->speed0 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*tmp_cells_ptr)->speed1 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*tmp_cells_ptr)->speed2 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*tmp_cells_ptr)->speed3 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*tmp_cells_ptr)->speed4 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*tmp_cells_ptr)->speed5 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*tmp_cells_ptr)->speed6 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*tmp_cells_ptr)->speed7 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    (*tmp_cells_ptr)->speed8 = _mm_malloc(sizeof(float)*((params->ny / size + 3) * params->nx),64);
+    if (tmp_cells_ptr == NULL) die("cannot allocate memory for tmp_cells", __LINE__, __FILE__);
+  } else  {
+    *local_nrows = params->ny / size;
+    *local_ncols = params->nx;
+    *cells_ptr = (t_speed_new*)_mm_malloc(sizeof(t_speed_new), 64);
+    (*cells_ptr)->speed0 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*cells_ptr)->speed1 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*cells_ptr)->speed2 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*cells_ptr)->speed3 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*cells_ptr)->speed4 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*cells_ptr)->speed5 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*cells_ptr)->speed6 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*cells_ptr)->speed7 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*cells_ptr)->speed8 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    if (cells_ptr == NULL) die("cannot allocate memory for cells", __LINE__, __FILE__);
+
+    /* 'helper' grid, used as scratch space */
+    *tmp_cells_ptr = (t_speed_new*)_mm_malloc(sizeof(t_speed_new) * (params->ny * params->nx), 64);
+    (*tmp_cells_ptr)->speed0 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*tmp_cells_ptr)->speed1 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*tmp_cells_ptr)->speed2 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*tmp_cells_ptr)->speed3 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*tmp_cells_ptr)->speed4 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*tmp_cells_ptr)->speed5 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*tmp_cells_ptr)->speed6 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*tmp_cells_ptr)->speed7 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    (*tmp_cells_ptr)->speed8 = _mm_malloc(sizeof(float)*((params->ny / size + 2) * params->nx),64);
+    if (tmp_cells_ptr == NULL) die("cannot allocate memory for tmp_cells", __LINE__, __FILE__);
+  }
 
   /* 
   ** determine local grid size
   ** each rank gets all the rows, but a subset of the number of columns
   */
-  *local_nrows = params->ny / size;
-  *local_ncols = params->nx;
+
 
   /* the map of obstacles */
-  *obstacles_ptr = malloc(sizeof(int) * ((params->ny / size) * params->nx));
+  *obstacles_ptr = malloc(sizeof(int) * ((*local_nrows) * params->nx));
 
   if (*obstacles_ptr == NULL) die("cannot allocate column memory for obstacles", __LINE__, __FILE__);
 
@@ -866,6 +1000,7 @@ int initialise(const char* paramfile, const char* obstaclefile,
     die(message, __LINE__, __FILE__);
   }
 
+  // printf("obstacles check 1\n");
   int count = 0;
   /* read-in the blocked cells list */
   while ((retval = fscanf(fp, "%d %d %d\n", &xx, &yy, &blocked)) != EOF)
@@ -879,13 +1014,21 @@ int initialise(const char* paramfile, const char* obstaclefile,
 
     if (blocked != 1) die("obstacle blocked value should be 1", __LINE__, __FILE__);
 
-    if (yy >= rank * (*local_nrows) && yy < (rank + 1) * (*local_nrows)) {
-      /* assign to array */
-      (*obstacles_ptr)[xx + (yy - rank * (*local_nrows))*params->nx] = blocked;
-      // printf("%d %d %d\n", xx, yy, blocked);
+    if (*remainder > rank) {
+      if (yy >= rank * (*local_nrows) && yy < (rank + 1) * (*local_nrows)) {
+        (*obstacles_ptr)[xx + (yy - rank * (*local_nrows))*params->nx] = blocked;
+      }
+    } else {
+      if (yy >= *remainder * (*local_nrows + 1) + (rank - *remainder) * (*local_nrows) && yy < *remainder * (*local_nrows + 1) + (rank + 1 - *remainder) * (*local_nrows)) {
+        /* assign to array */
+        (*obstacles_ptr)[xx + (yy - (*remainder * (*local_nrows + 1) + (rank - *remainder) * (*local_nrows)))*params->nx] = blocked;
+        // printf("%d %d %d\n", xx, yy, blocked);
+      }
     }
+    
     count++;
   }
+    // printf("obstacles check 2\n");
 
   /* and close the file */
   fclose(fp);
@@ -894,7 +1037,8 @@ int initialise(const char* paramfile, const char* obstaclefile,
   ** allocate space to hold a record of the avarage velocities computed
   ** at each timestep
   */
-  *av_vels_ptr = (float*)malloc(sizeof(float) * params->maxIters);
+ if (rank == MASTER)
+    *av_vels_ptr = (float*)malloc(sizeof(float) * params->maxIters);
   // this was the last bug I had for halo exchange, basically we count all of the cells, not just the partitioned ones
   return params->nx * params->ny - count - 4; // this has sth to do with how the data is arranged in the dat file
 }

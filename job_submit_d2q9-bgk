@@ -2,11 +2,11 @@
 
 #SBATCH --job-name d2q9-bgk
 #SBATCH --nodes 4
-#SBATCH --ntasks-per-node 16
+#SBATCH --ntasks-per-node 28
 #SBATCH --time 00:20:00
 #SBATCH --partition=teach_cpu
 #SBATCH --account=COSC028844
-#SBATCH --output init-test.out
+#SBATCH --output init-test4.out
 #SBATCH --exclusive 
 
 echo Running on host `hostname`
@@ -31,9 +31,9 @@ echo `echo $SLURM_JOB_NODELIST | uniq`
 # ./HPC-Assignment1/d2q9-bgk input_256x256.params obstacles_256x256.dat
 # ./HPC-Assignment1/d2q9-bgk input_1024x1024.params obstacles_1024x1024.dat
 
-# mpirun -np 4 -l ./d2q9-bgk-vectorized input_128x128.params obstacles_128x128.dat
-# mpirun -np 4 -l ./d2q9-bgk-vectorized input_256x256.params obstacles_256x256.dat
-mpirun -np 64 -l ./d2q9-bgk-vectorized input_1024x1024.params obstacles_1024x1024.dat
+# OMP_PROC_BIND=close OMP_PLACES=cores mpirun -np 8 -l ./d2q9-bgk-vectorized input_128x128.params obstacles_128x128.dat
+# OMP_PROC_BIND=close OMP_PLACES=cores mpirun -np 16 -l ./d2q9-bgk-vectorized input_256x256.params obstacles_256x256.dat
+mpirun -np 85 ./d2q9-bgk-vectorized input_1024x1024.params obstacles_1024x1024.dat
 
 # ./d2q9-bgk-optimized input_128x128.params obstacles_128x128.dat
 # ./d2q9-bgk-optimized input_256x256.params obstacles_256x256.dat
