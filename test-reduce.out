@@ -1,0 +1,24 @@
+Running on host compute242.bc4.acrc.priv
+Time is Fri Apr 21 12:30:24 BST 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11371393
+This job runs on the following machines:
+compute[242-245]
+==done==
+Reynolds number:		9.760962486267E+00
+Elapsed Init time:			0.003078 (s)
+Elapsed Compute time:			0.517040 (s)
+Elapsed Collate time:			0.003161 (s)
+Elapsed Total time:			0.523279 (s)
+==done==
+Reynolds number:		1.006229877472E+01
+Elapsed Init time:			0.123235 (s)
+Elapsed Compute time:			1.606261 (s)
+Elapsed Collate time:			0.004997 (s)
+Elapsed Total time:			1.734493 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.052620 (s)
+Elapsed Compute time:			2.239496 (s)
+Elapsed Collate time:			0.043740 (s)
+Elapsed Total time:			2.335856 (s)

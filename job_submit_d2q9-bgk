@@ -3,10 +3,10 @@
 #SBATCH --job-name d2q9-bgk
 #SBATCH --nodes 4
 #SBATCH --ntasks-per-node 28
-#SBATCH --time 00:20:00
+#SBATCH --time 02:00:00
 #SBATCH --partition=teach_cpu
 #SBATCH --account=COSC028844
-#SBATCH --output init-test4.out
+#SBATCH --output test-reduce.out
 #SBATCH --exclusive 
 
 echo Running on host `hostname`
@@ -24,6 +24,7 @@ echo `echo $SLURM_JOB_NODELIST | uniq`
 # OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_256x256.params obstacles_256x256.dat
 # OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp input_1024x1024.params obstacles_1024x1024.dat
 
+
 # advixe-cl --collect=roofline --project-dir=./advi-ser-1024-v2 ./debug input_1024x1024.params obstacles_1024x1024.dat
 
 # mpirun -np 56 -l ./hello_world
@@ -31,9 +32,11 @@ echo `echo $SLURM_JOB_NODELIST | uniq`
 # ./HPC-Assignment1/d2q9-bgk input_256x256.params obstacles_256x256.dat
 # ./HPC-Assignment1/d2q9-bgk input_1024x1024.params obstacles_1024x1024.dat
 
-# OMP_PROC_BIND=close OMP_PLACES=cores mpirun -np 8 -l ./d2q9-bgk-vectorized input_128x128.params obstacles_128x128.dat
-# OMP_PROC_BIND=close OMP_PLACES=cores mpirun -np 16 -l ./d2q9-bgk-vectorized input_256x256.params obstacles_256x256.dat
-mpirun -np 85 ./d2q9-bgk-vectorized input_1024x1024.params obstacles_1024x1024.dat
+mpirun -np 112 ./d2q9-bgk-reduce input_128x128.params obstacles_128x128.dat
+mpirun -np 112 ./d2q9-bgk-reduce input_256x256.params obstacles_256x256.dat
+mpirun -np 112 ./d2q9-bgk-reduce input_1024x1024.params obstacles_1024x1024.dat
+# mpirun -np 112 vtune -collect hotspots -result-dir vtuneresult -- ./d2q9-bgk-vectorized input_1024x1024.params obstacles_1024x1024.dat
+# mpirun -np 32 ./d2q9-bgk-vectorized input_1024x1024.params obstacles_1024x1024.dat
 
 # ./d2q9-bgk-optimized input_128x128.params obstacles_128x128.dat
 # ./d2q9-bgk-optimized input_256x256.params obstacles_256x256.dat

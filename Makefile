@@ -1,15 +1,16 @@
 # Makefile
 
-EXE=d2q9-bgk-vectorized
+EXE=d2q9-bgk-reduce
 
 CC=mpiicc
-CFLAGS= -std=c99 -Wall -Ofast -mtune=native -fma -xHOST -fopenmp -restrict -align 
+# CFLAGS= -std=c99 -Wall -Ofast -mtune=native -fma -xHOST -fiopenmp -fopenmp-targets=spir64 -align 
+CFLAGS= -std=c99 -Wall -Ofast -mtune=native -fma -xHOST -fopenmp -align 
 LIBS = -lm
 
 FINAL_STATE_FILE=./final_state.dat
 AV_VELS_FILE=./av_vels.dat
-REF_FINAL_STATE_FILE=check/1024x1024.final_state.dat
-REF_AV_VELS_FILE=check/1024x1024.av_vels.dat
+REF_FINAL_STATE_FILE=check/128x128.final_state.dat
+REF_AV_VELS_FILE=check/128x128.av_vels.dat
 
 all: $(EXE)
 
