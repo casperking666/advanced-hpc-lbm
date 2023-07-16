@@ -306,12 +306,11 @@ float rebound_collision(const t_param params, t_speed_new* restrict cells, t_spe
   ** the propagate step and so values of interest
   ** are in the scratch-space grid */
   //#pragma omp parallel for collapse(2)
-  #pragma omp target map(to: obstacles[0:params.nx*params.ny]) \
-                      map(tofrom: cells[0:params.nx*params.ny], tmp_cells[0:params.nx*params.ny])
-  #pragma omp parallel for schedule(static) reduction(+:tot_u)
+  #pragma omp parallel for simd aligned(cells:64) aligned(tmp_cells:64) aligned(obstacles:64) schedule(simd:static) collapse(2) reduction(+:tot_u)
   for (int jj = 0; jj < params.ny; ++jj)
   {
-    #pragma omp simd aligned(cells) aligned(tmp_cells) reduction(+:tot_u)
+    //#pragma omp simd
+    //#pragma omp parallel for firstprivate(speed0, speed1, speed2,speed3,speed4,speed5,speed6,speed7,speed8) reduction(+:tot_u,tot_cells)
     for (int ii = 0; ii < params.nx; ++ii)
     {
       float speed0 = 0.f;
@@ -443,6 +442,13 @@ float rebound_collision(const t_param params, t_speed_new* restrict cells, t_spe
         /* local density total */
         // local_density = 0.f;
        
+        /* relaxation step */
+        // for (int kk = 0; kk < NSPEEDS; kk++)
+        // {
+        //   tmp_cells[index].speeds[kk] = speeds[kk]
+        //                                           + params.omega
+        //                                           * (d_equ[kk] - speeds[kk]);
+        //   local_density += tmp_cells[index].speeds[kk]; 
         tmp_cells->speed0[ii+jj*params.nx] = speed0 + params.omega * (d_equ[0] - speed0);
         tmp_cells->speed1[ii+jj*params.nx] = speed1 + params.omega * (d_equ[1] - speed1);
         tmp_cells->speed2[ii+jj*params.nx] = speed2 + params.omega * (d_equ[2] - speed2);
@@ -452,7 +458,33 @@ float rebound_collision(const t_param params, t_speed_new* restrict cells, t_spe
         tmp_cells->speed6[ii+jj*params.nx] = speed6 + params.omega * (d_equ[6] - speed6);
         tmp_cells->speed7[ii+jj*params.nx] = speed7 + params.omega * (d_equ[7] - speed7);
         tmp_cells->speed8[ii+jj*params.nx] = speed8 + params.omega * (d_equ[8] - speed8);
+        //#pragma omp barrier
+        // local_density += tmp_cells->speed0[index]; 
+        // local_density += tmp_cells->speed1[index]; 
+        // local_density += tmp_cells->speed2[index]; 
+        // local_density += tmp_cells->speed3[index]; 
+        // local_density += tmp_cells->speed4[index]; 
+        // local_density += tmp_cells->speed5[index]; 
+        // local_density += tmp_cells->speed6[index]; 
+        // local_density += tmp_cells->speed7[index]; 
+        // local_density += tmp_cells->speed8[index]; 
 
+        // /* x-component of velocity */
+        // u_x = (tmp_cells->speed1[index]
+        //               + tmp_cells->speed5[index]
+        //               + tmp_cells->speed8[index]
+        //               - (tmp_cells->speed3[index]
+        //                  + tmp_cells->speed6[index]
+        //                  + tmp_cells->speed7[index]))
+        //              / local_density;
+        // /* compute y velocity component */
+        // u_y = (tmp_cells->speed2[index]
+        //               + tmp_cells->speed5[index]
+        //               + tmp_cells->speed6[index]
+        //               - (tmp_cells->speed4[index]
+        //                  + tmp_cells->speed7[index]
+        //                  + tmp_cells->speed8[index]))
+        //              / local_density;
         /* accumulate the norm of x- and y- velocity components */
         tot_u += sqrtf((u_x * u_x) + (u_y * u_y)); // 2.63s
         /* increase counter of inspected cells */
@@ -479,7 +511,7 @@ float av_velocity(const t_param params, t_speed_new* restrict cells, int* restri
   tot_u = 0.f;
   //#pragma omp simd
   /* loop over all non-blocked cells */
-  // #pragma omp parallel for simd collapse(2) reduction(+:tot_u,tot_cells)
+  #pragma omp parallel for simd collapse(2) reduction(+:tot_u,tot_cells)
   for (int jj = 0; jj < params.ny; jj++)
   {
     //#pragma omp simd 
@@ -637,7 +669,7 @@ int initialise(const char* paramfile, const char* obstaclefile,
   float w1 = params->density      / 9.f;
   float w2 = params->density      / 36.f;
 
-//   #pragma omp parallel for collapse(2)
+  #pragma omp parallel for collapse(2)
   for (int jj = 0; jj < params->ny; jj++)
   {
     for (int ii = 0; ii < params->nx; ii++)
@@ -669,7 +701,7 @@ int initialise(const char* paramfile, const char* obstaclefile,
   }
 
   /* first set all cells in obstacle array to zero */
-//   #pragma omp parallel for collapse(2)
+  #pragma omp parallel for collapse(2)
   for (int jj = 0; jj < params->ny; jj++)
   {
     for (int ii = 0; ii < params->nx; ii++)

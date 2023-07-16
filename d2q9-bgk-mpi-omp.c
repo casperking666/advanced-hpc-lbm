@@ -177,6 +177,7 @@ int main(int argc, char* argv[])
   */
   left = (rank == MASTER) ? (rank + size - 1) : (rank - 1);
   right = (rank + 1) % size;
+  // printf("rank master %d, %d\n", left, right);
 
   /* parse the command line */
   if (argc != 3)
@@ -294,9 +295,11 @@ int main(int argc, char* argv[])
     //   cells->speed0[ii] = recvbuf[0][ii];
     
     // printf("test value %f\n", cells->speed0[0]);
-      // printf("we got here 2\n");
+    if (rank == MASTER)    
+      av_vels[tt] = timestep(params, &cells, &tmp_cells, obstacles, tot_cells, rank, size, local_nrows);
+    else
+      timestep(params, &cells, &tmp_cells, obstacles, tot_cells, rank, size, local_nrows);
 
-    av_vels[tt] = timestep(params, &cells, &tmp_cells, obstacles, tot_cells, rank, size, local_nrows);
   // printf("we got here 3\n");
 #ifdef DEBUG
     if (rank == MASTER) {
@@ -306,9 +309,9 @@ int main(int argc, char* argv[])
     }
 #endif
   }
-  float global_sum[params.maxIters];
-  MPI_Reduce(av_vels, global_sum, params.maxIters, MPI_FLOAT, MPI_SUM, MASTER, MPI_COMM_WORLD);
 
+  // float global_sum[params.maxIters];
+  // MPI_Reduce(av_vels, global_sum, params.maxIters, MPI_FLOAT, MPI_SUM, MASTER, MPI_COMM_WORLD);
   
   /* Compute time stops here, collate time starts*/
   gettimeofday(&timstr, NULL);
@@ -452,14 +455,14 @@ int main(int argc, char* argv[])
   /* write final values and free memory */
   if (rank == MASTER) {
     printf("==done==\n");
-    printf("Reynolds number:\t\t%.12E\n", calc_reynolds(params, cells, obstacles, global_sum[params.maxIters-1]));
+    printf("Reynolds number:\t\t%.12E\n", calc_reynolds(params, cells, obstacles, av_vels[params.maxIters-1]));
     printf("Elapsed Init time:\t\t\t%.6lf (s)\n",    init_toc - init_tic);
     printf("Elapsed Compute time:\t\t\t%.6lf (s)\n", comp_toc - comp_tic);
     printf("Elapsed Collate time:\t\t\t%.6lf (s)\n", col_toc  - col_tic);
     printf("Elapsed Total time:\t\t\t%.6lf (s)\n",   tot_toc  - tot_tic);
   }
   if (rank == MASTER) 
-    write_values(params, cells_final, obstacles_final, global_sum, local_nrows);
+    write_values(params, cells_final, obstacles_final, av_vels, local_nrows);
 
   // printf("we get here 1\n");
   MPI_Finalize();
@@ -492,7 +495,7 @@ float timestep(const t_param params, t_speed_new** cells, t_speed_new** tmp_cell
   *cells = temp;
   //printf("we get here 1\n");
   float final_result = 0;
-  // MPI_Reduce(&result, &final_result, 1, MPI_FLOAT, MPI_SUM, MASTER, MPI_COMM_WORLD);
+  MPI_Reduce(&result, &final_result, 1, MPI_FLOAT, MPI_SUM, MASTER, MPI_COMM_WORLD);
   // if (rank == MASTER) {
   //   for (int i = 1; i < size; i++) {
   //     // MPI_Reduce(&result, &final_result, 1, MPI_FLOAT, MPI_SUM, MASTER, MPI_COMM_WORLD);
@@ -506,7 +509,7 @@ float timestep(const t_param params, t_speed_new** cells, t_speed_new** tmp_cell
   // }
   // MPI_Gather(&result, 1, MPI_FLOAT, rank_temp, 1, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
   // printf("%d\n", tot_cells);
-  return result / tot_cells;
+  return final_result / tot_cells;
 }
 
 int accelerate_flow(const t_param params, t_speed_new* cells, int* obstacles, int local_nrows)
@@ -599,11 +602,10 @@ float rebound_collision(const t_param params, t_speed_new* restrict cells, t_spe
   ** NB the collision step is called after
   ** the propagate step and so values of interest
   ** are in the scratch-space grid */
-  //#pragma omp parallel for collapse(2)
-  //#pragma omp simd
+  #pragma omp parallel for schedule(static) reduction(+:tot_u)
   for (int jj = 1; jj < local_nrows+1; ++jj)
   { 
-    #pragma omp simd
+    #pragma omp simd aligned(cells) aligned(tmp_cells) reduction(+:tot_u)
     for (int ii = 0; ii < params.nx; ++ii)
     {
       /* determine indices of axis-direction neighbours
@@ -958,6 +960,7 @@ int initialise(const char* paramfile, const char* obstaclefile,
   float w1 = params->density      / 9.f;
   float w2 = params->density      / 36.f;
 
+  // #pragma omp parallel for simd collapse(2)
   for (int jj = 0; jj < *local_nrows + 2; jj++)
   {
     for (int ii = 0; ii < *local_ncols; ii++)
@@ -987,6 +990,7 @@ int initialise(const char* paramfile, const char* obstaclefile,
   }
 
   /* first set all cells in obstacle array to zero */
+  // #pragma omp parallel for simd collapse(2)
   for (int jj = 0; jj < *local_nrows; jj++)
   {
     for (int ii = 0; ii < *local_ncols; ii++)
@@ -1041,7 +1045,7 @@ int initialise(const char* paramfile, const char* obstaclefile,
   ** allocate space to hold a record of the avarage velocities computed
   ** at each timestep
   */
-//  if (rank == MASTER)
+ if (rank == MASTER)
     *av_vels_ptr = (float*)malloc(sizeof(float) * params->maxIters);
   // this was the last bug I had for halo exchange, basically we count all of the cells, not just the partitioned ones
   return params->nx * params->ny - count - 4; // this has sth to do with how the data is arranged in the dat file

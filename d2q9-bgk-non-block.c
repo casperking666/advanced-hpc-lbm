@@ -158,7 +158,7 @@ int main(int argc, char* argv[])
   int right;             /* the rank of the process to the right */
   int size;              /* number of processes in the communicator */
   int tag = 0;           /* scope for adding extra information to a message */
-  MPI_Status status;     /* struct used by MPI_Recv */
+  // MPI_Status status;     /* struct used by MPI_Recv */
   float *sendbuf;       /* buffer to hold values to send */
   float *recvbuf;       /* buffer to hold received values */
   int local_nrows;       /* number of rows apportioned to this rank */
@@ -199,6 +199,8 @@ int main(int argc, char* argv[])
   // printf("test length, rows:%d, cols:%d\n", local_nrows, local_ncols);
 
   sendbuf = (float*)malloc(sizeof(float) * 9 * local_ncols);
+  float *sendbuf2 = (float*)malloc(sizeof(float) * 9 * local_ncols);
+
   // for(jj=0;jj<local_nrows;jj++) {
   //   sendbuf[jj] = (float*)malloc(sizeof(float) * local_ncols);
   // }
@@ -213,6 +215,9 @@ int main(int argc, char* argv[])
   comp_tic=init_toc;
       // printf("we got here 0\n");
 
+  MPI_Request request;
+  MPI_Status status;
+
   for (int tt = 0; tt < params.maxIters; tt++)
   {
     //feel like its gonna take ages, will first need to do flow, its like init for cells, then sendrecv each
@@ -222,9 +227,8 @@ int main(int argc, char* argv[])
       accelerate_flow(params, cells, obstacles, local_nrows);
 
     }
-    // printf("we got here 1\n");
-    // mpi send_recv
-    //for(jj = 0; jj < 9; jj++) {
+   
+
     memcpy(sendbuf, cells->speed0 + params.nx, local_ncols*sizeof(float));
     memcpy(sendbuf+local_ncols, cells->speed1 + params.nx, local_ncols*sizeof(float));
     memcpy(sendbuf+local_ncols*2, cells->speed2 + params.nx, local_ncols*sizeof(float));
@@ -242,9 +246,28 @@ int main(int argc, char* argv[])
     // }
     
 
-    MPI_Sendrecv(sendbuf, local_ncols * 9, MPI_FLOAT, left, tag,
-		 recvbuf, local_ncols * 9, MPI_FLOAT, right, tag,
-		 MPI_COMM_WORLD, &status);
+    // post non-blocking send and receive requests
+  MPI_Isend(sendbuf, local_ncols * 9, MPI_FLOAT, left, tag, MPI_COMM_WORLD, &request);
+  MPI_Irecv(recvbuf, local_ncols * 9, MPI_FLOAT, right, tag, MPI_COMM_WORLD, &request);
+    memcpy(sendbuf2, cells->speed0 + local_nrows * params.nx, local_ncols*sizeof(float));
+    memcpy(sendbuf2+local_ncols, cells->speed1 + local_nrows * params.nx, local_ncols*sizeof(float));
+    memcpy(sendbuf2+local_ncols*2, cells->speed2 + local_nrows * params.nx, local_ncols*sizeof(float));
+    memcpy(sendbuf2+local_ncols*3, cells->speed3 + local_nrows * params.nx, local_ncols*sizeof(float));
+    memcpy(sendbuf2+local_ncols*4, cells->speed4 + local_nrows * params.nx, local_ncols*sizeof(float));
+    memcpy(sendbuf2+local_ncols*5, cells->speed5 + local_nrows * params.nx, local_ncols*sizeof(float));
+    memcpy(sendbuf2+local_ncols*6, cells->speed6 + local_nrows * params.nx, local_ncols*sizeof(float));
+    memcpy(sendbuf2+local_ncols*7, cells->speed7 + local_nrows * params.nx, local_ncols*sizeof(float));
+    memcpy(sendbuf2+local_ncols*8, cells->speed8 + local_nrows * params.nx, local_ncols*sizeof(float));
+  
+
+  // wait for completion of non-blocking requests
+  // MPI_Waitall(2, &request[1], &status);
+
+    MPI_Wait(&request, &status);
+
+    // MPI_Sendrecv(sendbuf, local_ncols * 9, MPI_FLOAT, left, tag,
+		//  recvbuf, local_ncols * 9, MPI_FLOAT, right, tag,
+		//  MPI_COMM_WORLD, &status);
 
     // for(ii=0;ii<local_ncols;ii++) {
     //   // cells->speed0[(local_nrows+1) * params.nx + ii] = recvbuf[0][ii];
@@ -267,19 +290,14 @@ int main(int argc, char* argv[])
     // for(ii=0;ii<local_ncols;ii++)
     //   sendbuf[0][ii] = cells->speed0[ii + (local_nrows * params.nx)];
 
-    memcpy(sendbuf, cells->speed0 + local_nrows * params.nx, local_ncols*sizeof(float));
-    memcpy(sendbuf+local_ncols, cells->speed1 + local_nrows * params.nx, local_ncols*sizeof(float));
-    memcpy(sendbuf+local_ncols*2, cells->speed2 + local_nrows * params.nx, local_ncols*sizeof(float));
-    memcpy(sendbuf+local_ncols*3, cells->speed3 + local_nrows * params.nx, local_ncols*sizeof(float));
-    memcpy(sendbuf+local_ncols*4, cells->speed4 + local_nrows * params.nx, local_ncols*sizeof(float));
-    memcpy(sendbuf+local_ncols*5, cells->speed5 + local_nrows * params.nx, local_ncols*sizeof(float));
-    memcpy(sendbuf+local_ncols*6, cells->speed6 + local_nrows * params.nx, local_ncols*sizeof(float));
-    memcpy(sendbuf+local_ncols*7, cells->speed7 + local_nrows * params.nx, local_ncols*sizeof(float));
-    memcpy(sendbuf+local_ncols*8, cells->speed8 + local_nrows * params.nx, local_ncols*sizeof(float));
 
-    MPI_Sendrecv(sendbuf, local_ncols * 9, MPI_FLOAT, right, tag,
-		 recvbuf, local_ncols * 9, MPI_FLOAT, left, tag,
-		 MPI_COMM_WORLD, &status);
+
+    // MPI_Sendrecv(sendbuf, local_ncols * 9, MPI_FLOAT, right, tag,
+		//  recvbuf, local_ncols * 9, MPI_FLOAT, left, tag,
+		//  MPI_COMM_WORLD, &status);
+    MPI_Isend(sendbuf2, local_ncols * 9, MPI_FLOAT, right, tag, MPI_COMM_WORLD, &request);
+    MPI_Irecv(recvbuf, local_ncols * 9, MPI_FLOAT, left, tag, MPI_COMM_WORLD, &request);
+    MPI_Wait(&request, &status);
 
     memcpy(cells->speed0, recvbuf, local_ncols*sizeof(float));
     memcpy(cells->speed1, recvbuf+local_ncols, local_ncols*sizeof(float));
@@ -485,13 +503,11 @@ float timestep(const t_param params, t_speed_new** cells, t_speed_new** tmp_cell
   // rebound(params, cells, tmp_cells, obstacles);
   // t_speed_new *cellsPtr = cells;
   // t_speed_new *tmp_cellsPtr = tmp_cells;
-  float rank_temp = 0;
   float result = rebound_collision(params, *cells, *tmp_cells, obstacles, local_nrows);
   t_speed_new *temp = *tmp_cells;
   *tmp_cells = *cells;
   *cells = temp;
   //printf("we get here 1\n");
-  float final_result = 0;
   // MPI_Reduce(&result, &final_result, 1, MPI_FLOAT, MPI_SUM, MASTER, MPI_COMM_WORLD);
   // if (rank == MASTER) {
   //   for (int i = 1; i < size; i++) {

@@ -1,0 +1,45 @@
+Running on host compute242.bc4.acrc.priv
+Time is Wed May 10 14:04:10 BST 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11459515
+This job runs on the following machines:
+compute242
+==done==
+Reynolds number:		9.760962486267E+00
+Elapsed Init time:			0.003639 (s)
+Elapsed Compute time:			0.424593 (s)
+Elapsed Collate time:			0.000834 (s)
+Elapsed Total time:			0.429066 (s)
+==done==
+Reynolds number:		1.006229782104E+01
+Elapsed Init time:			0.002379 (s)
+Elapsed Compute time:			1.994018 (s)
+Elapsed Collate time:			0.002890 (s)
+Elapsed Total time:			1.999287 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.009398 (s)
+Elapsed Compute time:			13.037247 (s)
+Elapsed Collate time:			0.030144 (s)
+Elapsed Total time:			13.076789 (s)
+rank master 0, 0
+==done==
+Reynolds number:		9.760962486267E+00
+Elapsed Init time:			0.001722 (s)
+Elapsed Compute time:			1.894349 (s)
+Elapsed Collate time:			0.000526 (s)
+Elapsed Total time:			1.896597 (s)
+rank master 0, 0
+==done==
+Reynolds number:		1.006229877472E+01
+Elapsed Init time:			0.007360 (s)
+Elapsed Compute time:			9.451997 (s)
+Elapsed Collate time:			0.001851 (s)
+Elapsed Total time:			9.461208 (s)
+rank master 0, 0
+==done==
+Reynolds number:		3.376103401184E+00
+Elapsed Init time:			0.073990 (s)
+Elapsed Compute time:			16.031398 (s)
+Elapsed Collate time:			0.016105 (s)
+Elapsed Total time:			16.121493 (s)

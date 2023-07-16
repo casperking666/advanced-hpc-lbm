@@ -1,0 +1,98 @@
+/user/work/yf20630/compiler/Linux_x86_64/23.3/compilers/bin/nvc -mp -target=gpu -gpu=cc60,fastmath -fast d2q9-bgk-omp-gpu.c -lm -o d2q9-bgk-omp-gpu
+nvc-Warning-CUDA_HOME has been deprecated. Please, use NVHPC_CUDA_HOME instead.
+"d2q9-bgk-omp-gpu.c", line 281: warning: function "__assume" declared implicitly [implicit_func_decl]
+    __assume((params.nx)%2==0);
+    ^
+
+Remark: individual warnings can be suppressed with "--diag_suppress <warning-name>"
+
+"d2q9-bgk-omp-gpu.c", line 283: warning: function "__assume_aligned" declared implicitly [implicit_func_decl]
+    __assume_aligned(cells, 64);
+    ^
+
+"d2q9-bgk-omp-gpu.c", line 604: warning: function "_mm_malloc" declared implicitly [implicit_func_decl]
+    *cells_ptr = (t_speed_new*)_mm_malloc(sizeof(t_speed_new), 64);
+                               ^
+
+"d2q9-bgk-omp-gpu.c", line 605: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*cells_ptr)->speed0 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                         ^
+
+"d2q9-bgk-omp-gpu.c", line 606: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*cells_ptr)->speed1 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                         ^
+
+"d2q9-bgk-omp-gpu.c", line 607: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*cells_ptr)->speed2 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                         ^
+
+"d2q9-bgk-omp-gpu.c", line 608: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*cells_ptr)->speed3 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                         ^
+
+"d2q9-bgk-omp-gpu.c", line 609: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*cells_ptr)->speed4 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                         ^
+
+"d2q9-bgk-omp-gpu.c", line 610: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*cells_ptr)->speed5 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                         ^
+
+"d2q9-bgk-omp-gpu.c", line 611: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*cells_ptr)->speed6 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                         ^
+
+"d2q9-bgk-omp-gpu.c", line 612: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*cells_ptr)->speed7 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                         ^
+
+"d2q9-bgk-omp-gpu.c", line 613: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*cells_ptr)->speed8 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                         ^
+
+"d2q9-bgk-omp-gpu.c", line 619: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*tmp_cells_ptr)->speed0 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                             ^
+
+"d2q9-bgk-omp-gpu.c", line 620: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*tmp_cells_ptr)->speed1 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                             ^
+
+"d2q9-bgk-omp-gpu.c", line 621: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*tmp_cells_ptr)->speed2 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                             ^
+
+"d2q9-bgk-omp-gpu.c", line 622: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*tmp_cells_ptr)->speed3 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                             ^
+
+"d2q9-bgk-omp-gpu.c", line 623: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*tmp_cells_ptr)->speed4 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                             ^
+
+"d2q9-bgk-omp-gpu.c", line 624: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*tmp_cells_ptr)->speed5 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                             ^
+
+"d2q9-bgk-omp-gpu.c", line 625: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*tmp_cells_ptr)->speed6 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                             ^
+
+"d2q9-bgk-omp-gpu.c", line 626: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*tmp_cells_ptr)->speed7 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                             ^
+
+"d2q9-bgk-omp-gpu.c", line 627: warning: a value of type "int" cannot be assigned to an entity of type "float *" [incompatible_assignment_operands]
+    (*tmp_cells_ptr)->speed8 = _mm_malloc(sizeof(float)*(params->ny * params->nx),64);
+                             ^
+
+"d2q9-bgk-omp-gpu.c", line 726: warning: function "_mm_free" declared implicitly [implicit_func_decl]
+    _mm_free(*cells_ptr);
+    ^
+
+NVC++-W-0155-Compiler failed to translate accelerator region (see -Minfo messages): OpenMP GPU Offload is available only on systems with NVIDIA GPUs with compute capability '>= cc70' (d2q9-bgk-omp-gpu.c: 312)
+NVC++/x86-64 Linux 23.3-0: compilation completed with warnings
+fatbinary fatal   : Unknown option '-image3'
+pgacclnk: child process exit status 2: /user/work/yf20630/compiler/Linux_x86_64/23.3/compilers/bin/tools/nvdd
+make: *** [d2q9-bgk-omp-gpu] Error 2
+/tmp/slurmd/job11459466/slurm_script: line 13: ./d2q9-bgk-omp-gpu: No such file or directory

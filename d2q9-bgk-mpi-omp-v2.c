@@ -600,10 +600,10 @@ float rebound_collision(const t_param params, t_speed_new* restrict cells, t_spe
   ** the propagate step and so values of interest
   ** are in the scratch-space grid */
   //#pragma omp parallel for collapse(2)
-  //#pragma omp simd
+  #pragma omp parallel for schedule(static) reduction(+:tot_u)
   for (int jj = 1; jj < local_nrows+1; ++jj)
   { 
-    #pragma omp simd
+    #pragma omp simd aligned(cells) aligned(tmp_cells) reduction(+:tot_u)
     for (int ii = 0; ii < params.nx; ++ii)
     {
       /* determine indices of axis-direction neighbours

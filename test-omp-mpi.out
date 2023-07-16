@@ -1,0 +1,9 @@
+Running on host compute242.bc4.acrc.priv
+Time is Fri May 12 04:41:31 BST 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11464181
+This job runs on the following machines:
+compute[242-245]
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 11464181 ON compute242 CANCELLED AT 2023-05-12T04:43:46 ***
+slurmstepd: error: *** STEP 11464181.0 ON compute242 CANCELLED AT 2023-05-12T04:43:46 ***

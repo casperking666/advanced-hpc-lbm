@@ -1,0 +1,678 @@
+Running on host compute521.bc4.acrc.priv
+Time is Tue May 9 21:28:47 BST 2023
+Directory is /user/home/yf20630/lab1/advanced-hpc-lbm
+Slurm job ID is 11456315
+This job runs on the following machines:
+compute[521-524]
+==done==
+Reynolds number:		3.376128435135E+00
+Elapsed Init time:			0.073259 (s)
+Elapsed Compute time:			249.143369 (s)
+Elapsed Collate time:			0.016755 (s)
+Elapsed Total time:			249.233383 (s)
+==done==
+Reynolds number:		3.376125335693E+00
+Elapsed Init time:			0.042049 (s)
+Elapsed Compute time:			109.011226 (s)
+Elapsed Collate time:			0.015606 (s)
+Elapsed Total time:			109.068881 (s)
+==done==
+Reynolds number:		3.376110315323E+00
+Elapsed Init time:			0.033379 (s)
+Elapsed Compute time:			84.670938 (s)
+Elapsed Collate time:			0.025190 (s)
+Elapsed Total time:			84.729507 (s)
+==done==
+Reynolds number:		3.376111030579E+00
+Elapsed Init time:			0.027934 (s)
+Elapsed Compute time:			56.223917 (s)
+Elapsed Collate time:			0.026481 (s)
+Elapsed Total time:			56.278332 (s)
+==done==
+Reynolds number:		3.376113653183E+00
+Elapsed Init time:			0.024284 (s)
+Elapsed Compute time:			56.901901 (s)
+Elapsed Collate time:			0.027319 (s)
+Elapsed Total time:			56.953504 (s)
+==done==
+Reynolds number:		3.376125812531E+00
+Elapsed Init time:			0.020649 (s)
+Elapsed Compute time:			41.569486 (s)
+Elapsed Collate time:			0.027319 (s)
+Elapsed Total time:			41.617454 (s)
+==done==
+Reynolds number:		3.376126050949E+00
+Elapsed Init time:			0.017950 (s)
+Elapsed Compute time:			34.898703 (s)
+Elapsed Collate time:			0.026891 (s)
+Elapsed Total time:			34.943544 (s)
+==done==
+Reynolds number:		3.376121759415E+00
+Elapsed Init time:			0.015799 (s)
+Elapsed Compute time:			28.998497 (s)
+Elapsed Collate time:			0.027799 (s)
+Elapsed Total time:			29.042095 (s)
+==done==
+Reynolds number:		3.376114845276E+00
+Elapsed Init time:			0.014072 (s)
+Elapsed Compute time:			28.141997 (s)
+Elapsed Collate time:			0.027870 (s)
+Elapsed Total time:			28.183939 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.013778 (s)
+Elapsed Compute time:			29.661598 (s)
+Elapsed Collate time:			0.028511 (s)
+Elapsed Total time:			29.703887 (s)
+==done==
+Reynolds number:		3.376122713089E+00
+Elapsed Init time:			0.012973 (s)
+Elapsed Compute time:			27.944884 (s)
+Elapsed Collate time:			0.028703 (s)
+Elapsed Total time:			27.986560 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.011934 (s)
+Elapsed Compute time:			24.332939 (s)
+Elapsed Collate time:			0.028359 (s)
+Elapsed Total time:			24.373232 (s)
+==done==
+Reynolds number:		3.376114845276E+00
+Elapsed Init time:			0.010986 (s)
+Elapsed Compute time:			19.638186 (s)
+Elapsed Collate time:			0.028331 (s)
+Elapsed Total time:			19.677503 (s)
+==done==
+Reynolds number:		3.376118183136E+00
+Elapsed Init time:			0.010434 (s)
+Elapsed Compute time:			17.646718 (s)
+Elapsed Collate time:			0.028510 (s)
+Elapsed Total time:			17.685662 (s)
+==done==
+Reynolds number:		3.376118659973E+00
+Elapsed Init time:			0.009423 (s)
+Elapsed Compute time:			19.498091 (s)
+Elapsed Collate time:			0.028509 (s)
+Elapsed Total time:			19.536023 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.010133 (s)
+Elapsed Compute time:			15.729078 (s)
+Elapsed Collate time:			0.028663 (s)
+Elapsed Total time:			15.767874 (s)
+==done==
+Reynolds number:		3.376117944717E+00
+Elapsed Init time:			0.009425 (s)
+Elapsed Compute time:			17.787978 (s)
+Elapsed Collate time:			0.028932 (s)
+Elapsed Total time:			17.826335 (s)
+==done==
+Reynolds number:		3.376117944717E+00
+Elapsed Init time:			0.009096 (s)
+Elapsed Compute time:			14.771798 (s)
+Elapsed Collate time:			0.028797 (s)
+Elapsed Total time:			14.809691 (s)
+==done==
+Reynolds number:		3.376118183136E+00
+Elapsed Init time:			0.008988 (s)
+Elapsed Compute time:			15.354744 (s)
+Elapsed Collate time:			0.029174 (s)
+Elapsed Total time:			15.392906 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.008440 (s)
+Elapsed Compute time:			13.790121 (s)
+Elapsed Collate time:			0.029748 (s)
+Elapsed Total time:			13.828309 (s)
+==done==
+Reynolds number:		3.376119136810E+00
+Elapsed Init time:			0.008833 (s)
+Elapsed Compute time:			14.771867 (s)
+Elapsed Collate time:			0.029446 (s)
+Elapsed Total time:			14.810146 (s)
+==done==
+Reynolds number:		3.376118659973E+00
+Elapsed Init time:			0.008406 (s)
+Elapsed Compute time:			13.340301 (s)
+Elapsed Collate time:			0.030238 (s)
+Elapsed Total time:			13.378945 (s)
+==done==
+Reynolds number:		3.376121282578E+00
+Elapsed Init time:			0.008620 (s)
+Elapsed Compute time:			15.092795 (s)
+Elapsed Collate time:			0.029856 (s)
+Elapsed Total time:			15.131271 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.008168 (s)
+Elapsed Compute time:			12.699758 (s)
+Elapsed Collate time:			0.030155 (s)
+Elapsed Total time:			12.738081 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.009750 (s)
+Elapsed Compute time:			13.681417 (s)
+Elapsed Collate time:			0.030079 (s)
+Elapsed Total time:			13.721246 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.008428 (s)
+Elapsed Compute time:			12.654337 (s)
+Elapsed Collate time:			0.030565 (s)
+Elapsed Total time:			12.693330 (s)
+==done==
+Reynolds number:		3.376120567322E+00
+Elapsed Init time:			0.007464 (s)
+Elapsed Compute time:			13.754041 (s)
+Elapsed Collate time:			0.030004 (s)
+Elapsed Total time:			13.791509 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.008117 (s)
+Elapsed Compute time:			13.013764 (s)
+Elapsed Collate time:			0.030099 (s)
+Elapsed Total time:			13.051980 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.006606 (s)
+Elapsed Compute time:			11.471701 (s)
+Elapsed Collate time:			0.029084 (s)
+Elapsed Total time:			11.507391 (s)
+==done==
+Reynolds number:		3.376121044159E+00
+Elapsed Init time:			0.007847 (s)
+Elapsed Compute time:			10.402496 (s)
+Elapsed Collate time:			0.028925 (s)
+Elapsed Total time:			10.439268 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.010379 (s)
+Elapsed Compute time:			9.561720 (s)
+Elapsed Collate time:			0.029356 (s)
+Elapsed Total time:			9.601455 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.008351 (s)
+Elapsed Compute time:			8.654687 (s)
+Elapsed Collate time:			0.028848 (s)
+Elapsed Total time:			8.691886 (s)
+==done==
+Reynolds number:		3.376121044159E+00
+Elapsed Init time:			0.008759 (s)
+Elapsed Compute time:			8.240341 (s)
+Elapsed Collate time:			0.028375 (s)
+Elapsed Total time:			8.277475 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.008126 (s)
+Elapsed Compute time:			7.858868 (s)
+Elapsed Collate time:			0.028424 (s)
+Elapsed Total time:			7.895418 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.007209 (s)
+Elapsed Compute time:			7.263590 (s)
+Elapsed Collate time:			0.027282 (s)
+Elapsed Total time:			7.298081 (s)
+==done==
+Reynolds number:		3.376120567322E+00
+Elapsed Init time:			0.007138 (s)
+Elapsed Compute time:			5.387989 (s)
+Elapsed Collate time:			0.027991 (s)
+Elapsed Total time:			5.423118 (s)
+==done==
+Reynolds number:		3.376121044159E+00
+Elapsed Init time:			0.007489 (s)
+Elapsed Compute time:			4.890233 (s)
+Elapsed Collate time:			0.028654 (s)
+Elapsed Total time:			4.926376 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.005908 (s)
+Elapsed Compute time:			4.551472 (s)
+Elapsed Collate time:			0.027968 (s)
+Elapsed Total time:			4.585348 (s)
+==done==
+Reynolds number:		3.376121044159E+00
+Elapsed Init time:			0.006931 (s)
+Elapsed Compute time:			4.343334 (s)
+Elapsed Collate time:			0.027691 (s)
+Elapsed Total time:			4.377956 (s)
+==done==
+Reynolds number:		3.376121282578E+00
+Elapsed Init time:			0.006916 (s)
+Elapsed Compute time:			4.180248 (s)
+Elapsed Collate time:			0.027518 (s)
+Elapsed Total time:			4.214682 (s)
+==done==
+Reynolds number:		3.376120567322E+00
+Elapsed Init time:			0.004298 (s)
+Elapsed Compute time:			4.314724 (s)
+Elapsed Collate time:			0.027015 (s)
+Elapsed Total time:			4.346037 (s)
+==done==
+Reynolds number:		3.376121044159E+00
+Elapsed Init time:			0.005690 (s)
+Elapsed Compute time:			4.058204 (s)
+Elapsed Collate time:			0.027057 (s)
+Elapsed Total time:			4.090951 (s)
+==done==
+Reynolds number:		3.376121044159E+00
+Elapsed Init time:			0.005322 (s)
+Elapsed Compute time:			4.177416 (s)
+Elapsed Collate time:			0.028030 (s)
+Elapsed Total time:			4.210768 (s)
+==done==
+Reynolds number:		3.376121044159E+00
+Elapsed Init time:			0.005526 (s)
+Elapsed Compute time:			3.958628 (s)
+Elapsed Collate time:			0.027745 (s)
+Elapsed Total time:			3.991899 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.007738 (s)
+Elapsed Compute time:			3.885761 (s)
+Elapsed Collate time:			0.028085 (s)
+Elapsed Total time:			3.921584 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.006919 (s)
+Elapsed Compute time:			3.867610 (s)
+Elapsed Collate time:			0.027957 (s)
+Elapsed Total time:			3.902486 (s)
+==done==
+Reynolds number:		3.376121044159E+00
+Elapsed Init time:			0.007097 (s)
+Elapsed Compute time:			3.948234 (s)
+Elapsed Collate time:			0.027602 (s)
+Elapsed Total time:			3.982933 (s)
+==done==
+Reynolds number:		3.376121044159E+00
+Elapsed Init time:			0.013255 (s)
+Elapsed Compute time:			3.842873 (s)
+Elapsed Collate time:			0.026712 (s)
+Elapsed Total time:			3.882840 (s)
+==done==
+Reynolds number:		3.376120567322E+00
+Elapsed Init time:			0.004687 (s)
+Elapsed Compute time:			3.635170 (s)
+Elapsed Collate time:			0.027783 (s)
+Elapsed Total time:			3.667640 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.005544 (s)
+Elapsed Compute time:			3.453268 (s)
+Elapsed Collate time:			0.027501 (s)
+Elapsed Total time:			3.486313 (s)
+==done==
+Reynolds number:		3.376120567322E+00
+Elapsed Init time:			0.004649 (s)
+Elapsed Compute time:			3.399431 (s)
+Elapsed Collate time:			0.027721 (s)
+Elapsed Total time:			3.431801 (s)
+==done==
+Reynolds number:		3.376121044159E+00
+Elapsed Init time:			0.005817 (s)
+Elapsed Compute time:			3.401665 (s)
+Elapsed Collate time:			0.027009 (s)
+Elapsed Total time:			3.434491 (s)
+==done==
+Reynolds number:		3.376120567322E+00
+Elapsed Init time:			0.005542 (s)
+Elapsed Compute time:			3.375237 (s)
+Elapsed Collate time:			0.027947 (s)
+Elapsed Total time:			3.408726 (s)
+==done==
+Reynolds number:		3.376120567322E+00
+Elapsed Init time:			0.007079 (s)
+Elapsed Compute time:			3.266634 (s)
+Elapsed Collate time:			0.027045 (s)
+Elapsed Total time:			3.300758 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.005617 (s)
+Elapsed Compute time:			3.410288 (s)
+Elapsed Collate time:			0.028240 (s)
+Elapsed Total time:			3.444145 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.006037 (s)
+Elapsed Compute time:			3.275212 (s)
+Elapsed Collate time:			0.027659 (s)
+Elapsed Total time:			3.308908 (s)
+==done==
+Reynolds number:		3.376120567322E+00
+Elapsed Init time:			0.008607 (s)
+Elapsed Compute time:			3.401081 (s)
+Elapsed Collate time:			0.026920 (s)
+Elapsed Total time:			3.436608 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.005462 (s)
+Elapsed Compute time:			3.221409 (s)
+Elapsed Collate time:			0.028318 (s)
+Elapsed Total time:			3.255189 (s)
+==done==
+Reynolds number:		3.376120567322E+00
+Elapsed Init time:			0.005580 (s)
+Elapsed Compute time:			3.160497 (s)
+Elapsed Collate time:			0.027778 (s)
+Elapsed Total time:			3.193855 (s)
+==done==
+Reynolds number:		3.376120567322E+00
+Elapsed Init time:			0.014085 (s)
+Elapsed Compute time:			3.181928 (s)
+Elapsed Collate time:			0.027715 (s)
+Elapsed Total time:			3.223728 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.007859 (s)
+Elapsed Compute time:			3.005616 (s)
+Elapsed Collate time:			0.027646 (s)
+Elapsed Total time:			3.041121 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.006648 (s)
+Elapsed Compute time:			3.099382 (s)
+Elapsed Collate time:			0.028146 (s)
+Elapsed Total time:			3.134176 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.004530 (s)
+Elapsed Compute time:			3.002687 (s)
+Elapsed Collate time:			0.027807 (s)
+Elapsed Total time:			3.035024 (s)
+==done==
+Reynolds number:		3.376119136810E+00
+Elapsed Init time:			0.005158 (s)
+Elapsed Compute time:			3.021546 (s)
+Elapsed Collate time:			0.027958 (s)
+Elapsed Total time:			3.054662 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.004467 (s)
+Elapsed Compute time:			2.869250 (s)
+Elapsed Collate time:			0.031825 (s)
+Elapsed Total time:			2.905542 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.005213 (s)
+Elapsed Compute time:			2.959852 (s)
+Elapsed Collate time:			0.034416 (s)
+Elapsed Total time:			2.999481 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.006272 (s)
+Elapsed Compute time:			3.001064 (s)
+Elapsed Collate time:			0.036757 (s)
+Elapsed Total time:			3.044093 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.005709 (s)
+Elapsed Compute time:			2.739761 (s)
+Elapsed Collate time:			0.040104 (s)
+Elapsed Total time:			2.785574 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.005905 (s)
+Elapsed Compute time:			2.967650 (s)
+Elapsed Collate time:			0.037470 (s)
+Elapsed Total time:			3.011025 (s)
+==done==
+Reynolds number:		3.376118898392E+00
+Elapsed Init time:			0.006573 (s)
+Elapsed Compute time:			2.794101 (s)
+Elapsed Collate time:			0.037257 (s)
+Elapsed Total time:			2.837931 (s)
+==done==
+Reynolds number:		3.376119136810E+00
+Elapsed Init time:			0.006463 (s)
+Elapsed Compute time:			2.825826 (s)
+Elapsed Collate time:			0.037620 (s)
+Elapsed Total time:			2.869909 (s)
+==done==
+Reynolds number:		3.376119136810E+00
+Elapsed Init time:			0.004705 (s)
+Elapsed Compute time:			3.067951 (s)
+Elapsed Collate time:			0.038750 (s)
+Elapsed Total time:			3.111406 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.006909 (s)
+Elapsed Compute time:			2.900451 (s)
+Elapsed Collate time:			0.038443 (s)
+Elapsed Total time:			2.945803 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.006587 (s)
+Elapsed Compute time:			2.850224 (s)
+Elapsed Collate time:			0.039983 (s)
+Elapsed Total time:			2.896794 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.005624 (s)
+Elapsed Compute time:			2.816549 (s)
+Elapsed Collate time:			0.038228 (s)
+Elapsed Total time:			2.860401 (s)
+==done==
+Reynolds number:		3.376119136810E+00
+Elapsed Init time:			0.005297 (s)
+Elapsed Compute time:			3.012053 (s)
+Elapsed Collate time:			0.037530 (s)
+Elapsed Total time:			3.054880 (s)
+==done==
+Reynolds number:		3.376119136810E+00
+Elapsed Init time:			0.009109 (s)
+Elapsed Compute time:			2.740364 (s)
+Elapsed Collate time:			0.038278 (s)
+Elapsed Total time:			2.787751 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.006468 (s)
+Elapsed Compute time:			2.769873 (s)
+Elapsed Collate time:			0.038448 (s)
+Elapsed Total time:			2.814789 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.005236 (s)
+Elapsed Compute time:			2.497186 (s)
+Elapsed Collate time:			0.038201 (s)
+Elapsed Total time:			2.540623 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.005966 (s)
+Elapsed Compute time:			2.501729 (s)
+Elapsed Collate time:			0.039855 (s)
+Elapsed Total time:			2.547550 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.004326 (s)
+Elapsed Compute time:			2.598618 (s)
+Elapsed Collate time:			0.038447 (s)
+Elapsed Total time:			2.641391 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.003583 (s)
+Elapsed Compute time:			2.588613 (s)
+Elapsed Collate time:			0.038332 (s)
+Elapsed Total time:			2.630528 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.005025 (s)
+Elapsed Compute time:			2.579052 (s)
+Elapsed Collate time:			0.039340 (s)
+Elapsed Total time:			2.623417 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.004409 (s)
+Elapsed Compute time:			2.562494 (s)
+Elapsed Collate time:			0.038475 (s)
+Elapsed Total time:			2.605378 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.006586 (s)
+Elapsed Compute time:			2.664100 (s)
+Elapsed Collate time:			0.038982 (s)
+Elapsed Total time:			2.709668 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.008295 (s)
+Elapsed Compute time:			2.386036 (s)
+Elapsed Collate time:			0.040330 (s)
+Elapsed Total time:			2.434661 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.004688 (s)
+Elapsed Compute time:			2.450663 (s)
+Elapsed Collate time:			0.037749 (s)
+Elapsed Total time:			2.493100 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.003609 (s)
+Elapsed Compute time:			2.608462 (s)
+Elapsed Collate time:			0.038056 (s)
+Elapsed Total time:			2.650127 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.006067 (s)
+Elapsed Compute time:			2.443814 (s)
+Elapsed Collate time:			0.038275 (s)
+Elapsed Total time:			2.488156 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.006689 (s)
+Elapsed Compute time:			2.531301 (s)
+Elapsed Collate time:			0.038365 (s)
+Elapsed Total time:			2.576355 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.005194 (s)
+Elapsed Compute time:			2.439700 (s)
+Elapsed Collate time:			0.038686 (s)
+Elapsed Total time:			2.483580 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.005184 (s)
+Elapsed Compute time:			2.369601 (s)
+Elapsed Collate time:			0.040442 (s)
+Elapsed Total time:			2.415227 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.004925 (s)
+Elapsed Compute time:			2.364429 (s)
+Elapsed Collate time:			0.040695 (s)
+Elapsed Total time:			2.410049 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.006077 (s)
+Elapsed Compute time:			2.534954 (s)
+Elapsed Collate time:			0.038852 (s)
+Elapsed Total time:			2.579883 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.006379 (s)
+Elapsed Compute time:			2.270748 (s)
+Elapsed Collate time:			0.039251 (s)
+Elapsed Total time:			2.316378 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.006253 (s)
+Elapsed Compute time:			2.457833 (s)
+Elapsed Collate time:			0.039190 (s)
+Elapsed Total time:			2.503276 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.024744 (s)
+Elapsed Compute time:			2.363743 (s)
+Elapsed Collate time:			0.040319 (s)
+Elapsed Total time:			2.428806 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.005094 (s)
+Elapsed Compute time:			2.564139 (s)
+Elapsed Collate time:			0.040901 (s)
+Elapsed Total time:			2.610134 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.005393 (s)
+Elapsed Compute time:			2.246460 (s)
+Elapsed Collate time:			0.039748 (s)
+Elapsed Total time:			2.291601 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.006627 (s)
+Elapsed Compute time:			2.181816 (s)
+Elapsed Collate time:			0.039180 (s)
+Elapsed Total time:			2.227623 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.005306 (s)
+Elapsed Compute time:			2.428097 (s)
+Elapsed Collate time:			0.039323 (s)
+Elapsed Total time:			2.472726 (s)
+==done==
+Reynolds number:		3.376120328903E+00
+Elapsed Init time:			0.004754 (s)
+Elapsed Compute time:			2.272616 (s)
+Elapsed Collate time:			0.040300 (s)
+Elapsed Total time:			2.317670 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.007097 (s)
+Elapsed Compute time:			2.246566 (s)
+Elapsed Collate time:			0.042362 (s)
+Elapsed Total time:			2.296025 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.004821 (s)
+Elapsed Compute time:			2.294017 (s)
+Elapsed Collate time:			0.041799 (s)
+Elapsed Total time:			2.340637 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.005465 (s)
+Elapsed Compute time:			2.255384 (s)
+Elapsed Collate time:			0.040839 (s)
+Elapsed Total time:			2.301688 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.006528 (s)
+Elapsed Compute time:			2.164531 (s)
+Elapsed Collate time:			0.041101 (s)
+Elapsed Total time:			2.212160 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.002474 (s)
+Elapsed Compute time:			2.310231 (s)
+Elapsed Collate time:			0.040789 (s)
+Elapsed Total time:			2.353494 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.005981 (s)
+Elapsed Compute time:			2.245400 (s)
+Elapsed Collate time:			0.039343 (s)
+Elapsed Total time:			2.290724 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.004327 (s)
+Elapsed Compute time:			2.232898 (s)
+Elapsed Collate time:			0.040621 (s)
+Elapsed Total time:			2.277846 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.003804 (s)
+Elapsed Compute time:			2.220143 (s)
+Elapsed Collate time:			0.040211 (s)
+Elapsed Total time:			2.264158 (s)
+==done==
+Reynolds number:		3.376119852066E+00
+Elapsed Init time:			0.004973 (s)
+Elapsed Compute time:			2.166247 (s)
+Elapsed Collate time:			0.038941 (s)
+Elapsed Total time:			2.210161 (s)
+==done==
+Reynolds number:		3.376119613647E+00
+Elapsed Init time:			0.005717 (s)
+Elapsed Compute time:			2.288208 (s)
+Elapsed Collate time:			0.039969 (s)
+Elapsed Total time:			2.333894 (s)

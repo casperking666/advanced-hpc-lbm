@@ -1,0 +1,15 @@
+#!/bin/bash -login
+#SBATCH --nodes=1
+#SBATCH --gres=gpu:1
+#SBATCH --account=COSC028844
+#SBATCH --partition=teach_gpu
+#SBATCH --job-name=gpujob
+
+module load CUDA
+
+cd $SLURM_SUBMIT_DIR
+nvidia-smi -L
+make &> gpu.out
+OMP_PROC_BIND=close OMP_PLACES=cores ./d2q9-bgk-omp-gpu input_128x128.params obstacles_128x128.dat &>> gpu.out
+
+
